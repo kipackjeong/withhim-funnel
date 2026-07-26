@@ -37,24 +37,21 @@
 
 /* ---------- shared prose helpers ---------- */
 
-.section-head { margin-bottom: clamp(34px, 5vw, 54px); }
+.section-head { margin-bottom: clamp(30px, 4.5vw, 48px); }
 .section-head p:last-child { margin-bottom: 0; }
 .prose p { color: var(--parchment-70); }
 .prose p.lead-para { color: var(--parchment); }
 .prose > :last-child { margin-bottom: 0; }
 
-.rich-list {
-  list-style: none;
-  margin: 0 0 1.6em;
-  padding: 0;
-  display: grid;
-  gap: 15px;
+.sub-block {
+  margin-top: clamp(38px, 5vw, 54px);
+  padding-top: clamp(28px, 4vw, 38px);
+  border-top: 1px solid var(--line);
 }
-.rich-list li {
-  position: relative;
-  padding-left: 30px;
-  color: var(--parchment-70);
-}
+.sub-block h3 { margin-bottom: 0.6em; }
+
+.rich-list { list-style: none; margin: 0 0 1.4em; padding: 0; display: grid; gap: 13px; }
+.rich-list li { position: relative; padding-left: 30px; color: var(--parchment-70); }
 .rich-list li::before {
   content: '';
   position: absolute;
@@ -77,13 +74,13 @@
   position: relative;
   z-index: 1;
 }
-@media (min-width: 960px) {
-  .hero-grid { grid-template-columns: minmax(0, 1fr) auto; gap: 72px; }
-}
+@media (min-width: 960px) { .hero-grid { grid-template-columns: minmax(0, 1fr) auto; gap: 72px; } }
 .hero h1 { margin-bottom: 0.42em; }
-.hero .lede { max-width: 34em; }
+.hero .lede { max-width: 34em; margin-bottom: 0.9em; }
+.hero-sub { font-size: 0.98rem; line-height: 1.6; color: var(--parchment-50); max-width: 40em; margin: 0; }
+.hero-sub strong { color: var(--parchment-70); font-weight: 600; }
 
-.cta-stack { display: grid; gap: 26px; margin-top: clamp(30px, 4vw, 42px); }
+.cta-stack { display: grid; gap: 22px; margin-top: clamp(28px, 4vw, 38px); }
 .cta-block p { margin: 12px 0 0; }
 .cta-note { font-size: 0.86rem; line-height: 1.55; color: var(--parchment-50); max-width: 38em; }
 @media (max-width: 600px) { .cta-block .btn { width: 100%; } }
@@ -164,13 +161,9 @@
   flex: 1 1 auto;
   min-height: 0;
 }
-.wb {
-  height: 8px;
-  width: var(--w);
-  border-radius: 4px;
-  background: rgba(242,237,228,0.13);
-}
-.hero-phone .wb {
+.wb { height: 8px; width: var(--w); border-radius: 4px; background: rgba(242,237,228,0.13); }
+
+.hero-phone .wb, .alarm-mock .wb {
   animation: wbLit 15s var(--ease) infinite;
   animation-delay: calc(var(--i) * 0.28s);
 }
@@ -181,11 +174,15 @@
   66%, 100% { background: rgba(242,237,228,0.13); box-shadow: none; }
 }
 
-.screen-foot { margin-top: 18px; }
-.wave {
-  display: flex; align-items: flex-end; justify-content: center;
-  gap: 3px; height: 18px; margin-bottom: 12px;
+/* one-shot illumination, driven from script inside the shield gate */
+.wb.on { animation: wbOn 900ms var(--ease) both; }
+@keyframes wbOn {
+  0%   { background: var(--dawn-soft); box-shadow: 0 0 14px rgba(232,169,75,0.50); }
+  100% { background: rgba(242,237,228,0.78); box-shadow: none; }
 }
+
+.screen-foot { margin-top: 18px; }
+.wave { display: flex; align-items: flex-end; justify-content: center; gap: 3px; height: 18px; margin-bottom: 12px; }
 .wave i {
   display: block; width: 3px; height: 4px;
   border-radius: 2px; background: var(--dawn);
@@ -217,167 +214,188 @@
 /* ---------- the honest note ---------- */
 
 .honest { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.honest-card {
-  border-left: 2px solid var(--ember);
-  padding-left: clamp(20px, 3vw, 30px);
-}
-.honest-card h2 {
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  margin-bottom: 0.7em;
-}
+.honest-card { border-left: 2px solid var(--ember); padding-left: clamp(20px, 3vw, 30px); }
+.honest-card h2 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); margin-bottom: 0.7em; }
 .honest-card p { color: var(--parchment-70); }
 .honest-card p:last-child { margin-bottom: 0; color: var(--parchment); }
 
-/* ---------- positioning line ---------- */
+/* ---------- the exhibit: two moments, one phone ---------- */
 
-.positioning { text-align: center; }
-.positioning h2 { max-width: 20ch; margin-left: auto; margin-right: auto; }
-.positioning .lede { max-width: 46ch; margin-left: auto; margin-right: auto; margin-bottom: 0; }
+.exhibit { margin-top: clamp(30px, 4vw, 44px); }
 
-/* ---------- mechanism ---------- */
+.ex-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(26px, 3.5vw, 36px); }
+.ex-tab {
+  font-family: var(--sans);
+  font-size: 0.92rem; font-weight: 600;
+  padding: 12px 22px;
+  min-height: 44px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--parchment-50);
+  cursor: pointer;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+.ex-tab:hover { color: var(--parchment); border-color: var(--parchment-32); }
+.ex-tab[aria-selected="true"] {
+  color: #2A1B06;
+  background: linear-gradient(180deg, var(--dawn-soft), var(--dawn));
+  border-color: transparent;
+}
 
-.moments {
+.ex-stage { display: grid; grid-template-columns: 1fr; justify-items: center; gap: clamp(32px, 4.5vw, 52px); }
+@media (min-width: 960px) {
+  .ex-stage { grid-template-columns: auto minmax(0, 1fr); justify-items: stretch; align-items: center; gap: 60px; }
+}
+.ex-side { width: 100%; max-width: 540px; }
+.ex-side h3 { margin-bottom: 0.7em; }
+.ex-note { font-size: 0.84rem; line-height: 1.55; color: var(--parchment-50); margin: 0 0 1.3em; }
+.ex-controls { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.exhibit[data-tab="shield"] .ring { display: none; }
+
+/* two screens sharing one frame */
+.ex-screen { position: absolute; inset: 0; border-radius: 36px; overflow: hidden; }
+.ex-screen[hidden] { display: none; }
+
+/* --- the scroll screen --- */
+
+.sh-top {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 4;
+  padding: 38px 16px 10px;
+  background: linear-gradient(180deg, var(--ink) 66%, rgba(10,12,17,0));
+}
+.sh-clock {
+  display: block; text-align: center;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--parchment-50);
+  margin-bottom: 9px;
+}
+.usage { display: block; height: 3px; border-radius: 2px; background: rgba(242,237,228,0.10); overflow: hidden; }
+.usage > i {
+  display: block; height: 100%; width: 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--dawn-deep), var(--dawn));
+  transition: width 180ms linear, background 500ms var(--ease);
+}
+.usage.granted > i { background: var(--sage); }
+.usage-row {
+  display: flex; justify-content: space-between; gap: 10px;
+  margin-top: 6px;
+  font-size: 0.54rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--parchment-32);
+}
+
+.feed {
+  position: absolute; inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 82px 12px 20px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin: clamp(36px, 5vw, 54px) 0 clamp(48px, 6vw, 72px);
+  gap: 12px;
 }
-@media (min-width: 900px) { .moments { grid-template-columns: 1fr 1fr; gap: 24px; } }
-.moment { position: relative; overflow: hidden; }
-.moment::before {
-  content: '';
-  position: absolute; inset: 0 auto 0 0;
-  width: 2px;
-  background: linear-gradient(180deg, var(--ember), transparent 70%);
-}
-.moment.moment-shield::before { background: linear-gradient(180deg, var(--dawn), transparent 70%); }
-.moment h3 { margin-bottom: 0.7em; }
-.moment p { color: var(--parchment-70); font-size: 0.98rem; }
-.moment p:last-child { margin-bottom: 0; }
+.feed::-webkit-scrollbar { display: none; }
 
-.aloud-cta { margin-top: clamp(28px, 4vw, 38px); }
+.fcard { background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px; display: grid; gap: 9px; }
+.fhead { display: flex; align-items: center; gap: 8px; }
+.favatar { width: 22px; height: 22px; border-radius: 50%; background: rgba(242,237,228,0.14); flex: none; }
+.fmeta { display: grid; gap: 5px; flex: 1 1 auto; }
+.fmeta i { display: block; height: 5px; border-radius: 3px; background: rgba(242,237,228,0.14); }
+.fmeta i:first-child { width: 46%; }
+.fmeta i:last-child { width: 26%; background: rgba(242,237,228,0.07); }
+.fmedia { height: var(--h, 92px); border-radius: 9px; background: linear-gradient(150deg, rgba(242,237,228,0.10), rgba(242,237,228,0.04)); }
+.fbody { display: grid; gap: 6px; }
+.fbody i { display: block; height: 5px; border-radius: 3px; background: rgba(242,237,228,0.11); }
+.fbody i.short { width: 56%; }
+.factions { display: flex; gap: 14px; }
+.factions span { width: 13px; height: 13px; border-radius: 4px; background: rgba(242,237,228,0.09); }
+
+.grant-chip {
+  position: absolute; z-index: 5;
+  left: 50%; top: 74px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 15px;
+  border-radius: var(--r-pill);
+  border: 1px solid rgba(127,169,138,0.42);
+  background: rgba(17,20,28,0.94);
+  font-size: 0.63rem; font-weight: 600;
+  letter-spacing: 0.09em;
+  color: var(--parchment-70);
+  white-space: nowrap;
+}
+.grant-chip[hidden] { display: none; }
+.grant-chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--sage); flex: none; }
+
+/* --- the shield itself --- */
+
+.shield {
+  position: absolute; inset: 0; z-index: 6;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 46px 20px 24px;
+  background:
+    radial-gradient(120% 66% at 50% 16%, rgba(232,169,75,0.11), transparent 68%),
+    rgba(7,9,13,0.97);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transform: translateY(101%);
+  visibility: hidden;
+  transition: transform 620ms var(--ease), visibility 0s linear 620ms;
+}
+.shield.up { transform: none; visibility: visible; transition: transform 620ms var(--ease), visibility 0s linear 0s; }
+
+.sh-mark { width: 10px; height: 10px; border-radius: 50%; background: var(--dawn); box-shadow: 0 0 16px var(--dawn); }
+.sh-kicker {
+  font-size: 0.58rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--dawn);
+  margin: 12px 0 20px;
+}
+.sh-block { display: grid; justify-items: center; gap: 14px; width: 100%; }
+.sh-block[hidden] { display: none; }
+.sh-theme { font-family: var(--serif); font-size: 0.98rem; line-height: 1.45; color: var(--parchment-70); margin: 0; }
+.sh-theme b { color: var(--parchment); font-weight: 400; }
+.sh-ok { color: var(--sage); }
+.sh-words { flex: 0 0 auto; justify-content: center; gap: 9px 6px; margin: 2px 0; }
+.sh-btn {
+  font-family: var(--sans); font-size: 0.88rem; font-weight: 600;
+  padding: 13px 26px; min-height: 44px;
+  border: 1px solid transparent; border-radius: var(--r-pill);
+  background: linear-gradient(180deg, var(--dawn-soft), var(--dawn));
+  color: #2A1B06;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -12px rgba(232,169,75,0.7);
+}
+.sh-tick {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid rgba(127,169,138,0.55);
+  background: rgba(127,169,138,0.14);
+  position: relative;
+}
+.sh-tick::after {
+  content: ''; position: absolute;
+  left: 9px; top: 6px; width: 6px; height: 11px;
+  border-right: 1.5px solid var(--sage); border-bottom: 1.5px solid var(--sage);
+  transform: rotate(42deg);
+}
+.sh-foot { position: absolute; left: 20px; right: 20px; bottom: 20px; font-size: 0.58rem; letter-spacing: 0.05em; color: var(--parchment-32); margin: 0; }
 
 /* ---------- legalistic ---------- */
 
-.answer {
-  border-left: 2px solid var(--dawn);
-  padding-left: clamp(20px, 3vw, 30px);
-}
+.answer { border-left: 2px solid var(--dawn); padding-left: clamp(20px, 3vw, 30px); }
 .answer h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); }
-
-/* ---------- the quadrant ---------- */
-
-.quad-figure { margin: clamp(38px, 5vw, 58px) 0 0; }
-
-.quad {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-.ax {
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--parchment-50);
-  text-align: center;
-  margin: 0;
-}
-.ax-x { display: flex; justify-content: space-between; gap: 16px; }
-.ax-x .ax { text-align: left; }
-.ax-x .ax + .ax { text-align: right; }
-
-.quad-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  position: relative;
-}
-@media (min-width: 760px) {
-  .quad-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--line);
-    border-radius: var(--r-lg);
-    overflow: hidden;
-    background: var(--ink-2);
-  }
-}
-
-.q {
-  position: relative;
-  padding: clamp(20px, 2.6vw, 30px);
-  background: var(--ink-2);
-  border: 1px solid var(--line);
-  border-radius: var(--r-lg);
-  min-width: 0;
-}
-@media (min-width: 760px) {
-  .q { border: 0; border-radius: 0; background: transparent; }
-  .q-tl { border-right: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
-  .q-tr { border-bottom: 1px solid var(--line-strong); }
-  .q-bl { border-right: 1px solid var(--line-strong); }
-}
-.q h3 {
-  font-size: clamp(1.15rem, 1.9vw, 1.45rem);
-  margin-bottom: 0.55em;
-}
-.q p {
-  color: var(--parchment-50);
-  font-size: 0.93rem;
-  line-height: 1.6;
-  margin: 0;
-}
-.q-mine { background: linear-gradient(160deg, rgba(232,169,75,0.09), transparent 62%); }
-.q-mine h3 { color: var(--dawn); }
-.q-mine p { color: var(--parchment-70); }
-
-/* the plotted cluster of named apps */
-.cluster {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin-top: 16px;
-}
-.dotname {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 0.72rem;
-  letter-spacing: 0.01em;
-  color: var(--parchment-50);
-  padding: 4px 10px 4px 8px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-pill);
-}
-.dotname::before {
-  content: '';
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--parchment-32);
-}
-.q-mine .dotname { color: var(--dawn); border-color: rgba(232,169,75,0.32); }
-.q-mine .dotname::before { background: var(--dawn); box-shadow: 0 0 0 3px var(--dawn-glow); }
-
-/* mobile coordinate tag, so a stacked card still says where it sits */
-.q-coord {
-  display: block;
-  font-size: 0.63rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--parchment-32);
-  margin: 0 0 12px;
-}
-@media (min-width: 760px) { .q-coord { display: none; } }
-
-.youversion { margin-top: clamp(48px, 6vw, 72px); }
 
 /* ---------- the reader ---------- */
 
 .reader-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(44px, 6vw, 64px);
+  gap: clamp(40px, 5vw, 60px);
   align-items: center;
-  margin: clamp(38px, 5vw, 56px) 0 clamp(40px, 5vw, 56px);
+  margin: clamp(34px, 4.5vw, 50px) 0 clamp(34px, 4.5vw, 48px);
 }
 @media (min-width: 980px) { .reader-grid { grid-template-columns: auto minmax(0, 1fr); gap: 64px; } }
 
@@ -393,19 +411,8 @@
 
 .page-lines { display: grid; gap: 13px; flex: 1 1 auto; min-height: 0; overflow: hidden; }
 .pline { display: flex; align-items: center; gap: 6px; position: relative; }
-.pline .vn {
-  font-size: 0.5rem;
-  color: var(--dawn);
-  flex: none;
-  transform: translateY(-3px);
-  width: 9px;
-}
-.pline .tx {
-  height: 7px;
-  border-radius: 4px;
-  background: rgba(242,237,228,0.17);
-  flex: 1 1 auto;
-}
+.pline .vn { font-size: 0.5rem; color: var(--dawn); flex: none; transform: translateY(-3px); width: 9px; }
+.pline .tx { height: 7px; border-radius: 4px; background: rgba(242,237,228,0.17); flex: 1 1 auto; }
 .pline .tx.short { flex: 0 0 46%; }
 .pline .tx.mid   { flex: 0 0 72%; }
 .pline.hl .tx { background: rgba(232,169,75,0.42); box-shadow: 0 0 0 3px rgba(232,169,75,0.10); }
@@ -420,8 +427,7 @@
 }
 
 .search-card {
-  position: absolute;
-  z-index: 3;
+  position: absolute; z-index: 3;
   right: 12px; bottom: 22px; left: 12px;
   background: rgba(17,20,28,0.95);
   backdrop-filter: blur(10px);
@@ -433,8 +439,7 @@
 }
 .search-q {
   display: flex; align-items: center; gap: 8px;
-  font-size: 0.74rem;
-  color: var(--parchment-70);
+  font-size: 0.74rem; color: var(--parchment-70);
   padding-bottom: 10px;
   border-bottom: 1px solid var(--line);
   margin-bottom: 11px;
@@ -448,117 +453,67 @@
 .hit .hl-row span { height: 6px; border-radius: 3px; background: rgba(242,237,228,0.17); }
 .hit .hl-row .m { background: rgba(232,169,75,0.55); }
 
-.feature-list {
-  list-style: none;
-  margin: 0 0 1.6em;
-  padding: 0;
-  display: grid;
-  gap: 14px;
-}
+.feature-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
 @media (min-width: 700px) { .feature-list { grid-template-columns: 1fr 1fr; gap: 15px 34px; } }
 .feature-list li {
   position: relative;
   padding-left: 22px;
-  font-size: 0.95rem;
-  line-height: 1.58;
+  font-size: 0.95rem; line-height: 1.58;
   color: var(--parchment-50);
 }
 .feature-list li::before {
   content: '';
-  position: absolute;
-  left: 0; top: 0.62em;
+  position: absolute; left: 0; top: 0.62em;
   width: 6px; height: 1px;
   background: var(--dawn);
 }
 .feature-list strong { color: var(--parchment); font-weight: 600; }
 
-/* ---------- threads ---------- */
-
 .thread-rail {
   display: flex; align-items: center; gap: 14px;
   flex-wrap: wrap;
-  margin: 30px 0 34px;
+  margin: 26px 0 28px;
   padding: 18px 22px;
   border: 1px solid var(--line);
   border-radius: var(--r-pill);
   background: var(--ink-2);
   max-width: 460px;
 }
-.thread-rail .tl {
-  font-family: var(--serif);
-  font-size: 1rem;
-  color: var(--parchment);
-  white-space: nowrap;
-}
+.thread-rail .tl { font-family: var(--serif); font-size: 1rem; color: var(--parchment); white-space: nowrap; }
 .thread-rail .ticks { display: flex; gap: 5px; flex: 1 1 auto; }
-.thread-rail .ticks i {
-  display: block;
-  height: 4px; border-radius: 2px;
-  flex: 1 1 auto;
-  background: rgba(242,237,228,0.12);
-}
+.thread-rail .ticks i { display: block; height: 4px; border-radius: 2px; flex: 1 1 auto; background: rgba(242,237,228,0.12); }
 .thread-rail .ticks i.on { background: var(--dawn); }
 
 /* ---------- pricing ---------- */
 
-.tiers {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin: clamp(34px, 4.5vw, 48px) 0 clamp(30px, 4vw, 40px);
-}
+.tiers { display: grid; grid-template-columns: 1fr; gap: 20px; margin: clamp(32px, 4vw, 44px) 0 clamp(28px, 3.5vw, 38px); }
 @media (min-width: 860px) { .tiers { grid-template-columns: 1fr 1fr; gap: 24px; } }
 .tier h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-bottom: 0.85em; }
 .tier ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
-.tier li {
-  position: relative;
-  padding-left: 24px;
-  color: var(--parchment-70);
-  font-size: 0.97rem;
-}
-.tier li::before {
-  content: '';
-  position: absolute; left: 2px; top: 0.6em;
-  width: 8px; height: 1px;
-  background: var(--parchment-32);
-}
+.tier li { position: relative; padding-left: 24px; color: var(--parchment-70); font-size: 0.97rem; }
+.tier li::before { content: ''; position: absolute; left: 2px; top: 0.6em; width: 8px; height: 1px; background: var(--parchment-32); }
 .tier-free { border-color: var(--line-strong); }
 .tier-paid { background: linear-gradient(165deg, rgba(232,169,75,0.07), transparent 58%); }
 .tier-paid li::before { background: var(--dawn); }
 .tier-note { margin: 1.3em 0 0; font-size: 0.9rem; color: var(--parchment-50); }
 
-.prices {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin: 0 0 clamp(28px, 4vw, 36px);
-  list-style: none;
-  padding: 0;
-}
+.prices { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 0 0 clamp(26px, 3.5vw, 34px); list-style: none; padding: 0; }
 @media (min-width: 720px) { .prices { grid-template-columns: repeat(3, 1fr); } }
-.prices li {
-  border: 1px solid var(--line);
-  border-radius: var(--r-md);
-  padding: 20px 22px;
-  color: var(--parchment-70);
-  font-size: 0.95rem;
-}
+.prices li { border: 1px solid var(--line); border-radius: var(--r-md); padding: 20px 22px; color: var(--parchment-70); font-size: 0.95rem; }
 .prices strong {
   display: block;
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: 1.5rem;
+  font-family: var(--serif); font-weight: 400; font-size: 1.5rem;
   letter-spacing: -0.015em;
   color: var(--parchment);
   margin-bottom: 4px;
 }
 
+.aloud-cta { margin-top: clamp(26px, 3.5vw, 36px); }
+
 /* ---------- faq ---------- */
 
 .faq { max-width: var(--reading); margin: 0 auto; }
-.faq details {
-  border-bottom: 1px solid var(--line);
-}
+.faq details { border-bottom: 1px solid var(--line); }
 .faq details:first-of-type { border-top: 1px solid var(--line); }
 .faq summary {
   list-style: none;
@@ -568,17 +523,11 @@
   transition: color 0.25s var(--ease);
 }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary h3 {
-  display: inline;
-  font-size: clamp(1.08rem, 1.9vw, 1.3rem);
-  margin: 0;
-  line-height: 1.35;
-}
+.faq summary h3 { display: inline; font-size: clamp(1.08rem, 1.9vw, 1.3rem); margin: 0; line-height: 1.35; }
 .faq summary:hover h3 { color: var(--dawn-soft); }
 .faq summary::after {
   content: '';
-  position: absolute;
-  right: 6px; top: 50%;
+  position: absolute; right: 6px; top: 50%;
   width: 11px; height: 11px;
   margin-top: -8px;
   border-right: 1.5px solid var(--dawn);
@@ -617,7 +566,7 @@
 
 <main>
 
-  <!-- ================= 1.1 — Hero ================= -->
+  <!-- ================= 1 — Hero ================= -->
   <section class="hero" id="hero">
     <div class="glow glow-dawn" style="width:760px;height:560px;top:-220px;right:-200px;" aria-hidden="true"></div>
     <div class="container">
@@ -625,14 +574,9 @@
 
         <div>
           <p class="eyebrow reveal">An iPhone app, in development</p>
-
-          <!-- PRIMARY (shipped). A/B variant held for the first test:
-               [H1] Your alarm goes off at 6:40. By 6:41 you are somewhere else.
-               [BODY] There is now an alarm that will not stop when you tap it. It stops when you read a verse out loud, in your own voice, in about thirty seconds.
-          -->
           <h1 class="reveal">You meant to read it this morning. You picked up your phone instead.</h1>
-
           <p class="lede reveal">There is now an alarm that will not stop when you tap it. It stops when you read a verse out loud, in your own voice, in about thirty seconds.</p>
+          <p class="hero-sub reveal"><strong>With Him — the Bible app that makes sure you actually read it.</strong> A complete offline Bible, wrapped around two mechanics no other Bible app has: that alarm, and a shield that interrupts a long scroll with the same thirty seconds.</p>
 
           <div class="cta-stack reveal">
             <div class="cta-block">
@@ -658,32 +602,14 @@
               <div class="screen-pad" aria-hidden="true">
                 <div class="screen-time">6:40</div>
                 <span class="screen-chip"><i></i>Alarm</span>
-
                 <div class="wordbars">
-                  <span class="wb" style="--i:0;--w:34px"></span>
-                  <span class="wb" style="--i:1;--w:58px"></span>
-                  <span class="wb" style="--i:2;--w:41px"></span>
-                  <span class="wb" style="--i:3;--w:66px"></span>
-                  <span class="wb" style="--i:4;--w:28px"></span>
-                  <span class="wb" style="--i:5;--w:52px"></span>
-                  <span class="wb" style="--i:6;--w:44px"></span>
-                  <span class="wb" style="--i:7;--w:71px"></span>
-                  <span class="wb" style="--i:8;--w:31px"></span>
-                  <span class="wb" style="--i:9;--w:49px"></span>
-                  <span class="wb" style="--i:10;--w:62px"></span>
-                  <span class="wb" style="--i:11;--w:36px"></span>
-                  <span class="wb" style="--i:12;--w:55px"></span>
-                  <span class="wb" style="--i:13;--w:43px"></span>
-                  <span class="wb" style="--i:14;--w:68px"></span>
-                  <span class="wb" style="--i:15;--w:30px"></span>
-                  <span class="wb" style="--i:16;--w:47px"></span>
-                  <span class="wb" style="--i:17;--w:60px"></span>
-                  <span class="wb" style="--i:18;--w:38px"></span>
-                  <span class="wb" style="--i:19;--w:53px"></span>
-                  <span class="wb" style="--i:20;--w:33px"></span>
-                  <span class="wb" style="--i:21;--w:57px"></span>
+                  <span class="wb" style="--i:0;--w:34px"></span><span class="wb" style="--i:1;--w:58px"></span><span class="wb" style="--i:2;--w:41px"></span><span class="wb" style="--i:3;--w:66px"></span>
+                  <span class="wb" style="--i:4;--w:28px"></span><span class="wb" style="--i:5;--w:52px"></span><span class="wb" style="--i:6;--w:44px"></span><span class="wb" style="--i:7;--w:71px"></span>
+                  <span class="wb" style="--i:8;--w:31px"></span><span class="wb" style="--i:9;--w:49px"></span><span class="wb" style="--i:10;--w:62px"></span><span class="wb" style="--i:11;--w:36px"></span>
+                  <span class="wb" style="--i:12;--w:55px"></span><span class="wb" style="--i:13;--w:43px"></span><span class="wb" style="--i:14;--w:68px"></span><span class="wb" style="--i:15;--w:30px"></span>
+                  <span class="wb" style="--i:16;--w:47px"></span><span class="wb" style="--i:17;--w:60px"></span><span class="wb" style="--i:18;--w:38px"></span><span class="wb" style="--i:19;--w:53px"></span>
+                  <span class="wb" style="--i:20;--w:33px"></span><span class="wb" style="--i:21;--w:57px"></span>
                 </div>
-
                 <div class="screen-foot">
                   <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
                   <div class="meter"><span></span></div>
@@ -697,44 +623,28 @@
     </div>
   </section>
 
-  <!-- ================= 1.2 — The honest note ================= -->
+  <!-- ================= 2 — The force-quit concession ================= -->
   <section class="honest section-tight" id="force-quit">
     <div class="container">
       <div class="reading honest-card reveal">
         <h2>One thing to get out of the way first</h2>
-        <p>iOS lets you force-quit any app on your phone. This one included. Nobody can build an alarm you cannot escape, and anyone selling you one is telling you something you will disprove on day two.</p>
-        <p>So here is the actual claim. The alarm hands you straight to the verse screen, keeps its own sound playing there, and if you walk away it comes back two minutes later. It does not make the wrong choice impossible. It makes the wrong choice more expensive than thirty seconds of reading, which for most mornings is enough.</p>
-        <p>If that sounds like a weaker promise than you expected, it is. It is also the true one.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 1.3 — Positioning line ================= -->
-  <section class="positioning section-tight" id="what-it-is">
-    <div class="container">
-      <div class="reveal">
-        <h2>With Him — the Bible app that makes sure you actually read it.</h2>
-        <p class="lede">A complete, offline Bible on your phone, wrapped around two mechanics no other Bible app has: an alarm that ends when you read a verse aloud, and a shield that interrupts a long scroll with the same thirty seconds.</p>
+        <p>iOS lets you force-quit any app, this one included. Nobody can build an alarm you cannot escape, and anyone selling you one is telling you something you will disprove on day two.</p>
+        <p>The actual claim: the alarm hands you straight to the verse screen, keeps its own sound playing there, and if you walk away it comes back two minutes later. It makes the wrong choice more expensive than thirty seconds of reading, which for most mornings is enough. That is a weaker promise than you expected, and it is the true one.</p>
       </div>
     </div>
   </section>
 
   <hr class="rule">
 
-  <!-- ================= 1.4 — The problem ================= -->
+  <!-- ================= 3 — The problem ================= -->
   <section id="problem">
     <div class="container">
       <div class="reading prose">
         <p class="eyebrow reveal">The part nobody says out loud</p>
         <h2 class="reveal">It was never that you didn't want to.</h2>
         <div class="reveal">
-          <p>You know what the mornings look like. The alarm goes off. Your hand is already on the phone because the phone is the alarm. You swipe it away, and then — because the phone is already unlocked and already in your hand — you check one thing. Then a second thing. Then you are eleven minutes in and you need to be in the shower.</p>
-          <p>The Bible app is on the phone too. It has been on the phone for two years. It is four taps away and it has never once been the thing you opened at 6:41 in the morning, because at 6:41 you are not making a decision. You are following a groove.</p>
-          <p>The evenings are the same shape. A ten-minute scroll does not feel like ten minutes. It feels like ninety seconds, right up until you look at the clock. That is not a failure of willpower; it is what the feed is engineered to feel like, and it works on everyone, including the people who build it.</p>
-          <p>Somewhere in there is a study Bible on a shelf and a reading streak that ended on a Tuesday you don't remember.</p>
-        </div>
-        <div class="reveal">
-          <p class="lead-para">Here is the part that matters: none of that is a motivation problem. You are not short on conviction. You do not need to be persuaded that reading Scripture is worth doing — you decided that a long time ago and you have not changed your mind. What you have is a sequencing problem. The phone gets to you before anything else does, every single morning, and it does not need you to be motivated. It just needs to be first.</p>
+          <p>The alarm goes off and your hand is already on the phone, because the phone is the alarm. You swipe it away, check one thing, then a second thing, and then you are eleven minutes in and you need to be in the shower. The Bible app is on that same phone. It is four taps away and it has never once been the thing you opened at 6:41, because at 6:41 you are not making a decision. You are following a groove. The evenings run the same shape: a ten-minute scroll feels like ninety seconds right up until you look at the clock.</p>
+          <p class="lead-para">None of that is a motivation problem. You are not short on conviction — you decided years ago that this was worth doing and you have not changed your mind. What you have is a sequencing problem. The phone gets to you first, every single morning, and it does not need you to be motivated. It just needs to be first.</p>
           <p class="lead-para">So the fix is not to try harder. The fix is to be first.</p>
         </div>
       </div>
@@ -743,42 +653,144 @@
 
   <hr class="rule">
 
-  <!-- ================= 1.5 — The mechanism: two moments ================= -->
-  <section id="mechanism">
-    <div class="glow glow-dawn" style="width:620px;height:520px;top:8%;left:-260px;" aria-hidden="true"></div>
+  <!-- ================= 4 — The two moments (interactive exhibit) ================= -->
+  <section id="moments">
+    <div class="glow glow-dawn" style="width:620px;height:520px;top:6%;left:-260px;" aria-hidden="true"></div>
     <div class="container">
 
       <div class="reading prose section-head reveal">
         <p class="eyebrow">How it works</p>
-        <h2>Two moments where the phone always wins. Those are the only two we take.</h2>
-        <p>Most Bible apps are libraries. They sit on the home screen and wait to be opened, which means they are opened by people who were already going to open them. That is a fine design for a library and a hopeless one for a habit.</p>
-        <p>This app does not wait. It shows up at exactly two moments, and nowhere else.</p>
+        <h2>Two moments where the phone always wins. Those are the only two it takes.</h2>
+        <p>Most Bible apps are libraries: they wait to be opened, which means they get opened by people who were already going to open them. This one does not wait. It shows up at exactly two moments, and nowhere else.</p>
       </div>
 
-      <div class="moments">
-        <article class="card moment moment-alarm reveal">
-          <h3>Moment one — the alarm</h3>
-          <p>You set the alarm the way you'd set any alarm: time, days, sound. It fires with the ringer switch off and through a Focus mode, it survives a force-quit and a restart, and there is no snooze — snooze is just the bypass with a friendlier name.</p>
-          <p>When you stop the alarm, the phone opens straight onto a verse. The app's own alarm sound keeps playing on that screen. You read the verse out loud. The words light up one by one as they're recognised. When you reach the end, the sound stops and your day starts.</p>
-          <p>Walk away without reading it and the alarm comes back in two minutes. That is the whole enforcement model, and it is stated exactly as it works.</p>
-          <p>No passage is longer than sixty spoken words. That is the hard ceiling, written into the product, which puts every single morning under thirty seconds.</p>
-        </article>
+      <div class="exhibit reveal" id="exhibit" data-tab="alarm">
 
-        <article class="card moment moment-shield reveal">
-          <h3>Moment two — the Focus Shield</h3>
-          <p>You choose which apps to shield. After about ten minutes of near-continuous use in one of them, the app is covered and the same verse is waiting behind a single button.</p>
-          <p>Read it out loud and you go back to the app with a fresh block of time — fifteen minutes by default, and you set the number. When it runs out, the shield comes back on its own.</p>
-          <p>"About ten minutes" is deliberately vague because iOS measures app usage in a way that makes precision dishonest. The app will never claim a timing it cannot hit, so it says "about," and means it.</p>
-          <p>Turning the shield off takes three taps and always will. There is no maze, no confirm-you-really-mean-it screen, no penalty for switching it off at 9pm on a Friday.</p>
-        </article>
+        <div class="ex-tabs" role="tablist" aria-label="The two moments">
+          <button type="button" class="ex-tab" role="tab" id="tab-alarm" aria-controls="panel-alarm" aria-selected="true" data-tab="alarm">6:40am — the alarm</button>
+          <button type="button" class="ex-tab" role="tab" id="tab-shield" aria-controls="panel-shield" aria-selected="false" tabindex="-1" data-tab="shield">11pm — the scroll</button>
+        </div>
+
+        <div class="ex-stage">
+
+          <div class="phone-wrap">
+            <div class="ring r1" aria-hidden="true"></div>
+            <div class="ring r2" aria-hidden="true"></div>
+            <div class="ring r3" aria-hidden="true"></div>
+
+            <div class="phone">
+              <div class="phone-screen">
+                <div class="phone-notch" aria-hidden="true"></div>
+
+                <!-- screen A: the alarm -->
+                <div class="ex-screen" data-screen="alarm" role="img" aria-label="Illustration: the alarm screen at 6:40 in the morning. A short passage fills the screen and its words light up one by one as they are read aloud, with a progress bar filling underneath. The alarm sound stops at the end.">
+                  <div class="alarm-wash" aria-hidden="true"></div>
+                  <div class="screen-pad alarm-mock" aria-hidden="true">
+                    <div class="screen-time">6:40</div>
+                    <span class="screen-chip"><i></i>Alarm sounding</span>
+                    <div class="wordbars">
+                      <span class="wb" style="--i:0;--w:34px"></span><span class="wb" style="--i:1;--w:58px"></span><span class="wb" style="--i:2;--w:41px"></span><span class="wb" style="--i:3;--w:66px"></span>
+                      <span class="wb" style="--i:4;--w:28px"></span><span class="wb" style="--i:5;--w:52px"></span><span class="wb" style="--i:6;--w:44px"></span><span class="wb" style="--i:7;--w:71px"></span>
+                      <span class="wb" style="--i:8;--w:31px"></span><span class="wb" style="--i:9;--w:49px"></span><span class="wb" style="--i:10;--w:62px"></span><span class="wb" style="--i:11;--w:36px"></span>
+                      <span class="wb" style="--i:12;--w:55px"></span><span class="wb" style="--i:13;--w:43px"></span><span class="wb" style="--i:14;--w:68px"></span><span class="wb" style="--i:15;--w:30px"></span>
+                      <span class="wb" style="--i:16;--w:47px"></span><span class="wb" style="--i:17;--w:60px"></span><span class="wb" style="--i:18;--w:38px"></span><span class="wb" style="--i:19;--w:53px"></span>
+                    </div>
+                    <div class="screen-foot">
+                      <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                      <div class="meter"><span></span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- screen B: the scroll and the Focus Shield -->
+                <div class="ex-screen" data-screen="shield" hidden>
+                  <div class="sh-top" aria-hidden="true">
+                    <span class="sh-clock">11:04</span>
+                    <span class="usage" id="usageBar"><i id="usageFill"></i></span>
+                    <span class="usage-row"><span>Time in app</span><span id="usageLabel">Sped up</span></span>
+                  </div>
+
+                  <div class="feed" id="feed" tabindex="0" role="group" aria-label="A generic placeholder feed. Scroll it to build up usage.">
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fmedia" style="--h:104px"></div><div class="fbody"><i></i><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fbody"><i></i><i></i><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fmedia" style="--h:150px"></div><div class="fbody"><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fmedia" style="--h:88px"></div><div class="fbody"><i></i><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fbody"><i></i><i></i><i></i><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fmedia" style="--h:132px"></div><div class="fbody"><i></i><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fmedia" style="--h:96px"></div><div class="fbody"><i></i><i></i><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                    <article class="fcard" aria-hidden="true"><div class="fhead"><span class="favatar"></span><span class="fmeta"><i></i><i></i></span></div><div class="fmedia" style="--h:118px"></div><div class="fbody"><i class="short"></i></div><div class="factions"><span></span><span></span><span></span></div></article>
+                  </div>
+
+                  <div class="grant-chip" id="grantChip" hidden><i aria-hidden="true"></i>Back for 15 minutes</div>
+
+                  <div class="shield" id="shield">
+                    <span class="sh-mark" aria-hidden="true"></span>
+                    <p class="sh-kicker">With Him · Focus Shield</p>
+
+                    <div class="sh-block" id="shBlock">
+                      <p class="sh-theme">Waiting for you — <b>Anxiety · 4 of 14</b></p>
+                      <button type="button" class="sh-btn" id="shRead">Read to continue</button>
+                    </div>
+
+                    <div class="sh-block" id="shGate" hidden>
+                      <p class="sh-theme">Read it out loud.</p>
+                      <div class="wordbars sh-words" id="shWords" aria-hidden="true">
+                        <span class="wb" style="--w:32px"></span><span class="wb" style="--w:54px"></span><span class="wb" style="--w:40px"></span><span class="wb" style="--w:63px"></span>
+                        <span class="wb" style="--w:29px"></span><span class="wb" style="--w:48px"></span><span class="wb" style="--w:58px"></span><span class="wb" style="--w:35px"></span>
+                        <span class="wb" style="--w:51px"></span><span class="wb" style="--w:42px"></span><span class="wb" style="--w:66px"></span><span class="wb" style="--w:31px"></span>
+                      </div>
+                    </div>
+
+                    <div class="sh-block" id="shGrant" hidden>
+                      <span class="sh-tick" aria-hidden="true"></span>
+                      <p class="sh-theme sh-ok">Back to the app for 15 minutes.</p>
+                    </div>
+
+                    <p class="sh-foot" id="shFoot">Turning the shield off takes three taps.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="ex-side">
+
+            <div role="tabpanel" id="panel-alarm" aria-labelledby="tab-alarm">
+              <h3>6:40am — the alarm</h3>
+              <ul class="rich-list">
+                <li><strong>You set it like any alarm</strong> — time, days, sound. It fires with the ringer switch off and through a Focus mode, and it survives a force-quit and a restart.</li>
+                <li><strong>Stopping it opens the verse.</strong> The app's own alarm sound keeps playing on that screen until you have read it.</li>
+                <li><strong>The words light up as they're recognised.</strong> At the end, the sound stops and your day starts. No passage is longer than sixty spoken words — a hard ceiling, written into the product.</li>
+                <li><strong>No snooze</strong>, deliberately: snooze is the bypass with a friendlier name. Walk away and the alarm returns in two minutes.</li>
+              </ul>
+              <a class="btn btn-ghost" href="demo.html" data-demo="exhibit-alarm">See the real thing — read a verse out loud</a>
+            </div>
+
+            <div role="tabpanel" id="panel-shield" aria-labelledby="tab-shield" hidden>
+              <h3>11pm — the scroll</h3>
+              <p class="ex-note" id="exHint">Scroll the feed on the phone with your finger or trackpad and watch the usage bar fill. <strong>Sped up: the real thing takes about ten minutes.</strong> "About", because iOS measures app usage in a way that makes precision dishonest — the app will never claim a timing it cannot hit.</p>
+              <ul class="rich-list">
+                <li><strong>You pick which apps.</strong> After about ten minutes of near-continuous use in one of them, it is covered and the passage is waiting behind a single button.</li>
+                <li><strong>A completed read buys a block of time</strong> — fifteen minutes by default, and you set the number.</li>
+                <li><strong>The shield comes back by itself</strong> when that block runs out.</li>
+                <li><strong>Turning it off is three taps</strong>, and always will be. No maze, no confirm-you-really-mean-it screen, no penalty for switching it off at 9pm on a Friday.</li>
+              </ul>
+              <div class="ex-controls">
+                <button type="button" class="btn btn-ghost" id="exPlay">Play it without scrolling</button>
+              </div>
+            </div>
+
+            <p class="sr-only" id="exLive" role="status" aria-live="polite"></p>
+          </div>
+
+        </div>
       </div>
 
-      <div class="reading prose reveal">
+      <div class="reading prose sub-block reveal">
         <h3>Why out loud, and not a tap</h3>
-        <p>Because a tap proves nothing. You can dismiss a verse-of-the-day notification with your eyes closed, and most mornings, that is precisely what happens. There is no evidence in a swipe that a single word arrived.</p>
-        <p>Speaking is different in a way you can feel the first time you try it. You cannot say a sentence out loud while thinking about something else. The words have to go through you to come out of you. It is slower than reading, it is more awkward than reading, and both of those are the point — the friction is what makes it stick.</p>
-        <p>It also produces something a tap cannot: proof that the words were received rather than cleared.</p>
-        <p>You do not have to take that on faith. There's a verse on the next page and a microphone in your device.</p>
+        <p>Because a tap proves nothing. You can dismiss a verse-of-the-day notification with your eyes closed, and most mornings that is precisely what happens. Speaking is different in a way you feel the first time: you cannot say a sentence out loud while thinking about something else. The words have to go through you to come out of you.</p>
+        <p>It is slower and more awkward than reading, and both of those are the point. You do not have to take that on faith — there is a verse on the next page and a microphone in your device.</p>
 
         <div class="aloud-cta">
           <a class="btn btn-primary btn-lg" href="demo.html" data-demo="mechanism">Try it — read one verse out loud</a>
@@ -791,112 +803,21 @@
 
   <hr class="rule">
 
-  <!-- ================= 1.6 — Is this legalistic? ================= -->
+  <!-- ================= 5 — Is this legalistic? ================= -->
   <section id="legalistic">
     <div class="container">
       <div class="reading prose answer reveal">
         <p class="eyebrow">The fair question</p>
         <h2>"So Scripture is a toll gate now?"</h2>
-        <p>It is a reasonable objection and it deserves a straight answer rather than a defensive one, so here it is in the product's own terms.</p>
-        <p>The gate is a doorbell, not a debt. It does not decide anything about you. It has no opinion on whether you are a good Christian, it is not keeping a ledger, and reading a verse into your phone at 6:40 in the morning does not earn you a thing — from God or from the app. All the gate does is put the words in front of you at the one moment you would otherwise have missed them, then get out of the way.</p>
-        <p>Concretely, this is what that means in the software. There is no failure state. The app will never tell you that you failed, will never scold you, will never send a notification about a day you missed, and will never imply your faith is deficient. If you can't finish, there is a permanent alternative you can use forever with no penalty and no asterisk in your stats. If you turn everything off for a month, nothing chases you.</p>
-        <p>And this: if it ever starts to feel like law rather than invitation, delete it. Three taps, no exit survey, no "are you sure." Something that was meant to help you and has stopped helping you should be easy to put down, and an app that made that hard would be exactly the thing you are worried it might be.</p>
-        <p>The honest framing is that this is a commitment device, in the same family as putting your running shoes by the door. You are not being coerced by anyone. You are making the thing you already decided to do slightly harder to skip than it was yesterday.</p>
+        <p>The gate is a doorbell, not a debt. It has no opinion on whether you are a good Christian, it keeps no ledger, and reading a verse into your phone at 6:40 earns you nothing from God or from the app. Concretely, in the software: there is no failure state. It will never tell you that you failed, never scold you, never send a notification about a day you missed, never imply your faith is deficient. If you can't finish, there is a permanent alternative you can use forever with no penalty and no asterisk in your stats. If you turn everything off for a month, nothing chases you.</p>
+        <p>And this: if it ever starts to feel like law rather than invitation, delete it. Three taps, no exit survey, no "are you sure." Something meant to help you that has stopped helping you should be easy to put down — an app that made that hard would be exactly the thing you are worried it might be. This is a commitment device, in the same family as putting your running shoes by the door.</p>
       </div>
     </div>
   </section>
 
   <hr class="rule">
 
-  <!-- ================= 1.7 — Where this sits ================= -->
-  <section id="landscape">
-    <div class="container">
-
-      <div class="reading prose section-head reveal">
-        <p class="eyebrow">The landscape</p>
-        <h2>Two categories, both mature, and a gap between them.</h2>
-        <p>Plot every app that could plausibly help with this on two axes and something obvious shows up: everything clusters in two corners, and the corner where the actual problem lives is empty.</p>
-      </div>
-
-      <figure class="quad-figure reveal">
-
-        <p class="sr-only">
-          The chart below plots apps on two axes. The vertical axis runs from "No Scripture at all" at the bottom
-          to "The whole Bible inside" at the top. The horizontal axis runs from "Waits to be opened" on the left
-          to "Interrupts you" on the right. Four quadrants are labelled. Top-left, whole Bible but waits to be
-          opened: Bible apps. Bottom-right, no Scripture but interrupts you: friction apps. Bottom-left, no
-          Scripture and waits to be opened: reminders. Top-right, whole Bible and interrupts you: With Him, alone
-          in that quadrant. Each quadrant is described in full underneath its heading.
-        </p>
-
-        <div class="quad">
-          <p class="ax ax-y-top" aria-hidden="true">The whole Bible inside</p>
-
-          <div class="quad-grid">
-
-            <div class="q q-tl">
-              <p class="q-coord">The whole Bible inside · Waits to be opened</p>
-              <h3>Bible apps</h3>
-              <p>YouVersion, Dwell, Glorify, Bible Gateway. Enormous, well made, and genuinely good. Also entirely passive — they hold everything and wait. Which is the exact reason your streak broke.</p>
-              <div class="cluster" aria-hidden="true">
-                <span class="dotname">YouVersion</span>
-                <span class="dotname">Dwell</span>
-                <span class="dotname">Glorify</span>
-                <span class="dotname">Bible Gateway</span>
-              </div>
-            </div>
-
-            <div class="q q-tr q-mine">
-              <p class="q-coord">The whole Bible inside · Interrupts you</p>
-              <h3>With Him</h3>
-              <p>The whole Bible, arriving at the moment you'd have missed it, and not leaving until you've read a sentence of it out loud.</p>
-              <div class="cluster" aria-hidden="true">
-                <span class="dotname">With Him</span>
-              </div>
-            </div>
-
-            <div class="q q-bl">
-              <p class="q-coord">No Scripture at all · Waits to be opened</p>
-              <h3>Reminders</h3>
-              <p>A calendar alert or a daily notification. One more thing to swipe away before 7am.</p>
-            </div>
-
-            <div class="q q-br">
-              <p class="q-coord">No Scripture at all · Interrupts you</p>
-              <h3>Friction apps</h3>
-              <p>Alarmy, Opal, one sec, ScreenZen. Very effective at stopping the thing you're doing. They hand you a countdown, a breathing exercise, or a wall — they interrupt the bad thing without substituting the good thing.</p>
-              <div class="cluster" aria-hidden="true">
-                <span class="dotname">Alarmy</span>
-                <span class="dotname">Opal</span>
-                <span class="dotname">one sec</span>
-                <span class="dotname">ScreenZen</span>
-              </div>
-            </div>
-
-          </div>
-
-          <p class="ax ax-y-bottom" aria-hidden="true">No Scripture at all</p>
-
-          <div class="ax-x" aria-hidden="true">
-            <p class="ax">Waits to be opened</p>
-            <p class="ax">Interrupts you</p>
-          </div>
-        </div>
-      </figure>
-
-      <div class="reading prose youversion reveal">
-        <h3>On YouVersion specifically</h3>
-        <p>You almost certainly have it installed. Keep it. It is a remarkable piece of work, it is free, and this is not an argument about which app is better.</p>
-        <p>It is also a library, and libraries do not come and find you. That is not a criticism of the app; it is a description of what an app is when it has no way to reach you at 6:40.</p>
-        <p>And to remove the obvious follow-up: the entire Bible here is free too, permanently. This is not a free-versus-paid decision. See the pricing section below, which is published in full months before there is anything to buy, precisely so that nothing about it can be quietly moved later.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <!-- ================= 1.8 — The Bible underneath ================= -->
+  <!-- ================= 6 — A real Bible app underneath ================= -->
   <section id="reader">
     <div class="glow glow-dawn" style="width:600px;height:520px;bottom:-180px;right:-220px;" aria-hidden="true"></div>
     <div class="container">
@@ -904,8 +825,7 @@
       <div class="reading prose section-head reveal">
         <p class="eyebrow">Before any of the habit machinery</p>
         <h2>A Bible app you'd be willing to use as your only one.</h2>
-        <p>A habit loop wrapped around a bad reader is worthless. The first time you need to look something up and can't, the whole thing goes in the folder with the other apps you meant to use.</p>
-        <p>So the reader was built first, and built to the standard of someone switching over from an app they already like and expecting not to lose anything.</p>
+        <p>A habit loop wrapped around a bad reader is worthless. So the reader was built first, to the standard of someone switching over from an app they already like and expecting to lose nothing.</p>
       </div>
 
       <div class="reader-grid">
@@ -958,86 +878,51 @@
 
         <div class="reveal">
           <ul class="feature-list">
-            <li><strong>All 66 books, fully offline.</strong> Every verse readable in airplane mode on first launch. No download step, no "preparing your library," no spinner in a tunnel.</li>
-            <li><strong>Whole-Bible search.</strong> Fast, with quoted phrases, scoping to a single book, and matched terms highlighted in the results.</li>
-            <li><strong>Cross-references on every verse.</strong> Ranked by relevance and previewable inline, so following one doesn't lose your place in the chapter.</li>
-            <li><strong>Highlights in five or more colours.</strong> Kept in one filterable library so you can find that thing you marked in March.</li>
-            <li><strong>Notes on any verse or range.</strong> Plain text, editable, searchable, marked in the margin so you can see where you've been.</li>
-            <li><strong>Named bookmarks</strong> with a jump list.</li>
+            <li><strong>All 66 books, fully offline.</strong> Readable in airplane mode on first launch — no download step, no spinner in a tunnel.</li>
+            <li><strong>Whole-Bible search.</strong> Quoted phrases, scoping to a single book, matched terms highlighted in the results.</li>
+            <li><strong>Cross-references on every verse.</strong> Ranked by relevance, previewable inline, so following one doesn't lose your place.</li>
+            <li><strong>Highlights in five or more colours</strong>, kept in one filterable library so you can find what you marked in March.</li>
+            <li><strong>Notes on any verse or range</strong> — plain text, editable, searchable, marked in the margin — plus named bookmarks with a jump list.</li>
             <li><strong>Typography you control.</strong> Seven or more font sizes, serif or sans, line spacing, margin width, justification. All of it persists.</li>
-            <li><strong>Four themes.</strong> Light, sepia, dark, and true black for OLED screens. Follows your system appearance by default.</li>
-            <li><strong>Red-letter mode</strong>, toggleable, correctly bounded across the Gospels and Revelation.</li>
-            <li><strong>Continuous scrolling.</strong> Reach the end of a chapter and the next one loads inline. No modal, no page turn.</li>
-            <li><strong>Reading position memory.</strong> Reopen the app and you are back at the exact scroll position, not merely the right chapter.</li>
-            <li><strong>Copy with the reference attached</strong>, every time, so pasting into a message doesn't need a second trip.</li>
+            <li><strong>Four themes</strong> — light, sepia, dark, true black for OLED — following your system appearance by default. Red-letter mode toggleable and correctly bounded.</li>
+            <li><strong>Continuous scrolling</strong>, exact reading-position memory, and copy with the reference attached every time.</li>
           </ul>
         </div>
       </div>
 
       <div class="reading prose reveal">
-        <p class="lead-para">All of that is the free tier, permanently. Not a trial of it. Not a limited version of it. The subscription buys the alarm and the shield, and nothing else, ever.</p>
+        <p class="lead-para">All of that is the free tier, permanently. Not a trial of it, not a limited version of it. The subscription buys the alarm and the shield, and nothing else, ever.</p>
       </div>
 
-    </div>
-  </section>
+      <div class="reading prose sub-block reveal">
+        <h3>What you actually read: Threads, not a shuffle</h3>
+        <p>The daily verse comes from a <strong>Thread</strong> — an ordered run of passages on one theme, read in order. The Thread on anxiety names the condition honestly, moves through the character of God as the ground of peace, and ends by sending you back out. Where you are in that arc sits on the home screen.</p>
 
-  <hr class="rule">
-
-  <!-- ================= 1.9 — Threads ================= -->
-  <section id="threads">
-    <div class="container">
-      <div class="reading prose">
-        <p class="eyebrow reveal">What you actually read</p>
-        <h2 class="reveal">Not a random verse a day. A sequence that goes somewhere.</h2>
-        <div class="reveal">
-          <p>Verse-of-the-day, in most apps, is a shuffle. Judges on Tuesday, Ephesians on Wednesday, a half-line from Proverbs on Thursday. Each one is fine on its own and none of them accumulate into anything, which is part of why they're so easy to swipe away.</p>
-          <p>Here the daily verse comes from a <strong>Thread</strong> — an ordered run of passages on one theme, arranged deliberately, and read in order.</p>
-        </div>
-
-        <div class="thread-rail reveal" role="img" aria-label="The home screen shows your position in the current Thread: Anxiety, entry 4 of 14.">
+        <div class="thread-rail" role="img" aria-label="The home screen shows your position in the current Thread: Anxiety, entry 4 of 14.">
           <span class="tl">Anxiety · 4 of 14</span>
-          <span class="ticks" aria-hidden="true">
-            <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-          </span>
+          <span class="ticks" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
         </div>
 
-        <div class="reveal">
-          <p>A Thread on anxiety, for example, does not just gather every calming verse in the canon. It starts by naming the condition honestly, moves through the character of God as the ground of peace, and ends by sending you back out to do something. Where you are in that arc is on the home screen: <em>Anxiety · 4 of 14.</em> You always know what you read yesterday and roughly where this is going.</p>
-          <p>Twelve Threads at launch, more than two hundred entries between them, covering anxiety, identity, grief, purpose, temptation, gratitude, forgiveness, waiting, courage, provision, rest, and the life of Christ.</p>
-          <p>The alarm and the shield both pull from your current Thread, so a verse read at 6:40 in the morning advances the same sequence — you're never handed two unrelated passages in one day, and reading aloud moves the story forward rather than sitting outside it.</p>
-          <p>They have to be written by hand, one at a time, with review, which is a real chunk of the work between now and launch. It's also the part waitlist members get a vote on.</p>
-        </div>
+        <p>Twelve Threads at launch, more than two hundred entries between them: anxiety, identity, grief, purpose, temptation, gratitude, forgiveness, waiting, courage, provision, rest, and the life of Christ. The alarm and the shield both pull from your current Thread, so reading aloud moves the sequence forward. They have to be written by hand, with review — a real chunk of the work between now and launch, and the part waitlist members get a vote on.</p>
       </div>
+
+      <div class="reading prose sub-block reveal">
+        <h3>Your voice: there are no recordings, because nothing is recorded</h3>
+        <ul class="rich-list">
+          <li><strong>Speech is processed on your device.</strong> Verify it the way the developer does: put the phone in airplane mode and the alarm still works.</li>
+          <li><strong>Audio is never written to disk and never transmitted.</strong> What survives a reading is a pass or fail and a similarity score.</li>
+          <li><strong>No account, no server, no analytics vendor.</strong> Nothing to breach and nowhere for your data to go.</li>
+          <li><strong>Highlights and notes sync through your own iCloud</strong>, on your own quota, between your own devices.</li>
+        </ul>
+        <p>One honest exception, and it applies to the demo rather than the app: the web demo has to use your browser's built-in speech recognition, and in some browsers — Safari among them — that routes a few seconds of audio to the browser maker's servers. That is a limitation of the web, not a choice, and it is flagged again directly under the microphone button. The shipped iPhone app does not work that way and never will.</p>
+      </div>
+
     </div>
   </section>
 
   <hr class="rule">
 
-  <!-- ================= 1.10 — Privacy ================= -->
-  <section id="privacy">
-    <div class="container">
-      <div class="reading prose">
-        <p class="eyebrow reveal">Your voice</p>
-        <h2 class="reveal">There are no recordings, because nothing is ever recorded.</h2>
-        <div class="reveal">
-          <p>This is the question the microphone earns, and the answer is structural rather than a promise on a policy page.</p>
-          <ul class="rich-list">
-            <li><strong>Speech is processed on your device.</strong> The recognition runs on the iPhone itself. You can verify it the same way the developer does: put the phone in airplane mode and the alarm still works.</li>
-            <li><strong>Audio is never written to disk and never transmitted.</strong> Not to the developer, not to anyone. What survives a reading is a pass or fail and a similarity score. The sound of your voice does not exist a second after you've spoken.</li>
-            <li><strong>There is no account.</strong> No email to log in with, no password, no profile. Nothing to breach.</li>
-            <li><strong>There is no server.</strong> None is run. There is nowhere for your data to go.</li>
-            <li><strong>There is no analytics vendor</strong> receiving what you read, when you read it, or what you highlighted.</li>
-            <li><strong>Your highlights and notes sync through your own iCloud</strong>, on your own storage quota, between your own devices. Nobody else can see them.</li>
-          </ul>
-          <p>One honest exception, and it applies to the demo on the next page rather than the app. The web demo has to use your browser's built-in speech recognition, and in some browsers — Safari among them — that routes a few seconds of audio to the browser maker's servers. That is a limitation of the web, not a choice, and it is the reason it's flagged here and again directly under the microphone button. The shipped iPhone app does not work that way and never will.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <!-- ================= 1.11 — Pricing ================= -->
+  <!-- ================= 7 — Pricing ================= -->
   <section id="pricing">
     <div class="container">
 
@@ -1092,7 +977,7 @@
 
   <hr class="rule">
 
-  <!-- ================= 1.12 — FAQ ================= -->
+  <!-- ================= 8 — FAQ ================= -->
   <section id="faq">
     <div class="container">
 
@@ -1104,34 +989,10 @@
       <div class="faq reveal">
 
         <details open>
-          <summary><h3>Can't I just force-quit it?</h3></summary>
-          <div class="answer-body">
-            <p>Yes. iOS lets you swipe away any app and this one is no exception — claiming otherwise would be a lie you'd catch on the second morning.</p>
-            <p>What happens instead is that the alarm returns two minutes later, and then two minutes after that. It doesn't make quitting impossible. It makes quitting more annoying than thirty seconds of reading. On most mornings, that's the whole difference.</p>
-          </div>
-        </details>
-
-        <details>
           <summary><h3>Why not just use YouVersion? It's free.</h3></summary>
           <div class="answer-body">
-            <p>Keep using it. It's excellent and this isn't a competition for your one Bible slot.</p>
-            <p>But it waits to be opened, and the reason you're on this page is that the waiting isn't working. Also worth saying plainly: the whole Bible here is free too, permanently, so this was never a free-versus-paid decision. The paid part is the alarm and the shield.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><h3>Do I really need another subscription?</h3></summary>
-          <div class="answer-body">
-            <p>Maybe not. Genuinely — if the free reader is all you want, take it and never pay a cent.</p>
-            <p>If you do want the habit features, the prices are published above rather than hidden until checkout: $4.99 a month, $29.99 a year with a 7-day trial, or $79.99 once. Judge it against what it replaces. Most people reading this have already paid for a commitment device or two that worked exactly as well as they used it.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><h3>I share a room. I can't read out loud at 6am.</h3></summary>
-          <div class="answer-body">
-            <p>This is the most common practical blocker and it has a real answer, not a workaround.</p>
-            <p>There is a permanent silent alternative — trace-to-read, where you trace the words with your finger instead of speaking them. You can set it up during onboarding and leave it on forever. It is not a punishment path, it doesn't show up as a bypass in your own stats, and nothing in the app treats it as a lesser way to do this. You can also try it on the demo page in the next thirty seconds.</p>
+            <p>Keep using it. It's excellent, and this isn't a competition for your one Bible slot.</p>
+            <p>But it waits to be opened, and the reason you're on this page is that the waiting isn't working. Every Bible app is a library and every library waits; the friction apps that do interrupt you — a countdown, a breathing exercise, a wall — interrupt the bad thing without substituting the good one. Also worth saying plainly: the whole Bible here is free too, permanently, so this was never a free-versus-paid decision.</p>
           </div>
         </details>
 
@@ -1139,72 +1000,39 @@
           <summary><h3>What happens to recordings of my voice?</h3></summary>
           <div class="answer-body">
             <p>There aren't any. Speech recognition happens on your phone, raw audio is never written to disk and never transmitted, and all that's kept is whether you passed. There's no account and no server for anything to be sent to.</p>
-            <p>The web demo is the one exception, because browsers handle speech differently; that's explained on the demo page under the button and in the privacy section above.</p>
+            <p>The web demo is the one exception, because browsers handle speech differently; that's explained on the demo page under the button and in the privacy block above.</p>
           </div>
         </details>
 
         <details>
-          <summary><h3>It'll just be another app I abandon.</h3></summary>
+          <summary><h3>I share a room. I can't read out loud at 6am.</h3></summary>
           <div class="answer-body">
-            <p>Probably a fair prediction, and we're not going to argue you out of it. Most habit apps fail, and they fail for a specific reason: they add one more thing you have to remember to do.</p>
-            <p>This doesn't add anything. It attaches to an alarm you were already setting and a scroll you were already starting. There's no new step to remember, which is a different failure mode from the ones you've already lived through — not a guarantee, just a different shape.</p>
-            <p>And the stakes right now are approximately zero. Joining the list costs an email. If the launch note lands and you don't care anymore, ignore it.</p>
+            <p>The most common practical blocker, and it has a real answer rather than a workaround. There is a permanent silent alternative — trace-to-read, where you trace the words with your finger instead of speaking them. You set it up during onboarding and leave it on forever.</p>
+            <p>It is not a punishment path, it doesn't show up as a bypass in your own stats, and nothing in the app treats it as a lesser way to do this. You can try it on the demo page in the next thirty seconds.</p>
           </div>
         </details>
 
         <details>
-          <summary><h3>Is this a real Bible app, or a gimmick with verses attached?</h3></summary>
+          <summary><h3>Isn't this legalistic — earning something by reading?</h3></summary>
           <div class="answer-body">
-            <p>The reader is the part that had to be right first. All 66 books offline on first launch, whole-Bible search, cross-references, highlights, notes, bookmarks, themes, red-letter, and full typography control — the full list is above.</p>
-            <p>The standard being built to is that someone could delete their current Bible app and not miss anything. If that isn't true, the alarm doesn't matter.</p>
+            <p>Nothing is earned. There is no score, no ledger, no failure state, and no notification about a day you missed. The gate puts the words in front of you at the one moment you'd have missed them, then gets out of the way.</p>
+            <p>If it ever feels like law rather than invitation, deleting it is three taps and the right call.</p>
           </div>
         </details>
 
         <details>
           <summary><h3>Which translation? Is Android coming?</h3></summary>
           <div class="answer-body">
-            <p>The Berean Standard Bible is bundled at launch. It's modern, it's readable, and it reads well out loud, which matters more here than in a normal Bible app. It's also in the public domain, so it can be bundled offline in full with no restrictions.</p>
-            <p>WEB and ASV are planned as free alternates. ESV and NIV are not available — those require negotiated licenses that a solo developer cannot obtain before proving the product works. If that changes, it changes after launch.</p>
-            <p>iPhone only at launch. No Android, no iPad layout, no web app, no Watch app. If you're on Android, there's honestly nothing useful to put you on a list for yet — better to find this again later than to sit on a list for a year.</p>
+            <p>The Berean Standard Bible is bundled at launch. It's modern, readable, and it reads well out loud, which matters more here than in a normal Bible app. It's also in the public domain, so it can be bundled offline in full. WEB and ASV are planned as free alternates. ESV and NIV are not available — those require negotiated licenses a solo developer cannot obtain before proving the product works.</p>
+            <p>iPhone only at launch. No Android, no iPad layout, no web app, no Watch app. If you're on Android there's honestly nothing useful to put you on a list for yet.</p>
           </div>
         </details>
 
         <details>
-          <summary><h3>Is there a snooze button?</h3></summary>
+          <summary><h3>What happens if I just ignore it?</h3></summary>
           <div class="answer-body">
-            <p>No, deliberately. Snooze is the bypass wearing a friendly hat. The secondary control offers a shorter verse instead, which keeps the mechanic intact on the mornings you have nothing in the tank.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><h3>What if it doesn't recognise how I say things?</h3></summary>
-          <div class="answer-body">
-            <p>That's the single biggest technical risk in this whole product and it's being treated that way.</p>
-            <p>Verification is coverage-based rather than exact — it tolerates filler words, false starts, self-corrections, and a hoarse 6am voice. A failed attempt keeps the progress you made, so you resume rather than start over. And after three attempts or ninety seconds, an "I can't speak right now" option appears with a silent way through. The thresholds are being tuned against real recordings across a range of accents before launch, not after.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><h3>Can I set this up for my teenager, or my spouse?</h3></summary>
-          <div class="answer-body">
-            <p>No, and it's better to say so now than to have you find out after paying.</p>
-            <p>Version one uses individual, self-imposed authorisation — you set it for yourself, and you can turn it off yourself in three taps. There's no parent-side control and no way to lock someone else in. It's a commitment device for the person holding the phone. If you want to recommend it to someone, recommend it; you just can't impose it.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><h3>When does it launch?</h3></summary>
-          <div class="answer-body">
-            <p>No date, because any date given now would be a guess dressed as a commitment.</p>
-            <p>Here's what's actually true. It's being built by one person. The Bible reader comes first, then the alarm, then the shield — and the shield depends on Apple approving a specific entitlement on a timeline nobody outside Apple controls, so it's possible the alarm ships first and the shield follows. Waitlist members get TestFlight builds in waves, starting small, and they'll hear about slips as they happen rather than at the end.</p>
-          </div>
-        </details>
-
-        <details>
-          <summary><h3>Who's building this?</h3></summary>
-          <div class="answer-body">
-            <p>One developer, working alone. Not a pastor, not a ministry, not a team. This exists because his own habit was broken in exactly the way described at the top of this page, nothing on the App Store fixed it, and building the thing turned out to be easier than continuing to lose every morning to a lock screen.</p>
-            <p>That's the whole story. There's no authority behind this beyond someone who had the problem and can write software.</p>
+            <p>The alarm comes back two minutes later, and two minutes after that. The shield stays up until the passage is read. Neither is impossible to get around — you can force-quit the app or switch the shield off in three taps — and neither will ever scold you for doing it.</p>
+            <p>What it does is make ignoring it more annoying than thirty seconds of reading. On most days, that's the whole difference.</p>
           </div>
         </details>
 
@@ -1212,16 +1040,14 @@
     </div>
   </section>
 
-  <!-- ================= 1.13 — Close ================= -->
+  <!-- ================= 9 — Close ================= -->
   <section id="close" class="close-section">
     <div class="glow glow-dawn" style="width:680px;height:520px;bottom:-240px;left:50%;transform:translateX(-50%);" aria-hidden="true"></div>
     <div class="container">
       <div class="reading prose reveal">
         <h2>Two ways to leave this page.</h2>
-        <p>The first is to spend thirty seconds reading a verse out loud on the next page. Not to sign up for anything — there's no email field there. Just to find out whether the thing this app is built on actually does anything to you. Most of what's written above is unprovable in text and obvious in about twenty seconds of practice.</p>
-        <p>The second is to close the tab.</p>
-        <p>That is a real option, offered without any hook attached. If your mornings aren't like this — if you read consistently, or the intention was never really there, or this whole approach strikes you as the wrong way to handle Scripture — then this isn't your tool and there's nothing here worth your email. Close it with a clear conscience. Nothing will follow you.</p>
-        <p>If it <em>is</em> your morning, though, the demo is the honest way to find out whether this works, and it takes less time than reading this paragraph did.</p>
+        <p>The first is to spend thirty seconds reading a verse out loud on the next page. Not to sign up for anything — there's no email field there. Most of what's written above is unprovable in text and obvious in about twenty seconds of practice.</p>
+        <p>The second is to close the tab. That is a real option, offered without a hook attached. If your mornings aren't like this — if you read consistently, or the intention was never really there, or this whole approach strikes you as the wrong way to handle Scripture — then this isn't your tool and there's nothing here worth your email. Close it with a clear conscience. Nothing will follow you.</p>
 
         <div class="cta-stack">
           <div class="cta-block">
@@ -1256,7 +1082,8 @@
   /* ------------------------------------------------------------------
      Analytics. Events named in STRATEGY.md section 7 for index.html:
      scroll depth at 25/50/75/100, time to demo click, demo-click rate
-     (index_view paired with index_demo_click), and exit section.
+     (index_view paired with index_demo_click), and exit section. Plus
+     the exhibit: tab switches, shield engaged, gate completed, replay.
      Nothing third-party is loaded on this page.
      ------------------------------------------------------------------ */
   window.dataLayer = window.dataLayer || [];
@@ -1293,6 +1120,252 @@
   } else {
     Array.prototype.forEach.call(reveals, function (r) { r.classList.add('in'); });
   }
+
+  /* ==================================================================
+     THE EXHIBIT — two moments, one phone frame.
+     Tab A is a looping CSS recreation of the alarm screen.
+     Tab B is the Focus Shield, driven by the visitor's own scrolling.
+     ================================================================== */
+
+  var exhibit = document.getElementById('exhibit');
+  var tabs    = Array.prototype.slice.call(exhibit.querySelectorAll('[role="tab"]'));
+  var screens = { alarm: exhibit.querySelector('[data-screen="alarm"]'), shield: exhibit.querySelector('[data-screen="shield"]') };
+  var panels  = { alarm: document.getElementById('panel-alarm'), shield: document.getElementById('panel-shield') };
+
+  var feed      = document.getElementById('feed');
+  var usageBar  = document.getElementById('usageBar');
+  var usageFill = document.getElementById('usageFill');
+  var usageLbl  = document.getElementById('usageLabel');
+  var shield    = document.getElementById('shield');
+  var shBlock   = document.getElementById('shBlock');
+  var shGate    = document.getElementById('shGate');
+  var shGrant   = document.getElementById('shGrant');
+  var shRead    = document.getElementById('shRead');
+  var shFoot    = document.getElementById('shFoot');
+  var shWords   = Array.prototype.slice.call(document.getElementById('shWords').children);
+  var grantChip = document.getElementById('grantChip');
+  var exPlay    = document.getElementById('exPlay');
+  var exLive    = document.getElementById('exLive');
+
+  /* Honest about the compression: the real threshold is about ten
+     minutes of near-continuous use. Here a few seconds of scrolling
+     stands in for it, and the microcopy beside the phone says so. */
+  var SCROLL_RATE = 0.16;   /* usage percent gained per pixel scrolled */
+  var AUTO_RATE   = 2.0;    /* percent per tick once auto-advance kicks in */
+  var PLAY_RATE   = 6.0;    /* percent per tick in play mode */
+  var TICK_MS     = 110;
+  var IDLE_MS     = 3500;   /* how long we wait for a scroll before helping */
+
+  var exState = 'feed';     /* feed | shield | gate | granted | back | done */
+  var usage = 0, lastScrollTop = 0, lastTouch = 0, enteredAt = 0;
+  var playing = false, tabActive = false, autoScrolling = false, ticker = null, timers = [];
+
+  function announce(msg) { exLive.textContent = msg; }
+  function later(fn, ms) { var id = setTimeout(fn, reduceMotion ? Math.min(ms, 120) : ms); timers.push(id); return id; }
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+
+  function setUsage(v) {
+    usage = Math.max(0, Math.min(100, v));
+    usageFill.style.width = usage + '%';
+  }
+
+  function showBlock(which) {
+    shBlock.hidden = which !== 'block';
+    shGate.hidden  = which !== 'gate';
+    shGrant.hidden = which !== 'grant';
+  }
+
+  /* ---- the sequence ---- */
+
+  function engageShield(via) {
+    if (exState !== 'feed') return;
+    exState = 'shield';
+    setUsage(100);
+    usageLbl.textContent = 'Shielded';
+    showBlock('block');
+    shFoot.textContent = 'Turning the shield off takes three taps.';
+    shield.classList.add('up');
+    announce('Ten minutes of use reached. The Focus Shield has covered the app. A passage from your current Thread is waiting behind one button.');
+    track('index_shield_engaged', { via: via, seconds: Math.round((Date.now() - t0) / 1000) });
+    if (playing) later(startGate, 1500);
+  }
+
+  function startGate() {
+    if (exState !== 'shield') return;
+    exState = 'gate';
+    showBlock('gate');
+    shWords.forEach(function (w) { w.classList.remove('on'); });
+    announce('Reading. The words light up one by one as they are recognised.');
+    var step = reduceMotion ? 0 : 130;
+    shWords.forEach(function (w, i) { later(function () { w.classList.add('on'); }, i * step); });
+    later(grant, shWords.length * step + 500);
+  }
+
+  function grant() {
+    if (exState !== 'gate') return;
+    exState = 'granted';
+    showBlock('grant');
+    shFoot.textContent = 'No score was kept. Nothing was recorded.';
+    usageBar.classList.add('granted');
+    announce('Read. Back to the app for fifteen minutes.');
+    track('index_gate_completed', { seconds: Math.round((Date.now() - t0) / 1000) });
+    later(release, 1500);
+  }
+
+  function release() {
+    if (exState !== 'granted') return;
+    exState = 'back';
+    shield.classList.remove('up');
+    grantChip.hidden = false;
+    setUsage(0);
+    usageLbl.textContent = '15 min block';
+    later(function () {
+      /* drain the block, sped up the same way the build-up was */
+      setUsage(100);
+      later(returnShield, 1400);
+    }, 260);
+  }
+
+  function returnShield() {
+    if (exState !== 'back') return;
+    exState = 'done';
+    grantChip.hidden = true;
+    usageBar.classList.remove('granted');
+    usageLbl.textContent = 'Shielded';
+    showBlock('block');
+    shFoot.textContent = 'The fifteen minutes ran out. The shield came back on its own.';
+    shield.classList.add('up');
+    announce('The fifteen minutes ran out and the shield came back on its own.');
+    playing = false;
+    exPlay.disabled = false;
+    exPlay.textContent = 'Run it again';
+  }
+
+  function resetExhibit(replay) {
+    clearTimers();
+    playing = false;
+    exState = 'feed';
+    setUsage(0);
+    usageBar.classList.remove('granted');
+    usageLbl.textContent = 'Sped up';
+    grantChip.hidden = true;
+    shield.classList.remove('up');
+    showBlock('block');
+    shFoot.textContent = 'Turning the shield off takes three taps.';
+    shWords.forEach(function (w) { w.classList.remove('on'); });
+    if (feed) { feed.scrollTop = 0; lastScrollTop = 0; }
+    enteredAt = Date.now();
+    lastTouch = Date.now();
+    exPlay.disabled = false;
+    exPlay.textContent = 'Play it without scrolling';
+    if (replay) { announce('Exhibit reset. Scroll the feed again.'); track('index_exhibit_replay', {}); }
+  }
+
+  /* ---- accumulating usage ---- */
+
+  if (feed) {
+    feed.addEventListener('scroll', function () {
+      if (exState !== 'feed' || playing || autoScrolling) { lastScrollTop = feed.scrollTop; return; }
+      var d = Math.abs(feed.scrollTop - lastScrollTop);
+      lastScrollTop = feed.scrollTop;
+      lastTouch = Date.now();
+      setUsage(usage + d * SCROLL_RATE);
+      if (usage >= 100) engageShield('scroll');
+    }, { passive: true });
+  }
+
+  function tick() {
+    if (!tabActive || exState !== 'feed') return;
+    var now = Date.now();
+    if (playing) {
+      setUsage(usage + PLAY_RATE);
+    } else if (now - lastTouch > IDLE_MS && now - enteredAt > IDLE_MS) {
+      /* nobody scrolled — tell the story anyway, slowly */
+      setUsage(usage + AUTO_RATE);
+      if (feed && !reduceMotion && feed.scrollTop < feed.scrollHeight - feed.clientHeight - 1) {
+        autoScrolling = true;
+        feed.scrollTop += 7;
+        lastScrollTop = feed.scrollTop;
+        window.requestAnimationFrame(function () { autoScrolling = false; });
+      }
+    }
+    if (usage >= 100) engageShield(playing ? 'play' : 'auto');
+  }
+
+  shRead.addEventListener('click', function () { startGate(); });
+
+  exPlay.addEventListener('click', function () {
+    if (exState !== 'feed') resetExhibit(true);
+    playing = true;
+    exPlay.disabled = true;
+    exPlay.textContent = 'Playing…';
+    announce('Playing the sequence.');
+    if (reduceMotion) { setUsage(100); engageShield('play'); }
+  });
+
+  /* ---- tabs ---- */
+
+  function selectTab(name, focusIt) {
+    exhibit.setAttribute('data-tab', name);
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-tab') === name;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      if (on && focusIt) t.focus();
+    });
+    screens.alarm.hidden  = name !== 'alarm';
+    screens.shield.hidden = name !== 'shield';
+    panels.alarm.hidden   = name !== 'alarm';
+    panels.shield.hidden  = name !== 'shield';
+
+    tabActive = name === 'shield';
+    if (tabActive) {
+      clearInterval(ticker);
+      ticker = setInterval(tick, TICK_MS);
+      if (exState === 'feed' && usage === 0) {
+        enteredAt = Date.now();
+        lastTouch = Date.now();
+        if (reduceMotion) {
+          /* show the end state rather than an animation nobody asked for */
+          setUsage(100);
+          engageShield('reduced-motion');
+          shFoot.textContent = 'Shown in place, because your device asks for reduced motion.';
+          announce('Reduced motion is on, so the shield is shown already in place. In the app it appears after about ten minutes of near-continuous use.');
+        } else {
+          announce('Scroll the feed on the phone to build up usage. Sped up: the real thing takes about ten minutes.');
+        }
+      }
+    } else {
+      clearInterval(ticker);
+      ticker = null;
+    }
+  }
+
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var name = t.getAttribute('data-tab');
+      if (exhibit.getAttribute('data-tab') === name) return;
+      selectTab(name, false);
+      track('index_exhibit_tab', { tab: name, seconds: Math.round((Date.now() - t0) / 1000) });
+    });
+  });
+
+  exhibit.querySelector('[role="tablist"]').addEventListener('keydown', function (e) {
+    var i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    var next = -1;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = tabs.length - 1;
+    if (next < 0) return;
+    e.preventDefault();
+    var name = tabs[next].getAttribute('data-tab');
+    selectTab(name, true);
+    track('index_exhibit_tab', { tab: name, via: 'keyboard', seconds: Math.round((Date.now() - t0) / 1000) });
+  });
+
+  selectTab('alarm', false);
 
   /* ---------- scroll depth: 25 / 50 / 75 / 100 ---------- */
 
@@ -1336,8 +1409,8 @@
     var t = e.target.closest ? e.target.closest('a[data-demo], a[data-join]') : null;
     if (!t) return;
     var seconds = Math.round((Date.now() - t0) / 1000);
+    clicked = true;
     if (t.hasAttribute('data-demo')) {
-      clicked = true;
       track('index_demo_click', {
         location: t.getAttribute('data-demo'),
         seconds_to_click: seconds,
@@ -1345,7 +1418,6 @@
         section: current
       });
     } else {
-      clicked = true;
       track('index_join_click', {
         location: t.getAttribute('data-join'),
         path: 'direct',
@@ -1366,7 +1438,8 @@
       section: current,
       scroll_depth: deepest,
       seconds_on_page: Math.round((Date.now() - t0) / 1000),
-      converted: clicked
+      converted: clicked,
+      exhibit_state: exState
     });
   }
   window.addEventListener('pagehide', exit);
