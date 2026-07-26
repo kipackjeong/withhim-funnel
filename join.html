@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0C11">
+
+<title>Join the waitlist — With Him</title>
+<meta name="description" content="No card, no charge, no date promised. An email address, a vote on which Threads get written first, and the founding-member terms written out in full: a permanent price lock, $49 lifetime for the first 500, and early TestFlight builds in waves.">
+<link rel="canonical" href="https://kipackjeong.github.io/withhim-funnel/join.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kipackjeong.github.io/withhim-funnel/join.html">
+<meta property="og:site_name" content="With Him">
+<meta property="og:title" content="Join the waitlist — With Him">
+<meta property="og:description" content="Nothing is charged now and nothing ships today. An email address, a vote on what gets written first, and the founding terms in full.">
+<meta property="og:image" content="https://kipackjeong.github.io/withhim-funnel/assets/og.png">
+<meta property="og:image:alt" content="A dark iPhone screen at 6:40 in the morning with a passage waiting to be read aloud.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Join the waitlist — With Him">
+<meta name="twitter:description" content="No card, no charge, no date promised. The founding-member terms, written out in full.">
+<meta name="twitter:image" content="https://kipackjeong.github.io/withhim-funnel/assets/og.png">
+
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+/* ============================================================
+   join.html — page-specific styles only.
+   Tokens, type, buttons, cards, pills, fields, nav, grain,
+   reveal motion, focus states and reduced-motion handling all
+   come from assets/shared.css and are not restated here.
+   ============================================================ */
+
+.nav-inner .btn { padding: 11px 22px; font-size: 0.92rem; }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+@media (max-width: 560px) { .nav-cta .btn-ghost { display: none; } }
+
+/* .btn sets a display, which would otherwise beat the UA rule for [hidden]. */
+[hidden] { display: none !important; }
+
+/* ---------- shared prose helpers (same shapes as index.html) ---------- */
+
+.section-head { margin-bottom: clamp(34px, 5vw, 54px); }
+.section-head p:last-child { margin-bottom: 0; }
+.prose p { color: var(--parchment-70); }
+.prose p.lead-para { color: var(--parchment); }
+.prose > :last-child { margin-bottom: 0; }
+
+.rich-list {
+  list-style: none;
+  margin: 0 0 1.6em;
+  padding: 0;
+  display: grid;
+  gap: 15px;
+}
+.rich-list li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--parchment-70);
+}
+.rich-list li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 0.62em;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--dawn);
+  box-shadow: 0 0 0 4px var(--dawn-glow);
+}
+.rich-list strong { color: var(--parchment); font-weight: 600; }
+
+/* ---------- hero ---------- */
+
+.hero { padding-top: clamp(44px, 6vw, 86px); overflow: hidden; }
+.hero-inner { position: relative; z-index: 1; }
+.hero h1 { margin-bottom: 0.42em; }
+.hero .lede { max-width: 34em; margin-bottom: 0; }
+
+/* the quiet demo offer, for anyone who arrived without doing it */
+.demo-aside {
+  margin: clamp(28px, 4vw, 38px) 0 0;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--dawn);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  background: var(--ink-2);
+  max-width: var(--reading);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--parchment-50);
+}
+.demo-aside p { margin: 0; }
+
+/* ---------- the founding offer ---------- */
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 0 0 clamp(38px, 5vw, 54px);
+}
+@media (min-width: 880px) { .offer-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
+
+.offer h3 {
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  margin-bottom: 0.7em;
+}
+.offer h3 .onum {
+  color: var(--dawn);
+  font-variant-numeric: tabular-nums;
+  margin-right: 0.25em;
+}
+.offer p { color: var(--parchment-70); font-size: 0.97rem; }
+.offer p:last-child { margin-bottom: 0; }
+
+.offer-note {
+  border-left: 2px solid var(--line-strong);
+  padding-left: clamp(20px, 3vw, 30px);
+  margin-top: clamp(34px, 4.5vw, 46px);
+}
+.offer-note h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
+
+/* ---------- prices (same shape as index.html) ---------- */
+
+.prices {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: clamp(28px, 4vw, 36px) 0;
+  list-style: none;
+  padding: 0;
+}
+@media (min-width: 780px) { .prices { grid-template-columns: repeat(2, 1fr); } }
+.prices li {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 22px 24px;
+  color: var(--parchment-70);
+  font-size: 0.95rem;
+}
+.prices li.free { border-color: var(--line-strong); }
+.prices li.founding { background: linear-gradient(165deg, rgba(232,169,75,0.07), transparent 58%); }
+.prices .amt {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.5rem;
+  letter-spacing: -0.015em;
+  color: var(--parchment);
+  margin-bottom: 4px;
+}
+.prices .founding-rate { color: var(--dawn-soft); font-weight: 600; }
+
+/* ---------- iPhone-only disclosure ---------- */
+
+.disclosure {
+  border-left: 2px solid var(--ember);
+  padding-left: clamp(20px, 3vw, 30px);
+}
+.disclosure h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); margin-bottom: 0.7em; }
+.disclosure p { color: var(--parchment-70); }
+.disclosure p:last-child { margin-bottom: 0; }
+
+/* ---------- the form ---------- */
+
+.form-section { border-top: 1px solid var(--line); }
+.join-card { max-width: var(--reading); margin: 0 auto; }
+.join-card > h2 { margin-bottom: 0.6em; }
+
+.f-row { margin-bottom: clamp(30px, 4vw, 40px); }
+.f-row:last-of-type { margin-bottom: clamp(24px, 3vw, 30px); }
+
+.flabel {
+  display: block;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--parchment);
+  margin: 0 0 6px;
+  padding: 0;
+}
+.fnote {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--parchment-50);
+}
+.fhint { margin: 0 0 14px; font-size: 0.92rem; color: var(--parchment-70); }
+
+.ferror {
+  margin: 10px 0 0;
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: var(--ember);
+  min-height: 0;
+}
+.ferror:empty { margin: 0; }
+
+textarea.field {
+  border-radius: var(--r-md);
+  resize: vertical;
+  min-height: 92px;
+  line-height: 1.55;
+  display: block;
+}
+
+/* ---------- the Thread vote ---------- */
+
+.threads-fs { border: 0; margin: 0; padding: 0; min-width: 0; }
+
+.thread-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+@media (min-width: 620px) { .thread-grid { grid-template-columns: 1fr 1fr; gap: 12px; } }
+
+.thread-grid li { display: flex; }
+
+.thread {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 14px 46px 14px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--ink-3);
+  cursor: pointer;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease),
+              transform 0.25s var(--ease);
+}
+.thread:hover { border-color: var(--parchment-32); background: rgba(242,237,228,0.045); }
+.thread:active { transform: scale(0.995); }
+
+.tname {
+  display: block;
+  font-weight: 600;
+  font-size: 0.98rem;
+  color: var(--parchment);
+  letter-spacing: -0.005em;
+}
+.tdesc {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--parchment-50);
+}
+
+.rank {
+  position: absolute;
+  top: 50%;
+  right: 13px;
+  transform: translateY(-50%) scale(0.6);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1;
+  color: #2A1B06;
+  background: linear-gradient(180deg, var(--dawn-soft), var(--dawn));
+  box-shadow: 0 0 0 4px var(--dawn-glow);
+  opacity: 0;
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+  pointer-events: none;
+}
+
+.thread-input:checked + .thread {
+  border-color: var(--dawn);
+  background: linear-gradient(165deg, rgba(232,169,75,0.10), rgba(23,27,37,0.6) 60%);
+}
+.thread-input:checked + .thread .rank {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+.thread-input:focus-visible + .thread {
+  outline: 2px solid var(--dawn);
+  outline-offset: 3px;
+}
+
+.vote-status {
+  margin: 14px 0 0;
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: var(--parchment-70);
+  min-height: 1.3em;
+}
+
+/* ---------- submit ---------- */
+
+.submit-row { margin-top: clamp(28px, 4vw, 36px); }
+.submit-row .btn { width: 100%; }
+@media (min-width: 620px) { .submit-row .btn { width: auto; min-width: 260px; } }
+
+/* ---------- privacy ---------- */
+
+.privacy-block {
+  max-width: var(--reading);
+  margin: clamp(44px, 6vw, 66px) auto 0;
+  padding-top: clamp(30px, 4vw, 40px);
+  border-top: 1px solid var(--line);
+}
+.privacy-block h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); margin-bottom: 0.7em; }
+.privacy-block p { color: var(--parchment-70); font-size: 0.95rem; }
+.privacy-block .btn-note { margin-top: 0; }
+
+/* ---------- footer ---------- */
+
+.foot-links { display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: center; justify-content: space-between; }
+.foot-note { margin: 22px 0 0; font-size: 0.82rem; color: var(--parchment-32); max-width: 60ch; }
+</style>
+</head>
+<body class="grain">
+
+<a class="sr-only" href="#form">Skip to the form</a>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="demo.html" data-demo="nav">Try the demo</a>
+      <a class="btn btn-primary" href="#form" data-scroll="nav">Join the waitlist</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= 3.1 — Headline ================= -->
+  <section class="hero" id="hero">
+    <div class="glow glow-dawn" style="width:720px;height:540px;top:-230px;right:-190px;" aria-hidden="true"></div>
+    <div class="container">
+      <div class="reading hero-inner">
+
+        <p class="eyebrow reveal">The waitlist</p>
+
+        <!-- PRIMARY (shipped). A/B variant held for the first test — per COPY.md §3.1,
+             test it on traffic arriving direct from index.html without the demo:
+             [H1] The first 500 people here lock their price forever.
+             [BODY] Nothing is charged now and nothing ships today. This is an email list with a founding offer attached, and the terms are written out in full below.
+        -->
+        <h1 class="reveal">Get it when it ships — and help decide what's in it.</h1>
+
+        <p class="lede reveal">No card, no charge, no date promised. An email address, a vote on what gets written first, and the founding terms below.</p>
+
+        <!-- Builder-added, per build brief: a quiet offer of the demo for anyone who
+             skipped it. Hidden by script when the visitor arrives from a completed
+             demo, so it never nags someone who has already done it. Kept in the
+             markup rather than injected, so it still works with JavaScript off. -->
+        <aside class="demo-aside reveal" id="demoAside" hidden>
+          <p>If you haven't done it, the thirty-second demo is still there — reading one verse out loud shows what this is better than the rest of this page can. It isn't a step, and the form below works either way. <a href="demo.html" data-demo="aside">Read a verse out loud</a>.</p>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= 3.2 — The founding-member offer ================= -->
+  <section id="offer">
+    <div class="container">
+
+      <div class="reading prose section-head reveal">
+        <h2>What founding members actually get</h2>
+        <p>Four things, all of them deliverable by one person, and all of them written here so they can be held against him later.</p>
+      </div>
+
+      <div class="offer-grid">
+
+        <article class="card offer reveal">
+          <h3><span class="onum">1.</span>A permanent price lock</h3>
+          <p>Whatever you pay when you subscribe, that's what you pay for as long as you keep it. Prices go up as products grow; yours won't. This applies to any tier you choose.</p>
+        </article>
+
+        <article class="card offer reveal">
+          <h3><span class="onum">2.</span>The founding lifetime rate — $49 instead of $79.99</h3>
+          <p>One payment, forever, at $49 against a planned lifetime price of $79.99.</p>
+          <p>Two real limits on this, stated plainly rather than buried. It's available only in the first week after launch, and only to the first 500 people on this list. That number isn't a marketing device — it's set at a level one developer can support for a lifetime cohort without it becoming a burden, and there's no counter on this page telling you it's running out, because that would be theatre.</p>
+        </article>
+
+        <article class="card offer reveal">
+          <h3><span class="onum">3.</span>Early TestFlight access, in waves</h3>
+          <p>Builds go out to waitlist members before launch, in waves, with the first wave deliberately small. Apple caps external testing and reviews every beta build, so "waves" is the honest word rather than "immediate."</p>
+          <p>You'll be asked before you're added to one. Nobody gets an unrequested beta.</p>
+        </article>
+
+        <article class="card offer reveal">
+          <h3><span class="onum">4.</span>A vote on which Threads get written first</h3>
+          <p>Twelve Threads have to be authored before launch — each one an ordered sequence of passages on a single theme, written and reviewed by hand. The order they're written in is genuinely undecided, so waitlist members rank them and the queue follows the ranking.</p>
+          <p>It's a real vote on real work, and it's also the cheapest market research available. Both things are true and it seems better to say so.</p>
+        </article>
+
+      </div>
+
+      <div class="reading prose reveal">
+        <h3>What you are not signing up for</h3>
+        <ul class="rich-list">
+          <li><strong>No payment now.</strong> There is no card field on this page and no charge of any kind before launch.</li>
+          <li><strong>No launch date.</strong> Because there isn't one that would be honest. See below.</li>
+          <li><strong>No obligation.</strong> If the launch email lands and you've moved on, ignore it. Nothing is owed.</li>
+          <li><strong>No sharing your email.</strong> Not sold, not rented, not passed to anyone.</li>
+        </ul>
+      </div>
+
+      <div class="reading prose offer-note reveal">
+        <h3>Why no money is being taken now</h3>
+        <p>Pre-selling an unbuilt app is legal and common. It's not happening here for one specific reason: the Focus Shield needs Apple to approve an entitlement, on a timeline nobody outside Apple controls, and there is a real chance it's delayed or refused. Taking money for a feature that might not ship isn't a risk worth running.</p>
+        <p>So: emails now, money only when there's something to buy.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= 3.3 — The published pricing ================= -->
+  <section id="pricing">
+    <div class="container">
+
+      <div class="reading prose section-head reveal">
+        <h2>What it will cost at launch</h2>
+        <p>Published here months ahead of time, so that moving it later would be visible.</p>
+      </div>
+
+      <div class="reading">
+        <ul class="prices reveal">
+          <li class="free">
+            <span class="amt">Free, permanently</span>
+            — the entire Bible offline, whole-Bible search, highlights, notes, bookmarks, cross-references, and the daily Thread verse. Never time-limited, never a trial.
+          </li>
+          <li>
+            <span class="amt">$4.99 / month</span>
+            — the Voice-Dismissed Alarm and the Focus Shield.
+          </li>
+          <li>
+            <span class="amt">$29.99 / year</span>
+            — the same, with a 7-day free trial.
+          </li>
+          <li class="founding">
+            <span class="amt">$79.99 once</span>
+            — lifetime. <strong class="founding-rate">$49 for founding members</strong>, first week after launch, first 500 on this list.
+          </li>
+        </ul>
+      </div>
+
+      <div class="reading prose reveal">
+        <p class="lead-para">No verse, book, or search result is ever behind a payment. The subscription buys the alarm and the shield and nothing else.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= 3.6 — The iPhone-only disclosure =================
+       COPY.md places this block after the form. It is rendered here, immediately
+       above the form, because its own heading says "Before you submit" and a
+       disclosure printed under the submit button is a disclosure nobody reads
+       before submitting. Text itself is verbatim and unaltered. -->
+  <section id="iphone-only" class="section-tight">
+    <div class="container">
+      <div class="reading disclosure reveal">
+        <h3>Before you submit — this is iPhone only</h3>
+        <p>Version one runs on iPhone, on iOS 26 or later. There is no Android version, no iPad-optimised layout, no web app, and no Watch app, and none of those are near-term plans.</p>
+        <p>If you're on Android, joining this list would mean waiting a long time for something that may never come to your phone. It's better to say that now than to have you find out in a launch email. If you'd like to be told <em>if</em> Android ever happens, join and say "Android" in the free-text field, and you'll be kept separate from the launch list.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 3.4 — The form ================= -->
+  <section id="form" class="form-section">
+    <div class="glow glow-dawn" style="width:640px;height:500px;bottom:-250px;left:50%;transform:translateX(-50%);" aria-hidden="true"></div>
+    <div class="container">
+
+      <form class="card join-card reveal" id="joinForm" method="post" action="#" novalidate>
+
+        <h2>Join the list</h2>
+
+        <input type="hidden" name="path" id="pathField" value="">
+
+        <!-- ---------- field 1: email ---------- -->
+        <div class="f-row">
+          <label class="flabel" for="email">Your email</label>
+          <input
+            class="field"
+            id="email"
+            name="email"
+            type="email"
+            inputmode="email"
+            autocomplete="email"
+            autocapitalize="off"
+            spellcheck="false"
+            placeholder="you@example.com"
+            required
+            aria-describedby="email-note email-error">
+          <p class="ferror" id="email-error" aria-live="polite"></p>
+          <p class="fnote" id="email-note">The only required field. Used for build invitations, launch, and occasional notes on progress — nothing else.</p>
+        </div>
+
+        <!-- ---------- field 2: the ranked Thread vote ----------
+             COPY.md's [NOTE-TO-BUILDER] proposed drag-to-order or numbered selects.
+             The build brief overrides it with a tap-to-rank top three, which is what
+             a person will actually finish on a phone. The deck's field instruction
+             ("Rank as many as you like, most wanted first... You can rank one or all
+             twelve.") described the twelve-item version, so the count clause is
+             adjusted here to describe the interaction that shipped. Everything else
+             in this block is verbatim. -->
+        <div class="f-row">
+          <fieldset class="threads-fs">
+            <legend class="flabel">Which Threads should be written first?</legend>
+            <p class="fhint" id="threads-hint">Tap your top three, most wanted first. Whatever you rank highest gets authored earliest. Tap again to undo. You can pick one, two, or three.</p>
+
+            <ul class="thread-grid" id="threadGrid">
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-anxiety" name="threads" value="anxiety" aria-describedby="threads-hint">
+                <label class="thread" for="t-anxiety">
+                  <span class="tname">Anxiety</span>
+                  <span class="tdesc">— naming it honestly, then where peace actually comes from.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-identity" name="threads" value="identity">
+                <label class="thread" for="t-identity">
+                  <span class="tname">Identity</span>
+                  <span class="tdesc">— who you are when the job, the role, or the performance is stripped out.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-grief" name="threads" value="grief">
+                <label class="thread" for="t-grief">
+                  <span class="tname">Grief</span>
+                  <span class="tdesc">— for the season after a loss, without rushing you through it.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-purpose" name="threads" value="purpose">
+                <label class="thread" for="t-purpose">
+                  <span class="tname">Purpose</span>
+                  <span class="tdesc">— what your ordinary week is for.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-temptation" name="threads" value="temptation">
+                <label class="thread" for="t-temptation">
+                  <span class="tname">Temptation</span>
+                  <span class="tdesc">— the pattern you keep returning to, and what to do at the moment it starts.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-gratitude" name="threads" value="gratitude">
+                <label class="thread" for="t-gratitude">
+                  <span class="tname">Gratitude</span>
+                  <span class="tdesc">— attention as a practice rather than a mood.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-forgiveness" name="threads" value="forgiveness">
+                <label class="thread" for="t-forgiveness">
+                  <span class="tname">Forgiveness</span>
+                  <span class="tdesc">— both directions, including the one that's harder.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-waiting" name="threads" value="waiting">
+                <label class="thread" for="t-waiting">
+                  <span class="tname">Waiting</span>
+                  <span class="tdesc">— for the answer that hasn't come yet.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-courage" name="threads" value="courage">
+                <label class="thread" for="t-courage">
+                  <span class="tname">Courage</span>
+                  <span class="tdesc">— the conversation or decision you've been postponing.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-provision" name="threads" value="provision">
+                <label class="thread" for="t-provision">
+                  <span class="tname">Provision</span>
+                  <span class="tdesc">— money, work, and enough.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-rest" name="threads" value="rest">
+                <label class="thread" for="t-rest">
+                  <span class="tname">Rest</span>
+                  <span class="tdesc">— for people who are bad at it.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+              <li>
+                <input class="sr-only thread-input" type="checkbox" id="t-life-of-christ" name="threads" value="life-of-christ">
+                <label class="thread" for="t-life-of-christ">
+                  <span class="tname">The Life of Christ</span>
+                  <span class="tdesc">— through the Gospels in order, start to finish.</span>
+                  <span class="rank" aria-hidden="true"></span>
+                  <span class="sr-only rank-sr"></span>
+                </label>
+              </li>
+            </ul>
+
+            <p class="vote-status" id="voteStatus" aria-live="polite"></p>
+            <p class="fnote">Optional, and it takes about thirty seconds. It genuinely changes the build order.</p>
+          </fieldset>
+        </div>
+
+        <!-- ---------- field 3: free text ---------- -->
+        <div class="f-row">
+          <label class="flabel" for="hard">What makes this hard for you? (optional)</label>
+          <textarea
+            class="field"
+            id="hard"
+            name="hard"
+            rows="2"
+            maxlength="600"
+            aria-describedby="hard-note"
+            placeholder="One line is plenty. &quot;I share a room.&quot; &quot;Evenings are the problem, not mornings.&quot; &quot;I've tried four of these.&quot;"></textarea>
+          <p class="fnote" id="hard-note">Read by one person, who is building this. Not published anywhere, not shared, not quoted without asking you first.</p>
+        </div>
+
+        <div class="submit-row">
+          <button class="btn btn-primary btn-lg" type="submit" id="submitBtn">Put me on the list</button>
+          <p class="btn-note">No payment, no card, no launch date promised. One-click unsubscribe in every email.</p>
+        </div>
+
+      </form>
+
+      <!-- ================= 3.5 — Privacy microcopy ================= -->
+      <div class="privacy-block prose reveal">
+        <h3>What happens to what you just typed</h3>
+        <p>Your email is used to send you build invitations, the launch note, and occasional progress updates. It is not sold, not rented, not shared with anyone, and not used to build a profile of you anywhere.</p>
+        <p>Your Thread ranking is counted. Your free-text answer is read by one person and goes no further.</p>
+        <p>Separately, and worth repeating here: the app itself has no account and no server. Nothing you read, highlight, or note inside it ever reaches anyone. This waitlist is an email list and it is the only place your address exists.</p>
+        <p class="btn-note">Unsubscribe from any email in one click. That removes you from everything, including the founding offer, with no follow-up.</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-links">
+      <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+      <span><a href="demo.html" data-demo="footer">Read a verse out loud</a> &nbsp;·&nbsp; <a href="index.html">How it works</a></span>
+    </div>
+    <p class="foot-note">An iPhone app, in development. Built by one person. Nothing on this page is for sale yet.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     Analytics. Events named in STRATEGY.md §7 for join.html:
+     view-to-submit split by path (demo-completed vs. direct), Thread
+     ranking distribution, and field-level abandon.
+     Nothing third-party is loaded on this page.
+     ------------------------------------------------------------------ */
+  window.dataLayer = window.dataLayer || [];
+  function track(event, props) {
+    var payload = Object.assign({ event: event, page: 'join' }, props || {});
+    window.dataLayer.push(payload);
+    if (window.console && console.log) console.log('[track]', event, payload);
+    /* REAL ANALYTICS CALL GOES HERE — e.g. plausible(event, {props: payload})
+       or fetch('/e', {method:'POST', body: JSON.stringify(payload)}). */
+  }
+
+  var t0 = Date.now();
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ------------------------------------------------------------------
+     Which route did this visitor take to get here?
+     STRATEGY.md §1 requires the demo-completed and direct paths to be
+     measured separately — the ratio between them is what decides whether
+     the demo-first bet was correct. Query param first, referrer second.
+     ------------------------------------------------------------------ */
+  function readPath() {
+    var q = '';
+    try { q = (new URLSearchParams(window.location.search)).get('path') || ''; }
+    catch (err) {
+      var m = /[?&]path=([^&]+)/.exec(window.location.search);
+      q = m ? decodeURIComponent(m[1]) : '';
+    }
+    if (q) return q;
+
+    var ref = (document.referrer || '').toLowerCase();
+    if (!ref) return 'unknown';
+    if (ref.indexOf('demo.html') !== -1) return 'demo';
+    if (ref.indexOf('index.html') !== -1 || /\/$/.test(ref.split('?')[0])) return 'direct';
+    return 'external';
+  }
+
+  var path = readPath();
+  var didDemo = path === 'demo-completed' || path === 'demo';
+  document.getElementById('pathField').value = path;
+
+  /* The quiet demo offer is for people who skipped it. Anyone arriving from a
+     completed demo never sees it. */
+  var aside = document.getElementById('demoAside');
+  if (!didDemo) aside.hidden = false;
+
+  track('join_view', { path: path, referrer: document.referrer || '', demo_completed: didDemo });
+
+  /* ---------- nav border state ---------- */
+
+  var nav = document.getElementById('nav');
+  function onNavScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+  onNavScroll();
+  window.addEventListener('scroll', onNavScroll, { passive: true });
+
+  /* ---------- scroll reveal ---------- */
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(reveals, function (r) { io.observe(r); });
+  } else {
+    Array.prototype.forEach.call(reveals, function (r) { r.classList.add('in'); });
+  }
+
+  /* ------------------------------------------------------------------
+     The Thread vote — tap to rank, tap again to undo, three at most.
+     Ordinary checkboxes underneath, so keyboard and screen-reader
+     behaviour is the browser's rather than something reimplemented.
+     ------------------------------------------------------------------ */
+
+  var MAX_RANKS = 3;
+  var ORDINAL = ['first', 'second', 'third'];
+  var order = [];                                   /* values, in chosen order */
+  var inputs = Array.prototype.slice.call(document.querySelectorAll('.thread-input'));
+  var voteStatus = document.getElementById('voteStatus');
+
+  function nameOf(input) {
+    return input.parentNode.querySelector('.tname').textContent.trim();
+  }
+  function inputFor(value) {
+    for (var i = 0; i < inputs.length; i++) if (inputs[i].value === value) return inputs[i];
+    return null;
+  }
+
+  function paintRanks() {
+    inputs.forEach(function (input) {
+      var label = input.parentNode.querySelector('.thread');
+      var badge = label.querySelector('.rank');
+      var sr = label.querySelector('.rank-sr');
+      var idx = order.indexOf(input.value);
+      if (idx === -1) {
+        badge.textContent = '';
+        sr.textContent = '';
+      } else {
+        badge.textContent = String(idx + 1);
+        sr.textContent = ' — your ' + ORDINAL[idx] + ' choice';
+      }
+    });
+
+    if (!order.length) {
+      voteStatus.textContent = '';
+      return;
+    }
+    var names = order.map(function (v) { return nameOf(inputFor(v)); });
+    voteStatus.textContent = order.length === 1
+      ? 'First: ' + names[0] + '. Two more if you want them.'
+      : (order.length === 2
+          ? 'First: ' + names[0] + '. Second: ' + names[1] + '. One more if you want it.'
+          : 'First: ' + names[0] + '. Second: ' + names[1] + '. Third: ' + names[2] + '. That\u2019s all three.');
+  }
+
+  inputs.forEach(function (input) {
+    input.addEventListener('change', function () {
+      var value = input.value;
+      if (input.checked) {
+        if (order.length >= MAX_RANKS) {
+          input.checked = false;
+          /* voteStatus is the live region; announcing twice would be noise. */
+          voteStatus.textContent = 'Three is as many as this needs. Tap one of your three to swap it out.';
+          return;
+        }
+        order.push(value);
+      } else {
+        var i = order.indexOf(value);
+        if (i !== -1) order.splice(i, 1);
+      }
+      paintRanks();
+    });
+  });
+
+  /* ------------------------------------------------------------------
+     Validation — inline, and never scolding.
+     ------------------------------------------------------------------ */
+
+  var form = document.getElementById('joinForm');
+  var emailEl = document.getElementById('email');
+  var emailErr = document.getElementById('email-error');
+  var hardEl = document.getElementById('hard');
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var submitted = false;
+
+  function clearError() {
+    emailErr.textContent = '';
+    emailEl.classList.remove('field-error');
+    emailEl.removeAttribute('aria-invalid');
+  }
+  function showError(msg, reason) {
+    emailErr.textContent = msg;
+    emailEl.classList.add('field-error');
+    emailEl.setAttribute('aria-invalid', 'true');
+    emailEl.focus();
+    track('join_validation', { field: 'email', reason: reason, path: path });
+  }
+
+  emailEl.addEventListener('input', function () {
+    if (emailErr.textContent) clearError();
+  });
+  emailEl.addEventListener('blur', function () {
+    var v = emailEl.value.trim();
+    if (v && !EMAIL_RE.test(v)) {
+      emailErr.textContent = 'That doesn\u2019t look quite like an email address — worth a second look.';
+      emailEl.classList.add('field-error');
+      emailEl.setAttribute('aria-invalid', 'true');
+    }
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var email = emailEl.value.trim();
+    if (!email) {
+      showError('The email is the one thing needed here — everything else on this page is optional.', 'empty');
+      return;
+    }
+    if (!EMAIL_RE.test(email)) {
+      showError('That doesn\u2019t look quite like an email address — worth a second look.', 'malformed');
+      return;
+    }
+    clearError();
+
+    var note = hardEl.value.trim();
+    var record = {
+      email: email,
+      threads: order.slice(),          /* ranked, most wanted first */
+      note: note,
+      path: path,
+      submitted_at: new Date().toISOString()
+    };
+
+    try { window.localStorage.setItem('withhim.waitlist', JSON.stringify(record)); } catch (err) {}
+
+    track('join_submit', {
+      path: path,
+      demo_completed: didDemo,
+      threads_ranked: order.length,
+      thread_1: order[0] || '',
+      thread_2: order[1] || '',
+      thread_3: order[2] || '',
+      note_given: note.length > 0,
+      note_length: note.length,
+      seconds_on_page: Math.round((Date.now() - t0) / 1000)
+    });
+
+    submitted = true;
+
+    /* ==================================================================
+       REAL FORM ENDPOINT GOES HERE.
+       Nothing is posted anywhere today — the record above is written to
+       localStorage so thanks.html can confirm the address back, and the
+       browser is then sent on. Wire one of these in and keep the redirect:
+
+         // ConvertKit
+         // fetch('https://api.convertkit.com/v3/forms/FORM_ID/subscribe', {
+         //   method: 'POST',
+         //   headers: { 'Content-Type': 'application/json' },
+         //   body: JSON.stringify({
+         //     api_key: 'PUBLIC_API_KEY',
+         //     email: record.email,
+         //     fields: { threads: record.threads.join(','), note: record.note, path: record.path }
+         //   })
+         // }).then(go).catch(go);
+
+         // Buttondown
+         // fetch('https://api.buttondown.email/v1/subscribers', { ... })
+
+         // Formspree — the least work: set the <form> action to the
+         // endpoint, drop the preventDefault above, and let it redirect
+         // via a hidden <input type="hidden" name="_next" value="...thanks.html">.
+
+       Whatever is chosen, keep the failure path pointed at thanks.html
+       as well: a visitor who typed their address should not be left on a
+       broken screen because a third party is down. Reconcile from the
+       provider's dashboard instead.
+       ================================================================== */
+
+    function go() { window.location.href = 'thanks.html'; }
+    go();
+  });
+
+  /* ------------------------------------------------------------------
+     Field-level abandon (STRATEGY.md §7)
+     ------------------------------------------------------------------ */
+  var lastField = '';
+  ['email', 'hard'].forEach(function (id) {
+    document.getElementById(id).addEventListener('focus', function () { lastField = id; });
+  });
+  document.getElementById('threadGrid').addEventListener('focusin', function () { lastField = 'threads'; });
+
+  var abandonSent = false;
+  function abandon() {
+    if (abandonSent || submitted) return;
+    abandonSent = true;
+    track('join_abandon', {
+      path: path,
+      last_field: lastField,
+      email_started: emailEl.value.trim().length > 0,
+      threads_ranked: order.length,
+      note_started: hardEl.value.trim().length > 0,
+      seconds_on_page: Math.round((Date.now() - t0) / 1000)
+    });
+  }
+  window.addEventListener('pagehide', abandon);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') abandon();
+  });
+})();
+</script>
+</body>
+</html>

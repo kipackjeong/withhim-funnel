@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0C11">
+<meta name="robots" content="noindex, nofollow">
+
+<title>You're on the list — With Him</title>
+<meta name="description" content="Your email is on the With Him waitlist. What happens next, in what order, with no launch date promised — and a link to the thirty-second demo if someone came to mind while you were reading.">
+<link rel="canonical" href="https://kipackjeong.github.io/withhim-funnel/thanks.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kipackjeong.github.io/withhim-funnel/thanks.html">
+<meta property="og:site_name" content="With Him">
+<meta property="og:title" content="You're on the list — With Him">
+<meta property="og:description" content="Nothing was charged, nothing was installed, and there's nothing else you need to do.">
+<meta property="og:image" content="https://kipackjeong.github.io/withhim-funnel/assets/og.png">
+<meta property="og:image:alt" content="A dark iPhone screen at 6:40 in the morning with a passage waiting to be read aloud.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="You're on the list — With Him">
+<meta name="twitter:description" content="Nothing was charged, nothing was installed, and there's nothing else you need to do.">
+<meta name="twitter:image" content="https://kipackjeong.github.io/withhim-funnel/assets/og.png">
+
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+/* ============================================================
+   thanks.html — page-specific styles only.
+   Tokens, type, buttons, cards, pills, fields, nav, grain,
+   reveal motion, focus states and reduced-motion handling all
+   come from assets/shared.css and are not restated here.
+   ============================================================ */
+
+.nav-inner .btn { padding: 11px 22px; font-size: 0.92rem; }
+.nav-cta { display: flex; align-items: center; gap: 10px; }
+@media (max-width: 560px) { .nav-cta .btn-ghost { display: none; } }
+
+/* .btn and .echo set a display, which would otherwise beat the UA rule for
+   [hidden]. Anything hidden on this page must stay hidden. */
+[hidden] { display: none !important; }
+
+/* ---------- shared prose helpers (same shapes as index.html) ---------- */
+
+.section-head { margin-bottom: clamp(30px, 4.5vw, 48px); }
+.section-head p:last-child { margin-bottom: 0; }
+.prose p { color: var(--parchment-70); }
+.prose p.lead-para { color: var(--parchment); }
+.prose > :last-child { margin-bottom: 0; }
+
+.rich-list {
+  list-style: none;
+  margin: 0 0 1.6em;
+  padding: 0;
+  display: grid;
+  gap: 15px;
+}
+.rich-list li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--parchment-70);
+}
+.rich-list li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 0.62em;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--dawn);
+  box-shadow: 0 0 0 4px var(--dawn-glow);
+}
+.rich-list strong { color: var(--parchment); font-weight: 600; }
+
+/* ---------- confirmation ---------- */
+
+.hero { padding-top: clamp(48px, 7vw, 92px); overflow: hidden; }
+.hero-inner { position: relative; z-index: 1; }
+.hero h1 { margin-bottom: 0.42em; }
+
+.tick {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid rgba(127, 169, 138, 0.45);
+  background: var(--sage-glow);
+  margin: 0 0 22px;
+}
+.tick svg { display: block; }
+.tick path {
+  stroke: var(--sage);
+  stroke-width: 1.6;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 22;
+  stroke-dashoffset: 22;
+  animation: draw 0.7s var(--ease) 0.15s forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .tick path { stroke-dashoffset: 0; animation: none; } }
+
+/* the address read back, if there is one to read back */
+.echo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 12px;
+  margin: 26px 0 0;
+  padding: 15px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ink-2);
+  max-width: var(--reading);
+}
+.echo .echo-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--parchment-50);
+}
+.echo .echo-value {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--parchment);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- what happens next ---------- */
+
+.next-block { margin-top: clamp(30px, 4vw, 42px); }
+.next-block h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); margin-bottom: 0.8em; }
+
+/* ---------- referral ---------- */
+
+.copy-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: stretch;
+  margin: 0 0 10px;
+}
+.copy-row .field {
+  flex: 1 1 260px;
+  min-width: 0;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+}
+.copy-row .btn { flex: 0 0 auto; padding: 15px 26px; font-size: 0.94rem; min-height: 48px; }
+@media (max-width: 520px) {
+  .copy-row { flex-direction: column; }
+  .copy-row .btn { width: 100%; }
+}
+
+.share-card {
+  margin: 0 0 16px;
+  padding: clamp(18px, 2.6vw, 24px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ink-2);
+}
+.share-card .share-label {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dawn);
+  margin: 0 0 12px;
+}
+.share-card .share-text {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--parchment-70);
+}
+.share-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.share-actions .btn { padding: 12px 22px; font-size: 0.9rem; min-height: 44px; }
+@media (max-width: 460px) { .share-actions .btn { flex: 1 1 100%; } }
+
+.btn.copied {
+  border-color: rgba(127, 169, 138, 0.55);
+  background: var(--sage-glow);
+  color: var(--parchment);
+}
+
+.send-row { margin-top: clamp(26px, 3.5vw, 34px); }
+.send-row h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); }
+
+/* ---------- close ---------- */
+
+.close-section { border-top: 1px solid var(--line); }
+.close-section h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); margin-bottom: 0.7em; }
+
+.foot-links { display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: center; justify-content: space-between; }
+.foot-note { margin: 22px 0 0; font-size: 0.82rem; color: var(--parchment-32); max-width: 60ch; }
+</style>
+</head>
+<body class="grain">
+
+<a class="sr-only" href="#next">Skip to what happens next</a>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="demo.html" data-demo="nav">Try the demo</a>
+      <a class="btn btn-primary" href="#share" data-scroll="nav">Send it to someone</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= 4.1 — Confirmation ================= -->
+  <section class="hero" id="confirmed">
+    <div class="glow glow-sage" style="width:700px;height:520px;top:-230px;left:-160px;" aria-hidden="true"></div>
+    <div class="container">
+      <div class="reading hero-inner">
+
+        <div class="tick reveal" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22"><path d="M4.5 11.5 9 16l8.5-9"/></svg>
+        </div>
+
+        <p class="eyebrow reveal">You're on the list</p>
+        <h1 class="reveal">That's it — you're in.</h1>
+
+        <p class="lede reveal">Your email is on the list. Nothing was charged, nothing was installed, and there's nothing else you need to do.</p>
+
+        <p class="lede reveal">If you ranked the Threads, your ranking has been counted and it will genuinely affect which one gets written first. If you wrote something in the last field, it will be read.</p>
+
+        <!-- Builder-added, per build brief: the submitted address read back from
+             localStorage. Stays hidden if there is nothing to read — someone may
+             land here directly, or from another device. -->
+        <div class="echo reveal" id="echo" hidden>
+          <span class="echo-label" id="echoLabel">The address on the list</span>
+          <span class="echo-value" id="echoValue"></span>
+        </div>
+
+        <p class="btn-note reveal">A short confirmation email is on the way. If it doesn't turn up in a few minutes, check your spam folder and mark it as not spam — otherwise the launch note will land in the same place.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= 4.2 — What happens next ================= -->
+  <section id="next">
+    <div class="container">
+      <div class="reading prose">
+
+        <div class="section-head reveal">
+          <h2>What to actually expect</h2>
+          <p>No date, because any date given now would be a guess wearing a suit. Here is what's true instead.</p>
+        </div>
+
+        <div class="next-block reveal">
+          <h3>The order things get built</h3>
+          <ul class="rich-list">
+            <li><strong>The Bible reader first.</strong> All 66 books offline, search, cross-references, highlights, notes. It has to be good enough to be someone's only Bible app before anything else matters.</li>
+            <li><strong>Then the alarm.</strong> The verification engine and the Voice-Dismissed Alarm. It isn't finished until it has run thirty real mornings in a row without a missed fire.</li>
+            <li><strong>Then the Focus Shield.</strong> This one depends on Apple approving a specific entitlement, on a timeline nobody outside Apple controls. It's possible the alarm ships first and the shield follows later — you'll be told if that happens rather than finding out at launch.</li>
+            <li><strong>Then onboarding, subscriptions, and polish.</strong> The unglamorous part that decides whether any of the rest survives contact with a real first morning.</li>
+          </ul>
+        </div>
+
+        <div class="next-block reveal">
+          <h3>What you'll get, and how often</h3>
+          <ul class="rich-list">
+            <li><strong>Occasional progress notes.</strong> Roughly monthly, sometimes less. What's built, what broke, what's taking longer than expected. Not a newsletter and not a drip campaign.</li>
+            <li><strong>A TestFlight invitation, in a wave.</strong> You'll be asked before you're added. The first wave is small because Apple caps external testing and reviews every build.</li>
+            <li><strong>The launch email,</strong> with the founding lifetime rate of $49 valid for that first week, for the first 500 people on this list.</li>
+          </ul>
+          <p>And an ordinary reminder: if you decide at any point this isn't for you, one click in any email removes you completely. That's not a hurdle and there's no exit sequence behind it.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= 4.3 — The referral ask ================= -->
+  <section id="share">
+    <div class="glow glow-dawn" style="width:640px;height:520px;bottom:-240px;right:-200px;" aria-hidden="true"></div>
+    <div class="container">
+      <div class="reading prose">
+
+        <div class="section-head reveal">
+          <h2>One thing that would help</h2>
+          <p>There is no advertising budget here and no plan to build one before launch. The reason is simple: the person this is for can't be targeted by an ad platform. "Practising Christian who owns a study Bible they don't open and has a broken reading streak" is an interior state, not an interest category, and no amount of money buys accurate reach into it.</p>
+          <p>The people who know who fits are the ones who've heard the confession over coffee. If someone came to mind while you were reading any of this, send them the demo — not the sales page, the demo. Thirty seconds of reading a verse out loud explains this better than any amount of copy, including all of the copy you just read.</p>
+          <p>No referral rewards, no leaderboard, no points. Just a link, if it's useful to someone.</p>
+        </div>
+
+        <!-- ---------- the link ---------- -->
+        <!-- PLACEHOLDER DOMAIN. kipackjeong.github.io/withhim-funnel is not registered/confirmed yet —
+             swap it here, in the three share texts below, in the canonical and
+             Open Graph tags in <head>, and in the same places on the other three
+             pages, before this goes live. -->
+        <div class="reveal">
+          <h3>The link</h3>
+          <div class="copy-row">
+            <label class="sr-only" for="linkField">The demo link, ready to copy</label>
+            <input class="field" id="linkField" type="text" readonly value="kipackjeong.github.io/withhim-funnel/demo.html"
+                   data-copy="https://kipackjeong.github.io/withhim-funnel/demo.html">
+            <button class="btn btn-ghost" type="button" data-copy-btn="link" data-target="linkField">Copy the link</button>
+          </div>
+          <p class="btn-note">Goes straight to the demo. No signup wall, no email field.</p>
+        </div>
+
+        <!-- ---------- something to paste ---------- -->
+        <div class="reveal send-row">
+          <h3>Something to paste, if it's easier</h3>
+
+          <div class="share-card">
+            <span class="share-label" id="lbl-text">For a text message</span>
+            <p class="share-text" id="txt-text">Found this — an alarm that doesn't stop until you read a verse out loud. Not built yet, but there's a 30-second demo where you speak the verse yourself and watch it register. Weirdly effective. kipackjeong.github.io/withhim-funnel/demo.html</p>
+            <div class="share-actions">
+              <button class="btn btn-ghost" type="button" data-copy-btn="text" data-target="txt-text" aria-describedby="lbl-text">Copy</button>
+              <a class="btn btn-ghost" href="sms:" data-sms="txt-text" aria-describedby="lbl-text">Send by text</a>
+              <button class="btn btn-ghost" type="button" data-share="txt-text" aria-describedby="lbl-text" hidden>Share</button>
+            </div>
+          </div>
+
+          <div class="share-card">
+            <span class="share-label" id="lbl-group">For a group chat or small group</span>
+            <p class="share-text" id="txt-group">For anyone whose morning goes phone-first: someone's building a Bible app where the alarm only stops once you've read a verse out loud, and the same thing interrupts a long scroll. Not launched — there's a waitlist. The 30-second demo is the part worth trying; you speak the verse into your own mic. kipackjeong.github.io/withhim-funnel/demo.html</p>
+            <div class="share-actions">
+              <button class="btn btn-ghost" type="button" data-copy-btn="group" data-target="txt-group" aria-describedby="lbl-group">Copy</button>
+              <a class="btn btn-ghost" href="mailto:" data-mailto="txt-group" aria-describedby="lbl-group">Send by email</a>
+              <a class="btn btn-ghost" href="sms:" data-sms="txt-group" aria-describedby="lbl-group">Send by text</a>
+              <button class="btn btn-ghost" type="button" data-share="txt-group" aria-describedby="lbl-group" hidden>Share</button>
+            </div>
+          </div>
+
+          <div class="share-card">
+            <span class="share-label" id="lbl-post">For a post</span>
+            <p class="share-text" id="txt-post">A developer got tired of losing every morning to his lock screen and built a Bible app around it: the alarm doesn't stop when you tap it, it stops when you read a verse out loud. Same gate shows up about ten minutes into a scroll. Whole Bible is free and offline, the subscription only buys the alarm and the shield, and speech is processed on-device — no account, no server. It isn't finished. The demo takes 30 seconds and you read the verse yourself: kipackjeong.github.io/withhim-funnel/demo.html</p>
+            <div class="share-actions">
+              <button class="btn btn-ghost" type="button" data-copy-btn="post" data-target="txt-post" aria-describedby="lbl-post">Copy</button>
+              <button class="btn btn-ghost" type="button" data-share="txt-post" aria-describedby="lbl-post" hidden>Share</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4.4 — Close ================= -->
+  <section id="close" class="close-section section-tight">
+    <div class="container">
+      <div class="reading prose reveal">
+        <h3>One last note</h3>
+        <p>If you're on Android, or if between the landing page and here you decided this isn't your thing, the unsubscribe link in the confirmation email works immediately and removes you from everything. No hard feelings and no follow-up sequence trying to talk you out of it.</p>
+        <p>Otherwise — that's everything. Nothing more to do here.</p>
+        <p><a href="index.html">Back to how it works</a></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-links">
+      <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+      <span><a href="demo.html" data-demo="footer">Read a verse out loud</a> &nbsp;·&nbsp; <a href="index.html">How it works</a></span>
+    </div>
+    <p class="foot-note">An iPhone app, in development. Built by one person. Nothing on this page is for sale yet.</p>
+  </div>
+</footer>
+
+<div class="sr-only" id="announce" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     Analytics. Events named in STRATEGY.md §7 for thanks.html:
+     confirmation rate, referral share rate, referred-visitor volume.
+     Nothing third-party is loaded on this page.
+     ------------------------------------------------------------------ */
+  window.dataLayer = window.dataLayer || [];
+  function track(event, props) {
+    var payload = Object.assign({ event: event, page: 'thanks' }, props || {});
+    window.dataLayer.push(payload);
+    if (window.console && console.log) console.log('[track]', event, payload);
+    /* REAL ANALYTICS CALL GOES HERE — e.g. plausible(event, {props: payload})
+       or fetch('/e', {method:'POST', body: JSON.stringify(payload)}). */
+  }
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var announce = document.getElementById('announce');
+  function say(msg) { if (announce) announce.textContent = msg; }
+
+  /* ------------------------------------------------------------------
+     Read the submission back, if there is one. Someone may land here
+     directly, or from a different device — in which case the block below
+     stays hidden and the page reads perfectly well without it.
+     ------------------------------------------------------------------ */
+  var record = null;
+  try {
+    var raw = window.localStorage.getItem('withhim.waitlist');
+    if (raw) record = JSON.parse(raw);
+  } catch (err) { record = null; }
+
+  if (record && record.email) {
+    document.getElementById('echoValue').textContent = record.email;
+    document.getElementById('echo').hidden = false;
+  }
+
+  track('thanks_view', {
+    has_record: !!(record && record.email),
+    path: (record && record.path) || 'unknown',
+    threads_ranked: (record && record.threads && record.threads.length) || 0
+  });
+
+  /* ---------- nav border state ---------- */
+
+  var nav = document.getElementById('nav');
+  function onNavScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+  onNavScroll();
+  window.addEventListener('scroll', onNavScroll, { passive: true });
+
+  /* ---------- scroll reveal ---------- */
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(reveals, function (r) { io.observe(r); });
+  } else {
+    Array.prototype.forEach.call(reveals, function (r) { r.classList.add('in'); });
+  }
+
+  /* ------------------------------------------------------------------
+     Copy, share, mail and text.
+     STRATEGY.md §8 puts church and small-group word of mouth first, and
+     that spreads one person to one person — so the private channels are
+     given the same weight as the clipboard.
+     ------------------------------------------------------------------ */
+
+  function textOf(id) {
+    var el = document.getElementById(id);
+    if (!el) return '';
+    return (el.dataset && el.dataset.copy) ? el.dataset.copy
+         : (el.value !== undefined && el.tagName === 'INPUT') ? el.value
+         : el.textContent.trim();
+  }
+
+  function writeClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    /* file:// and older browsers: the old way, which still works everywhere. */
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      ok ? resolve() : reject(new Error('copy failed'));
+    });
+  }
+
+  var resetTimers = {};
+
+  function flash(btn, label, ms) {
+    var key = btn.getAttribute('data-copy-btn') || 'btn';
+    if (!btn.dataset.original) btn.dataset.original = btn.textContent;
+    clearTimeout(resetTimers[key]);
+    btn.textContent = label;
+    btn.classList.add('copied');
+    resetTimers[key] = setTimeout(function () {
+      btn.textContent = btn.dataset.original;
+      btn.classList.remove('copied');
+    }, ms || 2600);
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-copy-btn]') : null;
+    if (!btn) return;
+    var which = btn.getAttribute('data-copy-btn');
+    var text = textOf(btn.getAttribute('data-target'));
+
+    writeClipboard(text).then(function () {
+      flash(btn, which === 'link' ? 'Link copied' : 'Copied');
+      say(which === 'link' ? 'Link copied to your clipboard.' : 'Copied to your clipboard.');
+      track('thanks_copy', { which: which, method: 'clipboard' });
+    }).catch(function () {
+      /* Nothing scolding here — select the text so it can be copied by hand. */
+      flash(btn, 'Select and copy', 4000);
+      say('Copying was blocked by the browser. The text is selected — copy it by hand.');
+      var el = document.getElementById(btn.getAttribute('data-target'));
+      if (el && el.tagName === 'INPUT') { el.focus(); el.select(); }
+      else if (el && window.getSelection) {
+        var r = document.createRange();
+        r.selectNodeContents(el);
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(r);
+      }
+      track('thanks_copy', { which: which, method: 'manual' });
+    });
+  });
+
+  /* ---------- native share, where the device has it ---------- */
+
+  if (navigator.share) {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-share]'), function (btn) {
+      btn.hidden = false;
+      btn.addEventListener('click', function () {
+        var which = btn.getAttribute('data-share');
+        /* Text only — each of these already ends in the link, and passing
+           `url` as well makes most share sheets print it twice. */
+        navigator.share({ text: textOf(which) })
+          .then(function () { track('thanks_share', { which: which, method: 'native' }); })
+          .catch(function () { /* dismissed — nothing to say about it */ });
+      });
+    });
+  }
+
+  /* ---------- mail and text ---------- */
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-mailto]'), function (a) {
+    var which = a.getAttribute('data-mailto');
+    a.href = 'mailto:?body=' + encodeURIComponent(textOf(which));
+    a.addEventListener('click', function () { track('thanks_share', { which: which, method: 'email' }); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-sms]'), function (a) {
+    var which = a.getAttribute('data-sms');
+    /* "?&body=" is the form iOS and Android both accept. */
+    a.href = 'sms:?&body=' + encodeURIComponent(textOf(which));
+    a.addEventListener('click', function () { track('thanks_share', { which: which, method: 'sms' }); });
+  });
+
+})();
+</script>
+</body>
+</html>

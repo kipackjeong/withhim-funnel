@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0C11">
+<title>Read a verse out loud — With Him</title>
+<meta name="description" content="A thirty-second demo. Read Philippians 4:6-7 out loud in your browser and watch the words light up as they're recognised. No signup, no download.">
+<meta property="og:title" content="Read a verse out loud — With Him">
+<meta property="og:description" content="Thirty seconds, in your browser. Read the verse aloud and watch the words light up one by one.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="assets/shared.css">
+<style>
+/* ============================================================
+   demo.html — page-specific styles only.
+   Tokens, buttons, cards, phone frame, nav, motion and a11y
+   all come from assets/shared.css and are not restated here.
+   ============================================================ */
+
+.nav-inner .btn { padding: 11px 22px; font-size: 0.92rem; }
+
+/* ---------- intro / pre-permission ---------- */
+
+.intro-list {
+  list-style: none;
+  margin: 0 0 2rem;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.intro-list li {
+  position: relative;
+  padding-left: 30px;
+  color: var(--parchment-70);
+}
+.intro-list li::before {
+  content: '';
+  position: absolute;
+  left: 4px; top: 0.62em;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--dawn);
+  box-shadow: 0 0 0 4px var(--dawn-glow);
+}
+.intro-list strong { color: var(--parchment); font-weight: 600; }
+
+.sub-block { margin-top: 2.6rem; }
+.sub-block h3 { margin-bottom: 0.9rem; }
+
+/* ---------- the stage ---------- */
+
+.stage {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: clamp(34px, 5vw, 56px);
+}
+@media (min-width: 940px) {
+  .stage {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: stretch;
+    align-items: center;
+    gap: 64px;
+  }
+}
+
+.phone-wrap { position: relative; display: flex; justify-content: center; }
+
+/* Keep the frame inside a 320px viewport. */
+.phone { width: min(304px, calc(100vw - 52px)); }
+@media (max-width: 780px) { .phone { width: min(288px, calc(100vw - 44px)); } }
+
+/* the alarm rings — visual only, never audio */
+.ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 58px;
+  border: 1px solid rgba(201, 106, 79, 0.42);
+  opacity: 0;
+  pointer-events: none;
+}
+.stage.is-listening .ring { animation: alarmRing 2.1s var(--ease) infinite; }
+.stage.is-listening .ring.r2 { animation-delay: 0.7s; }
+.stage.is-listening .ring.r3 { animation-delay: 1.4s; }
+@keyframes alarmRing {
+  0%   { opacity: 0.55; transform: scale(1); }
+  70%  { opacity: 0;    transform: scale(1.09); }
+  100% { opacity: 0;    transform: scale(1.09); }
+}
+
+/* ---------- inside the screen ---------- */
+
+.screen-pad {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 44px 19px 18px;
+  position: relative;
+  z-index: 2;
+}
+.alarm-wash {
+  position: absolute; inset: 0; z-index: 1;
+  background: radial-gradient(120% 60% at 50% 0%, rgba(201,106,79,0.30), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.9s var(--ease);
+  pointer-events: none;
+}
+.stage.is-listening .alarm-wash { animation: wash 2.1s ease-in-out infinite; }
+@keyframes wash { 0%,100% { opacity: 0.18; } 50% { opacity: 0.62; } }
+
+.calm-wash {
+  position: absolute; inset: 0; z-index: 1;
+  background: radial-gradient(120% 70% at 50% 100%, var(--sage-glow), transparent 72%);
+  opacity: 0;
+  transition: opacity 1.6s var(--ease);
+  pointer-events: none;
+}
+.stage.is-verified .calm-wash { opacity: 1; }
+
+.screen-time {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--parchment-50);
+  text-align: center;
+  margin-bottom: 14px;
+}
+.screen-ref {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--dawn);
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.verse {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(0.94rem, 3.6vw, 1.06rem);
+  line-height: 1.66;
+  letter-spacing: -0.005em;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  margin: 0;
+}
+.verse::-webkit-scrollbar { display: none; }
+
+.w {
+  color: var(--parchment-32);
+  transition: color 700ms var(--ease);
+  border-radius: 3px;
+}
+.w.lit { color: var(--parchment); }
+.w.flare { animation: wordFlare 950ms var(--ease) both; }
+@keyframes wordFlare {
+  0%   { color: var(--dawn-soft); text-shadow: 0 0 20px rgba(232,169,75,0.55), 0 0 7px rgba(232,169,75,0.45); }
+  55%  { color: var(--dawn);      text-shadow: 0 0 12px rgba(232,169,75,0.28); }
+  100% { color: var(--parchment); text-shadow: none; }
+}
+.verse.settled .w.lit { color: var(--sage); transition: color 1400ms var(--ease); }
+
+/* trace-to-read */
+.verse.tracing { touch-action: none; cursor: pointer; }
+.verse.tracing .w:not(.lit) {
+  box-shadow: inset 0 -1px 0 0 var(--parchment-32);
+}
+.verse.tracing .w.next {
+  box-shadow: inset 0 -2px 0 0 var(--dawn);
+  color: var(--parchment-50);
+}
+
+/* progress inside the phone */
+.screen-foot { margin-top: 14px; }
+.wave {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  height: 20px;
+  margin-bottom: 12px;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+.stage.is-listening .wave { opacity: 1; }
+.wave i {
+  display: block;
+  width: 3px; height: 4px;
+  border-radius: 2px;
+  background: var(--dawn);
+  transform-origin: bottom;
+}
+.stage.is-listening .wave i { animation: bar 900ms ease-in-out infinite; }
+.wave i:nth-child(1) { animation-delay: 0ms; }
+.wave i:nth-child(2) { animation-delay: 110ms; }
+.wave i:nth-child(3) { animation-delay: 220ms; }
+.wave i:nth-child(4) { animation-delay: 90ms; }
+.wave i:nth-child(5) { animation-delay: 300ms; }
+.wave i:nth-child(6) { animation-delay: 170ms; }
+.wave i:nth-child(7) { animation-delay: 40ms; }
+@keyframes bar { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(3.4); } }
+
+.meter-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  letter-spacing: 0.09em;
+  color: var(--parchment-50);
+}
+.meter {
+  flex: 1 1 auto;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(242,237,228,0.10);
+  overflow: hidden;
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--dawn-deep), var(--dawn));
+  transition: width 420ms var(--ease), background 900ms var(--ease);
+}
+.stage.is-verified .meter > span { background: var(--sage); }
+.pct { font-variant-numeric: tabular-nums; min-width: 34px; text-align: right; }
+
+/* ---------- control column ---------- */
+
+.controls { width: 100%; max-width: 520px; }
+.verse-note { margin: 18px 0 0; font-size: 0.84rem; color: var(--parchment-50); text-align: center; }
+@media (min-width: 940px) { .verse-note { text-align: left; } }
+
+.panel { display: none; }
+.panel.on { display: block; }
+.panel h3 { margin-bottom: 0.55em; }
+.panel p { color: var(--parchment-70); font-size: 0.98rem; }
+.panel p:last-child { margin-bottom: 0; }
+.panel .note { font-size: 0.84rem; color: var(--parchment-50); }
+
+.panel-verified h3 { color: var(--sage); }
+
+.listening-pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 8px 17px; border-radius: var(--r-pill);
+  border: 1px solid rgba(201,106,79,0.35);
+  background: rgba(201,106,79,0.08);
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--parchment-70);
+  margin-top: 4px;
+}
+.listening-pill .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--ember);
+  animation: blink 1.35s ease-in-out infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+}
+.actions:empty { margin-top: 0; }
+.actions .btn { flex: 1 1 auto; min-width: 200px; }
+@media (max-width: 600px) { .actions .btn { flex: 1 1 100%; min-width: 0; } }
+
+.mic-note {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--parchment-50);
+  margin: 14px 0 0;
+  max-width: 46em;
+}
+
+/* ---------- post-verification ---------- */
+
+#after[hidden] { display: none; }
+.after-h {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+  font-size: clamp(2.4rem, 5.4vw, 3.6rem);
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+.after-body p { font-size: clamp(1.02rem, 1.6vw, 1.16rem); color: var(--parchment-70); }
+.after-cta { margin-top: 2.4rem; }
+.exit-note { margin-top: 3.2rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.exit-note p { color: var(--parchment-50); font-size: 0.95rem; }
+
+.noscript-note {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  padding: 18px 22px;
+  color: var(--parchment-70);
+}
+
+.foot-links { display: flex; flex-wrap: wrap; gap: 20px 28px; align-items: center; justify-content: space-between; }
+</style>
+</head>
+<body class="grain">
+
+<a class="sr-only" href="#stage">Skip to the verse</a>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+    <a class="btn btn-ghost" href="join.html?path=direct" data-join="nav">Join the waitlist</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ 2.1 — Pre-permission explanation ============ -->
+  <section id="explain">
+    <div class="glow glow-dawn" style="width:520px;height:520px;top:-160px;left:-140px;" aria-hidden="true"></div>
+    <div class="container">
+      <div class="reading">
+        <p class="eyebrow reveal">Thirty seconds</p>
+        <h1 class="reveal">Before your browser asks for the microphone, here's exactly what happens.</h1>
+        <p class="lede reveal">A verse appears on this page. You read it out loud, at whatever speed you like. The words light up one at a time as they're recognised, so you can see it working while you're speaking. When you reach the end, you're done.</p>
+        <p class="lede reveal">This is the same thing the app does at 6:40 in the morning, minus the alarm going off next to your head.</p>
+
+        <div class="sub-block reveal">
+          <h3>What the microphone is used for</h3>
+          <ul class="intro-list">
+            <li><strong>Only while you're reading.</strong> The microphone turns on when you tap the button and off the moment you finish or stop. There is no background listening on this page.</li>
+            <li><strong>Only to match against one verse.</strong> The only thing being checked is whether the words you said line up with the words on screen. Nothing else is being listened for.</li>
+            <li><strong>Nothing is stored.</strong> No audio is saved by this page, no file is created, and no recording is kept anywhere on our side.</li>
+            <li><strong>No account, no email.</strong> There's no signup on this page and no field to fill in. You can do this and leave.</li>
+          </ul>
+        </div>
+
+        <div class="sub-block reveal">
+          <h3>The honest part about this web demo</h3>
+          <p class="dim">This page uses your browser's built-in speech recognition, and that is not the same as what the app does.</p>
+          <p class="dim">In some browsers — Safari among them — a few seconds of audio go to the browser maker's servers for processing. That's how the web works and it isn't something a webpage can opt out of. It's said here rather than buried because getting caught overstating this later would cost more than this demo is worth.</p>
+          <p class="dim">The iPhone app does not work this way. Recognition there runs entirely on your device, your voice never leaves the phone, and the whole thing works in airplane mode. That difference exists because of what a browser can and can't do, not because of a change of heart between here and launch.</p>
+          <p class="dim">If you'd rather not hand any audio to a browser vendor for a demo, that's an entirely reasonable position — there's a silent way through below, and you can join the list without doing either.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============ 2.2 / 2.3 / 2.4 — the verse, the button, the states ============ -->
+  <section id="stage" class="section-tight">
+    <div class="container">
+      <div class="stage reveal" id="stageEl">
+
+        <div class="phone-wrap">
+          <div class="ring r1" aria-hidden="true"></div>
+          <div class="ring r2" aria-hidden="true"></div>
+          <div class="ring r3" aria-hidden="true"></div>
+
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-notch" aria-hidden="true"></div>
+              <div class="alarm-wash" aria-hidden="true"></div>
+              <div class="calm-wash" aria-hidden="true"></div>
+              <div class="screen-pad">
+                <div class="screen-time" aria-hidden="true">6:40</div>
+                <div class="screen-ref">Philippians 4:6-7 · Berean Standard Bible</div>
+
+                <p class="verse" id="verse"></p>
+
+                <div class="screen-foot">
+                  <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="meter-row">
+                    <div class="meter" id="meter" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Verse coverage"><span id="meterFill"></span></div>
+                    <div class="pct" id="pct">0%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="controls">
+
+          <div id="stateArea" role="status" aria-live="polite">
+
+            <!-- initial: no heading, the button speaks for itself -->
+            <div class="panel panel-intro" data-state="intro"></div>
+
+            <div class="panel" data-state="awaiting">
+              <h3>Your browser is asking.</h3>
+              <p>Choose Allow when the dialog appears. Nothing starts listening until you do, and you can revoke it whenever you like.</p>
+            </div>
+
+            <div class="panel" data-state="listening">
+              <h3>Go ahead — read it out loud.</h3>
+              <p>Normal speed is fine. Stumbles are fine. The words will light up as they're recognised.</p>
+              <span class="listening-pill"><span class="dot" aria-hidden="true"></span>Listening. Tap anywhere to stop.</span>
+            </div>
+
+            <div class="panel panel-verified" data-state="verified">
+              <h3>That's it. You read it.</h3>
+            </div>
+
+            <div class="panel" data-state="failed">
+              <h3>Didn't quite catch all of that.</h3>
+              <p>The words you already got are still lit — you can pick up from where it stopped rather than starting over. That's how the app handles it too: a missed attempt never costs you the progress you made.</p>
+              <p>If your room is noisy or your microphone is far away, moving closer usually fixes it.</p>
+              <p class="note">No attempt counter, no score. There's nothing here to fail.</p>
+            </div>
+
+            <div class="panel" data-state="retry">
+              <h3>Still listening whenever you're ready.</h3>
+              <p>Some browsers are noticeably worse at this than the phone is, and some rooms are just loud. If it keeps missing you, that's the demo's limitation rather than yours — the silent option below works exactly as well.</p>
+            </div>
+
+            <div class="panel" data-state="tooloud">
+              <h3>It's too loud in there to hear you.</h3>
+              <p>Too much background noise for the microphone to pick out your voice. Somewhere quieter or a bit closer to the mic will do it — or take the silent path below, which is always available.</p>
+            </div>
+
+            <div class="panel" data-state="denied">
+              <h3>No microphone, no problem.</h3>
+              <p>Your browser blocked microphone access, either because you declined or because it's blocked for this site already. That's a completely reasonable thing to have done.</p>
+              <p>Two ways forward. You can read it silently by tracing the words instead — the same permanent alternative that ships in the app, available forever, with nothing marked against you for using it. Or you can skip the demo entirely and still join the list.</p>
+              <p>If you changed your mind and want to allow it: tap the icon at the left of your browser's address bar, set the microphone to Allow, and reload this page.</p>
+            </div>
+
+            <div class="panel" data-state="unsupported">
+              <h3>This browser can't run the demo.</h3>
+              <p>Your browser doesn't support the speech recognition this page needs. Chrome, Edge, and Safari generally do; Firefox and several privacy-focused browsers don't.</p>
+              <p>This is purely a browser limitation and says nothing about the app, which does its recognition on the iPhone itself and doesn't depend on any of this.</p>
+              <p>You can read it silently right here instead, or open this page on your phone, or just join the list.</p>
+              <p class="note">The silent path is the same trace-to-read alternative that's permanently available in the app.</p>
+            </div>
+
+            <div class="panel" data-state="trace">
+              <h3>Trace the words instead.</h3>
+              <p>Drag your finger — or your cursor — across the words, in order. That's the whole thing.</p>
+              <p>This is not a lesser way to do this. In the app it's a permanent setting you can turn on during onboarding and leave on forever. It doesn't count as a bypass, it doesn't show up as a skip in your own stats, and no screen anywhere suggests you should have spoken instead.</p>
+              <p>It exists for people who can't speak, and for people in a shared bedroom at 6am, and for a Tuesday when your throat hurts. Same verse, same gate, no asterisk.</p>
+              <p class="note">You can switch back to speaking any time.</p>
+            </div>
+
+          </div>
+
+          <div class="actions" id="actions">
+            <button type="button" class="btn btn-primary btn-lg" data-act="listen">Tap to read it out loud</button>
+            <button type="button" class="btn btn-ghost" data-act="trace">I can't speak right now</button>
+          </div>
+
+          <!-- Honesty note. Sits immediately beneath the microphone button and stays there. -->
+          <p class="mic-note" id="micNote">Your browser will ask for microphone access next. This page uses your browser's speech recognition; the iPhone app runs on-device and never sends your voice anywhere.</p>
+
+          <noscript>
+            <p class="noscript-note">This demo needs JavaScript to listen to you and to light the words up. The waitlist page works without it — <a href="join.html?path=direct">join the list</a>.</p>
+          </noscript>
+
+          <p class="verse-note">47 words. Around twenty-five seconds at a normal reading pace. No passage in the app is longer than sixty.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2.5 — the post-verification moment ============ -->
+  <section id="after" hidden>
+    <div class="glow glow-sage" style="width:600px;height:600px;bottom:-220px;right:-180px;" aria-hidden="true"></div>
+    <div class="container">
+      <div class="reading">
+
+        <!-- PRIMARY (shipped). A/B variant held for the first test:
+             [EYEBROW] Done
+             [H1] Notice what you didn't need.
+             [BODY] You didn't need convincing that was worth doing. You've known that for years — it was never the missing piece.
+             [BODY] You didn't need a reminder, or a nudge, or a streak to protect, or someone telling you it had been a while. What you needed was a reason to say the words in the next twenty seconds. A small mechanical one turned out to be enough.
+             [BODY] That's the whole bet this app is built on: that the gap between intending to read Scripture and reading it isn't a gap in conviction, and it doesn't close by trying harder. It closes by putting the words in front of you at a moment you can't walk past.
+             [BODY] Two moments, specifically. An alarm that won't stop until you've done what you just did. And a shield that appears about ten minutes into a scroll with the same thirty seconds behind it.
+             [BODY] It's being built by one person and it isn't finished. If you want it when it is, leave your email.
+             [BUTTON] Get it when it ships
+             [MICROCOPY] Email only. No card, nothing to pay, nothing to install. Leave the list in one click, any time.
+        -->
+
+        <p class="eyebrow">Done</p>
+        <h2 class="after-h">That took about twenty seconds.</h2>
+
+        <div class="after-body">
+          <p>You just read Scripture out loud — possibly the first time today, possibly the first time in a while. Nothing was recorded. Nothing was scored. You said the words and the words registered, and now you can get on with whatever you were doing.</p>
+          <p>Notice what that didn't require. You didn't have to be in the mood. You didn't have to remember. You didn't have to decide, in the moment, that today was the day. A button appeared, and twenty seconds later there was a sentence of Scripture in you that wouldn't have been there otherwise.</p>
+          <p>That is the entire product. The app puts those twenty seconds in front of you at 6:40 in the morning, while an alarm is going off and won't stop, and again about ten minutes into a scroll, when your thumb has been moving longer than you meant it to.</p>
+          <p>It isn't built yet. One person is building it, it will take some months, and there's no date to give you that would be honest. If you want it when it's finished, leave your email — that's all there is to do here.</p>
+        </div>
+
+        <div class="after-cta">
+          <a class="btn btn-primary btn-lg" href="join.html?path=demo-completed" id="joinBtn" data-join="verified">Get it when it ships</a>
+          <p class="btn-note">Email only. No card, nothing to pay, nothing to install. Leave the list in one click, any time.</p>
+        </div>
+
+        <!-- 2.6 — secondary exit -->
+        <div class="exit-note">
+          <p>If that was interesting but you'd rather not join anything, that's fine. Nothing here needs your email and nothing was collected while you read.</p>
+          <p><a href="index.html">Back to how it works</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container foot-links">
+    <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+    <span><a href="index.html">How it works</a> &nbsp;·&nbsp; <a href="join.html?path=direct" data-join="footer">Join the waitlist</a></span>
+  </div>
+</footer>
+
+<div class="sr-only" id="announce" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     Analytics. Events named in STRATEGY.md §7 for demo.html:
+     mic prompt shown / granted / denied, verse attempts, verified,
+     fallback path used, abandon point. Plus the demo-completed vs.
+     direct split on the two routes to join.html.
+     ------------------------------------------------------------------ */
+  window.dataLayer = window.dataLayer || [];
+  function track(event, props) {
+    var payload = Object.assign({ event: event, page: 'demo' }, props || {});
+    window.dataLayer.push(payload);
+    if (window.console && console.log) console.log('[track]', event, payload);
+    /* REAL ANALYTICS CALL GOES HERE — e.g. plausible(event, {props: payload})
+       or fetch('/e', {method:'POST', body: JSON.stringify(payload)}).
+       Nothing third-party is loaded on this page. */
+  }
+
+  /* ------------------------------------------------------------------
+     The verse. Berean Standard Bible, public domain.
+     ------------------------------------------------------------------ */
+  var VERSE = "Be anxious for nothing, but in everything, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus.";
+
+  /* Ignored when scoring coverage. Every word still illuminates when matched. */
+  var STOPWORDS = { be:1, "for":1, but:1, "in":1, by:1, "with":1, and:1, of:1, which:1, will:1, your:1, the:1, to:1, a:1, an:1 };
+
+  var THRESHOLD   = 0.85; /* content-word coverage required to open the gate */
+  var WIN_NEAR    = 4;    /* normal look-ahead: may skip up to 3 dropped words */
+  var WIN_WIDE    = 10;   /* recovery look-ahead after a garbled run */
+  var TRACE_SKIP  = 2;    /* how far ahead a trace touch may land */
+
+  function norm(s) {
+    var t = String(s).toLowerCase();
+    if (t.normalize) t = t.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return t.replace(/[^a-z]/g, '');
+  }
+
+  var words = VERSE.split(/\s+/).map(function (display) {
+    var n = norm(display);
+    return { display: display, norm: n, content: !!n && !STOPWORDS[n] };
+  });
+  var N = words.length;
+  var CONTENT_TOTAL = words.filter(function (w) { return w.content; }).length;
+
+  /* ------------------------------------------------------------------
+     Forgiving word matching.
+     Exact after normalisation, or a small edit distance so that
+     "petitions", "surpasseth" and a hoarse 6am voice still land.
+     ------------------------------------------------------------------ */
+  function lev(a, b, max) {
+    var la = a.length, lb = b.length;
+    if (Math.abs(la - lb) > max) return max + 1;
+    var prev = new Array(lb + 1), cur = new Array(lb + 1), i, j, best;
+    for (j = 0; j <= lb; j++) prev[j] = j;
+    for (i = 1; i <= la; i++) {
+      cur[0] = i; best = i;
+      for (j = 1; j <= lb; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a.charCodeAt(i - 1) === b.charCodeAt(j - 1) ? 0 : 1));
+        if (cur[j] < best) best = cur[j];
+      }
+      if (best > max) return max + 1;
+      var t = prev; prev = cur; cur = t;
+    }
+    return prev[lb];
+  }
+
+  function isMatch(spoken, target) {
+    if (!spoken || !target) return false;
+    if (spoken === target) return true;
+    /* long words: tolerate two edits — surpasses/surpasseth, understanding/understandings */
+    if (target.length >= 8 && spoken.length >= 6) return lev(spoken, target, 2) <= 2;
+    /* 5+ characters: tolerate one edit — petition/petitions, heart/hearts */
+    if (target.length >= 5 && spoken.length >= 4) return lev(spoken, target, 1) <= 1;
+    /* short connective words never score, so a loose match here is free */
+    if (!STOPWORDS[target]) return false;
+    if (target.length >= 3 && spoken.length >= 2) return lev(spoken, target, 1) <= 1;
+    return false;
+  }
+
+  /* ------------------------------------------------------------------
+     Sequence matcher. Runs over the whole spoken-token list every time a
+     result arrives, from a snapshot taken at the start of the attempt, so
+     that revised interim results can never double-count and so that a
+     failed attempt keeps the ground it gained.
+     ------------------------------------------------------------------ */
+  function runMatch(base, tokens) {
+    var p = base.pointer, l = base.lit.slice(), miss = 0, i, j, k, found, win;
+    for (i = 0; i < tokens.length; i++) {
+      if (p >= N) break;
+      win = miss >= 2 ? WIN_WIDE : WIN_NEAR;
+      found = -1;
+      for (j = p; j < Math.min(N, p + win); j++) {
+        if (isMatch(tokens[i], words[j].norm)) { found = j; break; }
+      }
+      if (found < 0) { miss++; continue; }
+      var wide = (win === WIN_WIDE);
+      miss = 0;
+      /* A short hop forward means the recogniser dropped a word or two the
+         reader almost certainly said, so those light up too. A wide
+         recovery hop after a garbled run does not get that benefit: it
+         lights the word actually heard and the connectives, and leaves the
+         content words it jumped over dark, because they were not heard. */
+      for (k = p; k <= found; k++) {
+        if (!wide || k === found || !words[k].content) l[k] = true;
+      }
+      p = found + 1;
+    }
+    return { pointer: p, lit: l };
+  }
+
+  function coverage(l) {
+    var c = 0;
+    for (var i = 0; i < N; i++) if (l[i] && words[i].content) c++;
+    return CONTENT_TOTAL ? c / CONTENT_TOTAL : 0;
+  }
+
+  /* Words left dark behind the pointer must never be able to put the gate
+     out of reach. Before any new attempt, if everything still ahead plus
+     everything already lit cannot clear the threshold, rewind to the first
+     dark word — which is, visibly, where the reading came apart. */
+  function ensureReachable() {
+    var c = 0, i, first = -1;
+    for (i = 0; i < N; i++) {
+      if (!lit[i] && first < 0) first = i;
+      if (words[i].content && (lit[i] || i >= pointer)) c++;
+    }
+    if (CONTENT_TOTAL && (c / CONTENT_TOTAL) < THRESHOLD && first >= 0) pointer = first;
+  }
+
+  /* ------------------------------------------------------------------
+     DOM
+     ------------------------------------------------------------------ */
+  var verseEl  = document.getElementById('verse');
+  var stageEl  = document.getElementById('stageEl');
+  var meterFil = document.getElementById('meterFill');
+  var meterEl  = document.getElementById('meter');
+  var pctEl    = document.getElementById('pct');
+  var actionsEl= document.getElementById('actions');
+  var micNote  = document.getElementById('micNote');
+  var afterEl  = document.getElementById('after');
+  var announce = document.getElementById('announce');
+  var panels   = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+  var els = words.map(function (w, i) {
+    var span = document.createElement('span');
+    span.className = 'w';
+    span.dataset.i = i;
+    span.textContent = w.display;
+    verseEl.appendChild(span);
+    if (i < N - 1) verseEl.appendChild(document.createTextNode(' '));
+    return span;
+  });
+
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* committed progress — survives every failed or abandoned attempt */
+  var pointer = 0;
+  var lit = new Array(N).fill(false);
+
+  function paint(l) {
+    for (var i = 0; i < N; i++) {
+      if (l[i] && !els[i].classList.contains('lit')) {
+        els[i].classList.add('lit');
+        if (!reduceMotion) {
+          els[i].classList.remove('flare');
+          void els[i].offsetWidth;
+          els[i].classList.add('flare');
+        }
+      } else if (!l[i] && els[i].classList.contains('lit')) {
+        els[i].classList.remove('lit', 'flare');
+      }
+    }
+    var pc = Math.round(coverage(l) * 100);
+    meterFil.style.width = pc + '%';
+    meterEl.setAttribute('aria-valuenow', String(pc));
+    pctEl.textContent = pc + '%';
+    milestone(pc);
+  }
+
+  var lastMilestone = 0;
+  function milestone(pc) {
+    var m = pc >= 100 ? 100 : pc >= 75 ? 75 : pc >= 50 ? 50 : pc >= 25 ? 25 : 0;
+    if (m > lastMilestone) { lastMilestone = m; say(m + ' per cent of the verse read.'); }
+  }
+  function say(msg) { announce.textContent = msg; }
+
+  els.forEach(function (el) {
+    el.addEventListener('animationend', function () { el.classList.remove('flare'); });
+  });
+
+  /* ------------------------------------------------------------------
+     States. Panel copy lives in the markup; only the button labels,
+     all of them verbatim from the copy deck, live here.
+     ------------------------------------------------------------------ */
+  var LISTEN_LABEL = { intro: 'Tap to read it out loud', failed: 'Pick up where I left off', retry: 'Try again', tooloud: 'Try again', trace: 'Tap to read it out loud' };
+
+  var ACTIONS = {
+    intro:       [['listen', 'primary'], ['trace', 'ghost']],
+    awaiting:    [],
+    listening:   [],
+    verified:    [],
+    failed:      [['listen', 'primary'], ['trace', 'ghost']],
+    retry:       [['listen', 'primary'], ['trace', 'ghost']],
+    tooloud:     [['listen', 'primary'], ['trace', 'ghost']],
+    denied:      [['trace', 'primary'], ['join', 'ghost']],
+    unsupported: [['trace', 'primary'], ['join', 'ghost']],
+    trace:       [['listen', 'primary']]
+  };
+
+  var state = null; /* markup ships the intro buttons; setState('intro') rebinds them */
+  var voiceAvailable = true;
+  var traceMode = false;
+  var attempts = 0;
+  var verified = false;
+
+  function setState(next) {
+    if (state === next) return;
+    /* If focus is sitting on a button that is about to be replaced,
+       move it somewhere sensible instead of dropping it on <body>. */
+    var hadFocus = document.activeElement && actionsEl.contains(document.activeElement);
+    state = next;
+    panels.forEach(function (p) { p.classList.toggle('on', p.dataset.state === next); });
+    stageEl.classList.toggle('is-listening', next === 'listening');
+    renderActions(next);
+    if (hadFocus) {
+      var target = actionsEl.querySelector('.btn');
+      if (!target) {
+        target = document.querySelector('.panel.on');
+        if (target) target.tabIndex = -1;
+      }
+      if (target) target.focus({ preventScroll: true });
+    }
+  }
+
+  function renderActions(next) {
+    var defs = (ACTIONS[next] || []).slice();
+    if (next === 'trace' && !voiceAvailable) defs = [['join', 'primary']];
+    actionsEl.innerHTML = '';
+    var showsMic = false;
+
+    defs.forEach(function (d) {
+      var act = d[0], kind = d[1], el;
+      if (act === 'join') {
+        el = document.createElement('a');
+        el.href = 'join.html?path=demo-skipped';
+        el.setAttribute('data-join', 'skipped');
+        el.textContent = (next === 'denied') ? 'Skip the demo and join the list' : 'Join the list';
+      } else {
+        el = document.createElement('button');
+        el.type = 'button';
+        if (act === 'listen') {
+          el.textContent = LISTEN_LABEL[next] || 'Tap to read it out loud';
+          showsMic = true;
+          el.addEventListener('click', startListening);
+        } else {
+          el.textContent = "I can't speak right now";
+          if (next === 'denied' || next === 'unsupported') el.textContent = 'Read it silently instead';
+          el.addEventListener('click', enterTrace);
+        }
+      }
+      el.className = 'btn btn-' + kind + (kind === 'primary' ? ' btn-lg' : '');
+      el.setAttribute('data-act', act);
+      actionsEl.appendChild(el);
+    });
+
+    /* the honesty note belongs under the microphone button, and only there */
+    micNote.hidden = !(showsMic || next === 'awaiting' || next === 'listening');
+  }
+
+  /* ------------------------------------------------------------------
+     Verification — the same destination by voice or by tracing.
+     ------------------------------------------------------------------ */
+  function verify(via) {
+    if (verified) return;
+    verified = true;
+    stopRecognition(true);
+    stageEl.classList.remove('is-listening');
+    stageEl.classList.add('is-verified');
+    verseEl.classList.remove('tracing');
+    clearTraceFocus();
+    setState('verified');
+    say('That\u2019s it. You read it.');
+    track('demo_verified', { via: via, attempts: attempts, coverage: Math.round(coverage(lit) * 100) });
+
+    var delay = 0;
+    for (var i = 0; i < N; i++) {
+      if (!lit[i]) {
+        lit[i] = true;
+        (function (el, d) { setTimeout(function () { el.classList.add('lit'); }, d); })(els[i], delay);
+        delay += reduceMotion ? 0 : 45;
+      }
+    }
+    meterFil.style.width = '100%';
+    meterEl.setAttribute('aria-valuenow', '100');
+    pctEl.textContent = '100%';
+
+    setTimeout(function () { verseEl.classList.add('settled'); }, delay + 150);
+    setTimeout(function () {
+      afterEl.hidden = false;
+      afterEl.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      afterEl.tabIndex = -1;
+      afterEl.focus({ preventScroll: true });
+    }, reduceMotion ? 400 : 1400);
+  }
+
+  /* ------------------------------------------------------------------
+     Speech recognition
+     ------------------------------------------------------------------ */
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var rec = null, base = null, heard = false;
+  var attemptStart = 0, sessionStart = 0, stopTimer = null;
+  var promptSeen = false, granted = false;
+  var manualStop = false, suppressEnd = false, fatal = null, restarts = 0, noSpeech = 0;
+
+  var MAX_RESTARTS  = 8;
+  var MAX_ATTEMPT_MS = 90000;
+
+  if (!SR) {
+    voiceAvailable = false;
+    setState('unsupported');
+    track('demo_unsupported_browser', { ua: navigator.userAgent.slice(0, 120) });
+  } else {
+    setState('intro');
+  }
+
+  function startListening() {
+    if (!SR || verified) return;
+    traceMode = false;
+    verseEl.classList.remove('tracing');
+    clearTraceFocus();
+
+    heard = false;
+    manualStop = false;
+    suppressEnd = false;
+    fatal = null;
+    restarts = 0;
+    noSpeech = 0;
+    attempts++;
+    attemptStart = Date.now();
+    ensureReachable();
+    track('demo_verse_attempt', { attempt: attempts, from_coverage: Math.round(coverage(lit) * 100) });
+
+    /* The dialog only ever fires from here, on the tap — never on page load. */
+    if (!granted) {
+      promptSeen = true;
+      setState('awaiting');
+      track('demo_mic_prompt_shown', { attempt: attempts });
+      if (navigator.permissions && navigator.permissions.query) {
+        try {
+          navigator.permissions.query({ name: 'microphone' }).then(function (st) {
+            if (st.state === 'granted' && state === 'awaiting') setState('listening');
+          })['catch'](function () {});
+        } catch (e) {}
+      }
+    }
+
+    clearTimeout(stopTimer);
+    stopTimer = setTimeout(function () { stopRecognition(false); }, MAX_ATTEMPT_MS);
+    beginSession();
+  }
+
+  /* One recognition session. Safari commonly ends a `continuous` session
+     after each utterance, so a session ending is not the same as an
+     attempt ending — see onend. */
+  function beginSession() {
+    /* Every session re-snapshots from committed progress, because a new
+       SpeechRecognition object starts its results list from empty. */
+    base = { pointer: pointer, lit: lit.slice() };
+
+    try { rec = new SR(); }
+    catch (e) { fatal = 'denied'; track('demo_mic_denied', { reason: 'construct' }); setState('denied'); return; }
+
+    rec.continuous = true;
+    rec.interimResults = true;
+    rec.maxAlternatives = 1;
+    rec.lang = (navigator.language && /^en/i.test(navigator.language)) ? navigator.language : 'en-US';
+
+    rec.onstart = function () {
+      if (!granted) { granted = true; track('demo_mic_granted', {}); }
+      sessionStart = Date.now();
+      setState('listening');
+      document.addEventListener('click', stopOnAnyTap, true);
+      document.addEventListener('keydown', stopOnEscape, true);
+    };
+
+    rec.onresult = function (e) {
+      heard = true;
+      var text = '', i;
+      for (i = 0; i < e.results.length; i++) text += ' ' + e.results[i][0].transcript;
+      var tokens = text.split(/\s+/).map(norm).filter(Boolean);
+      var res = runMatch(base, tokens);
+      pointer = res.pointer;
+      lit = res.lit;
+      paint(lit);
+      /* The verdict renders the moment the threshold is crossed.
+         Nothing waits for a final result event. */
+      if (coverage(lit) >= THRESHOLD) verify('voice');
+    };
+
+    rec.onerror = function (e) {
+      var code = (e && e.error) || '';
+      if (code === 'not-allowed' || code === 'service-not-allowed' || code === 'audio-capture') {
+        fatal = 'denied';
+        track('demo_mic_denied', { reason: code });
+      } else if (code === 'no-speech') {
+        noSpeech++;
+        /* one quiet stretch is just someone finding their voice;
+           two in a row is a room that is genuinely too loud */
+        if (noSpeech >= 2 && !heard) fatal = 'tooloud';
+      } else if (code === 'aborted') {
+        suppressEnd = true;
+      } else if (code) {
+        fatal = attempts > 1 ? 'retry' : 'failed';
+        track('demo_recognition_error', { reason: code });
+      }
+    };
+
+    rec.onend = function () {
+      teardownStopHandlers();
+      if (verified) { stageEl.classList.remove('is-listening'); return; }
+      if (suppressEnd) { suppressEnd = false; stageEl.classList.remove('is-listening'); return; }
+
+      if (fatal) {
+        var f = fatal; fatal = null;
+        stageEl.classList.remove('is-listening');
+        setState(f);
+        if (f === 'tooloud') track('demo_no_speech', { attempt: attempts });
+        return;
+      }
+
+      /* A session ending is not an attempt ending. Safari closes a
+         `continuous` session after each utterance, so unless the reader
+         stopped it themselves, reopen the microphone and keep the alarm
+         pulse running — progress and pointer are carried across. */
+      if (!manualStop && !traceMode && restarts < MAX_RESTARTS && (Date.now() - attemptStart) < MAX_ATTEMPT_MS) {
+        restarts++;
+        setTimeout(function () { if (!verified && !manualStop && !traceMode) beginSession(); }, 120);
+        return;
+      }
+
+      stageEl.classList.remove('is-listening');
+      clearTimeout(stopTimer);
+      if (!heard) { setState('tooloud'); track('demo_no_speech', { attempt: attempts }); return; }
+      setState(attempts > 1 ? 'retry' : 'failed');
+      track('demo_attempt_incomplete', { attempt: attempts, coverage: Math.round(coverage(lit) * 100) });
+    };
+
+    try { rec.start(); }
+    catch (e) {
+      if (restarts === 0) setState(attempts > 1 ? 'retry' : 'failed');
+    }
+  }
+
+  function stopRecognition(abort) {
+    manualStop = true;
+    clearTimeout(stopTimer);
+    teardownStopHandlers();
+    if (!rec) return;
+    try { abort ? rec.abort() : rec.stop(); } catch (e) {}
+  }
+
+  function teardownStopHandlers() {
+    document.removeEventListener('click', stopOnAnyTap, true);
+    document.removeEventListener('keydown', stopOnEscape, true);
+  }
+
+  function stopOnAnyTap(e) {
+    if (Date.now() - sessionStart < 500) return;
+    if (e.target.closest && e.target.closest('a')) return;
+    stopRecognition(false);
+  }
+  function stopOnEscape(e) { if (e.key === 'Escape') stopRecognition(false); }
+
+  /* ------------------------------------------------------------------
+     Trace to read — present from first render, same gate, no penalty.
+     ------------------------------------------------------------------ */
+  var dragging = false, tracedOnce = false;
+
+  function enterTrace() {
+    if (verified) return;
+    stopRecognition(true);
+    traceMode = true;
+    ensureReachable();
+    verseEl.classList.add('tracing');
+    var from = state;
+    setState('trace');
+    updateTraceFocus();
+    if (pointer < N) els[pointer].focus({ preventScroll: true });
+    if (!tracedOnce) { tracedOnce = true; track('demo_fallback_used', { from_state: from, coverage: Math.round(coverage(lit) * 100) }); }
+    say('Trace the words in order to light them up. Use Enter or the right arrow key to advance one word at a time.');
+  }
+
+  function traceTo(i) {
+    if (!traceMode || verified) return;
+    if (i < pointer) return;
+    if (i > pointer + TRACE_SKIP) return;
+    for (var k = pointer; k <= i; k++) lit[k] = true;
+    pointer = i + 1;
+    paint(lit);
+    updateTraceFocus();
+    if (coverage(lit) >= THRESHOLD) verify('trace');
+  }
+
+  function clearTraceFocus() {
+    els.forEach(function (el) { el.removeAttribute('tabindex'); el.removeAttribute('role'); el.removeAttribute('aria-label'); el.classList.remove('next'); });
+  }
+
+  function updateTraceFocus() {
+    var hadFocus = document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('w');
+    clearTraceFocus();
+    if (!traceMode || pointer >= N) return;
+    var el = els[pointer];
+    el.tabIndex = 0;
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', 'Trace the next word: ' + words[pointer].display);
+    el.classList.add('next');
+    if (hadFocus) el.focus();
+  }
+
+  verseEl.addEventListener('pointerdown', function (e) {
+    if (!traceMode) return;
+    e.preventDefault();
+    dragging = true;
+    try { verseEl.setPointerCapture(e.pointerId); } catch (err) {}
+    traceAtPoint(e.clientX, e.clientY);
+  });
+  verseEl.addEventListener('pointermove', function (e) {
+    if (traceMode && dragging) traceAtPoint(e.clientX, e.clientY);
+  });
+  ['pointerup', 'pointercancel'].forEach(function (t) {
+    window.addEventListener(t, function (e) {
+      if (!dragging) return;
+      dragging = false;
+      try { verseEl.releasePointerCapture(e.pointerId); } catch (err) {}
+    });
+  });
+  function traceAtPoint(x, y) {
+    var el = document.elementFromPoint(x, y);
+    var w = el && el.closest && el.closest('.w');
+    if (w) traceTo(Number(w.dataset.i));
+  }
+  verseEl.addEventListener('keydown', function (e) {
+    if (!traceMode) return;
+    var w = e.target.closest && e.target.closest('.w');
+    if (!w) return;
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      traceTo(Number(w.dataset.i));
+    }
+  });
+
+  /* ------------------------------------------------------------------
+     Journey instrumentation
+     ------------------------------------------------------------------ */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-join]');
+    if (a) track('demo_join_click', { path: a.getAttribute('data-join'), verified: verified });
+  });
+
+  var abandonSent = false;
+  function abandon() {
+    if (abandonSent) return;
+    abandonSent = true;
+    track('demo_abandon_point', {
+      state: state, verified: verified, attempts: attempts,
+      coverage: Math.round(coverage(lit) * 100),
+      mic_prompt_shown: promptSeen, mic_granted: granted, fallback_used: tracedOnce
+    });
+  }
+  window.addEventListener('pagehide', abandon);
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') abandon(); });
+
+  paint(lit);
+  track('demo_view', { speech_supported: !!SR, content_words: CONTENT_TOTAL, threshold: THRESHOLD });
+
+  /* ------------------------------------------------------------------
+     Chrome: nav border on scroll, scroll reveals
+     ------------------------------------------------------------------ */
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (r) { io.observe(r); });
+  } else {
+    reveals.forEach(function (r) { r.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
