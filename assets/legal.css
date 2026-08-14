@@ -1,0 +1,94 @@
+/* ============================================================
+   legal.css — terms.html and privacy.html only.
+
+   These two pages are read, not scanned: someone arrives from the
+   paywall's footnote to check one specific thing. So the type is
+   set smaller than the marketing pages, the measure is the same
+   reading column, and every heading is an anchor so a clause can
+   be linked to directly.
+
+   Everything else — tokens, nav, footer, focus states, grain,
+   reduced motion — comes from shared.css and is not restated.
+   ============================================================ */
+
+.legal-hero { padding: clamp(56px, 8vw, 104px) 0 clamp(28px, 4vw, 44px); }
+.legal-hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.2rem); margin-bottom: 0.34em; }
+
+.legal-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--parchment-50);
+}
+
+/* The body of the document. Smaller and tighter than a marketing
+   section: this is reference text, and the whole thing has to be
+   skimmable to the one clause the reader came for. */
+.legal { padding: 0 0 clamp(64px, 9vw, 108px); }
+.legal .reading > :last-child { margin-bottom: 0; }
+
+.legal h2 {
+  font-size: clamp(1.35rem, 2.3vw, 1.7rem);
+  margin: 2.4em 0 0.6em;
+  scroll-margin-top: 96px;
+}
+.legal h2:first-child { margin-top: 0; }
+
+.legal h3 {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 1.8em 0 0.5em;
+  color: var(--parchment);
+}
+
+.legal p, .legal li { color: var(--parchment-70); font-size: 0.98rem; }
+.legal strong { color: var(--parchment); font-weight: 600; }
+
+.legal ul { margin: 0 0 1.15em; padding-left: 1.15em; }
+.legal li { margin-bottom: 0.5em; }
+.legal li::marker { color: var(--parchment-32); }
+
+/* The one or two statements on each page that must not be missed —
+   the alarm is not a safety device; audio is never transmitted. */
+.legal-note {
+  margin: 1.6em 0;
+  padding: 18px 22px;
+  border: 1px solid var(--line-strong);
+  border-left: 2px solid var(--dawn);
+  border-radius: var(--r-sm);
+  background: var(--ink-2);
+}
+.legal-note p:last-child { margin-bottom: 0; }
+
+/* Contents. Present on both pages, above the body, because these
+   documents are almost always entered with one question in mind. */
+.legal-toc {
+  margin: 0 0 clamp(36px, 5vw, 56px);
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--ink-2);
+}
+.legal-toc h2 {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--parchment-50);
+  margin: 0 0 0.9em;
+}
+.legal-toc ol {
+  margin: 0;
+  padding-left: 1.3em;
+  columns: 2;
+  column-gap: 30px;
+}
+.legal-toc li { margin-bottom: 0.4em; break-inside: avoid; }
+.legal-toc a { color: var(--parchment-70); }
+.legal-toc a:hover { color: var(--dawn); }
+@media (max-width: 620px) { .legal-toc ol { columns: 1; } }
