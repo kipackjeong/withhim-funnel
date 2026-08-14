@@ -79,21 +79,6 @@
 .hero h1 { margin-bottom: 0.42em; }
 .hero .lede { max-width: 34em; margin-bottom: 0; }
 
-/* the quiet demo offer, for anyone who arrived without doing it */
-.demo-aside {
-  margin: clamp(28px, 4vw, 38px) 0 0;
-  padding: 16px 20px;
-  border: 1px solid var(--line);
-  border-left: 2px solid var(--dawn);
-  border-radius: 0 var(--r-md) var(--r-md) 0;
-  background: var(--ink-2);
-  max-width: var(--reading);
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--parchment-50);
-}
-.demo-aside p { margin: 0; }
-
 /* ---------- the founding offer ---------- */
 
 .offer-grid {
@@ -326,7 +311,6 @@ textarea.field {
   <div class="container nav-inner">
     <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
     <div class="nav-cta">
-      <a class="btn btn-ghost" href="demo.html" data-demo="nav">Try the demo</a>
       <a class="btn btn-primary" href="#form" data-scroll="nav">Join the waitlist</a>
     </div>
   </div>
@@ -342,8 +326,7 @@ textarea.field {
 
         <p class="eyebrow reveal">The waitlist</p>
 
-        <!-- PRIMARY (shipped). A/B variant held for the first test — per COPY.md §3.1,
-             test it on traffic arriving direct from index.html without the demo:
+        <!-- PRIMARY (shipped). A/B variant held for the first test — per COPY.md §3.1:
              [H1] The first 500 people here lock their price forever.
              [BODY] Nothing is charged now and nothing ships today. This is an email list with a founding offer attached, and the terms are written out in full below.
         -->
@@ -351,15 +334,8 @@ textarea.field {
 
         <p class="lede reveal">No card, no charge, no date promised. An email address, a vote on what gets written first, and the founding terms below.</p>
 
-        <!-- Builder-added, per build brief: a quiet offer of the demo for anyone who
-             skipped it. Hidden by script when the visitor arrives from a completed
-             demo, so it never nags someone who has already done it. Kept in the
-             markup rather than injected, so it still works with JavaScript off. -->
-        <aside class="demo-aside reveal" id="demoAside" hidden>
-          <p>If you haven't done it, the thirty-second demo is still there — reading one verse out loud shows what this is better than the rest of this page can. It isn't a step, and the form below works either way. <a href="demo.html" data-demo="aside">Read a verse out loud</a>.</p>
-        </aside>
 
-      </div>
+</div>
     </div>
   </section>
 
@@ -674,7 +650,7 @@ textarea.field {
   <div class="container">
     <div class="foot-links">
       <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
-      <span><a href="demo.html" data-demo="footer">Read a verse out loud</a> &nbsp;·&nbsp; <a href="index.html">How it works</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a></span>
+      <span><a href="index.html">How it works</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a></span>
     </div>
     <p class="foot-note">An iPhone app, in development. Built by one person. Nothing on this page is for sale yet.</p>
   </div>
@@ -686,8 +662,7 @@ textarea.field {
 
   /* ------------------------------------------------------------------
      Analytics. Events named in STRATEGY.md §7 for join.html:
-     view-to-submit split by path (demo-completed vs. direct), Thread
-     ranking distribution, and field-level abandon.
+     view-to-submit split by path, Thread ranking distribution, and field-level abandon.
      Nothing third-party is loaded on this page.
      ------------------------------------------------------------------ */
   window.dataLayer = window.dataLayer || [];
@@ -704,9 +679,7 @@ textarea.field {
 
   /* ------------------------------------------------------------------
      Which route did this visitor take to get here?
-     STRATEGY.md §1 requires the demo-completed and direct paths to be
-     measured separately — the ratio between them is what decides whether
-     the demo-first bet was correct. Query param first, referrer second.
+     Query param first (set by calling page), referrer second.
      ------------------------------------------------------------------ */
   function readPath() {
     var q = '';
@@ -719,21 +692,14 @@ textarea.field {
 
     var ref = (document.referrer || '').toLowerCase();
     if (!ref) return 'unknown';
-    if (ref.indexOf('demo.html') !== -1) return 'demo';
     if (ref.indexOf('index.html') !== -1 || /\/$/.test(ref.split('?')[0])) return 'direct';
     return 'external';
   }
 
   var path = readPath();
-  var didDemo = path === 'demo-completed' || path === 'demo';
   document.getElementById('pathField').value = path;
 
-  /* The quiet demo offer is for people who skipped it. Anyone arriving from a
-     completed demo never sees it. */
-  var aside = document.getElementById('demoAside');
-  if (!didDemo) aside.hidden = false;
-
-  track('join_view', { path: path, referrer: document.referrer || '', demo_completed: didDemo });
+  track('join_view', { path: path, referrer: document.referrer || '' });
 
   /* ---------- nav border state ---------- */
 
@@ -885,7 +851,6 @@ textarea.field {
 
     track('join_submit', {
       path: path,
-      demo_completed: didDemo,
       threads_ranked: order.length,
       thread_1: order[0] || '',
       thread_2: order[1] || '',
