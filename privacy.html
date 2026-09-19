@@ -90,7 +90,7 @@
         <p>The following is held in the app's own storage. Supported library content can also sync to your private iCloud account; your Apple settings control that service. Sermon content is sent to our AI processing service only when you choose that action:</p>
         <ul>
           <li>Highlights, notes, bookmarks and reading positions.</li>
-          <li>Reading history and which passages have been completed.</li>
+          <li>Reading history and which passages have been completed. If you sign in, a summary of completed verse readings is also kept on our backend — see <a href="#collect">What we do collect</a>.</li>
           <li>Alarms, their schedules, and the record of which ones were answered.</li>
           <li>Focus Shield configuration and the apps you selected for it.</li>
           <li>Reading preferences: theme, text size, translation, language.</li>
@@ -107,6 +107,11 @@
         <p>Settings → Send feedback turns what you write into an issue in our development tracker. No identifier is attached, so it is not linked to you or to your device. Do not put anything in that box you would not want stored — including your email address, unless you want a reply and are content for it to be recorded.</p>
         <h3>Identity, if you sign in</h3>
         <p>Signing in is optional for local features and required for AI sermon processing. Sign in with Apple provides an Apple user identifier, an email address — Apple's private relay address unless you share your real one — and the name Apple supplies on first authorisation. Processing jobs are linked to that account to restrict access to their owner. Ordinary highlights, bookmarks, alarms and reading positions are not sent to the AI service.</p>
+        <h3>Verse readings and how a verse landed, if you sign in</h3>
+        <p>When you finish a verse reading that opens an alarm or lifts the Focus Shield, the app records that reading so it can tell you how many times you have now read that passage. Each reading is one record: which passage it was, whether it came from an alarm or the shield, whether you read it aloud or traced it, and when. If you answer the optional question about how much the verse touched you, that answer — a position on a scale, with no number shown to you — is stored on the same record. The text you read is not sent anywhere; it already ships inside the app.</p>
+        <p>If you are signed in, these records are stored in our Supabase backend and are linked to your account, so the count follows you to a new phone. Row-level security restricts every record to the account that created it; the app holds only your own short-lived access token and has no credential that could reach anyone else's readings.</p>
+        <p>If you are not signed in, or you are offline, nothing is sent. The reading is recorded on your device, the count you are shown is your device's own, and the mission completes normally — an account is never required to finish a reading, stop an alarm, or lift the shield. Readings taken before you ever sign in are attributed to the first account you sign in with on that device, and are then sent. Readings belonging to one account are never sent or counted under another account on the same device.</p>
+        <p>Notes you attach when you keep a passage as a highlight stay in your own library, on the device and in your private iCloud account, exactly as any other note does. They are not part of this backend record.</p>
         <h3>Sermon content you choose to process</h3>
         <p>We process the selected audio, your written note, optional title, church, speaker, service, date and Scripture references, the resulting transcript, and the generated draft solely to provide the sermon-note feature. This content can include personal reflections or religious information that you choose to write or record. Do not include material you do not want processed by these services.</p>
 
@@ -122,7 +127,7 @@
         <ul>
           <li><strong>Apple</strong> — the App Store, payment, Sign in with Apple, on-device speech recognition, alarms and Screen Time, under <a href="https://www.apple.com/legal/privacy/">Apple's own privacy policy</a>.</li>
           <li><strong>RevenueCat</strong> — subscription status only, as described above.</li>
-          <li><strong>Supabase</strong> — authentication, temporary private sermon uploads and processing jobs.</li>
+          <li><strong>Supabase</strong> — authentication, your verse-reading history if you are signed in, and temporary private sermon uploads and processing jobs.</li>
           <li><strong>Microsoft Azure</strong> — sermon transcription and AI note preparation, under Microsoft's applicable <a href="https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy">Azure AI data privacy terms</a>.</li>
         </ul>
         <p>Nothing is sold, rented or shared for anyone's marketing purposes.</p>
@@ -130,8 +135,17 @@
         <h2 id="retention">9. How long anything is kept</h2>
         <p>Your original writing and saved sermon note remain until you delete them. Local recordings are excluded from device backup and kept while a draft is active or needs retry; confirming or deleting the note removes its local audio. Draft audio unused for 30 days is removed on a subsequent library cleanup, while written notes remain. An abrupt app termination may leave the current recording incomplete, without removing your saved writing.</p>
         <p>Backend audio is deleted after a durable transcript is available. Abandoned uploads expire after 24 hours; failed processing artifacts and unacknowledged transcripts or drafts have a maximum seven-day retention window. Cleanup runs on a schedule and retries provider failures. Azure Speech jobs request a 48-hour expiry and are deleted after their results are copied. Confirming the note acknowledges the processing result so temporary backend content can be removed sooner. Provider-operated safety or abuse monitoring is governed separately by Microsoft's applicable terms.</p>
-        <p>Deleting your account cancels its processing jobs and schedules removal of temporary sermon content. It does not delete your local or private iCloud library; delete individual notes in the app to remove those records. Feedback is kept while the issue it created remains useful.</p>
+        <p>Verse-reading records are kept for as long as the account exists, because their whole purpose is to say how many times you have read a passage over the years. They are small and they do not contain Scripture text. Deleting your account deletes every one of them immediately and permanently, along with any answers you gave about how a verse landed.</p>
+        <p>Deleting your account cancels its processing jobs, deletes your verse-reading history, and schedules removal of temporary sermon content. It does not delete your local or private iCloud library; delete individual notes in the app to remove those records. Feedback is kept while the issue it created remains useful.</p>
         <p>After temporary content is erased, we retain minimal operation identifiers and a one-way input digest until account deletion to prevent an old request from triggering another paid processing job. Cleanup identifiers may remain longer during a service outage until erasure can be verified; they do not include the erased note or transcript.</p>
+
+        <section lang="ko" aria-label="말씀 읽기 기록 개인정보 안내">
+          <h3>말씀 읽기 기록 개인정보 안내</h3>
+          <p>알람을 끄거나 집중 보호막을 해제하는 말씀 읽기를 마치면, 그 구절을 지금까지 몇 번 읽었는지 알려 드리기 위해 읽기 기록이 저장됩니다. 한 번의 읽기가 한 개의 기록이며, 어떤 구절이었는지, 알람과 보호막 중 무엇이었는지, 소리 내어 읽었는지 따라 썼는지, 그리고 언제였는지가 담깁니다. 그 말씀이 마음에 얼마나 와닿았는지 묻는 선택 질문에 답하시면, 숫자로 표시되지 않는 그 답도 같은 기록에 함께 저장됩니다. 성경 본문 자체는 앱 안에 들어 있으므로 어디로도 전송되지 않습니다.</p>
+          <p>로그인한 상태라면 이 기록은 인증된 Supabase 서버에 계정과 연결되어 저장되며, 기기를 바꾸어도 읽은 횟수가 그대로 이어집니다. 행 수준 보안(RLS)으로 각 기록은 그것을 만든 계정만 열람할 수 있고, 앱은 본인의 단기 접근 토큰 외에 다른 사람의 기록에 닿을 수 있는 자격 증명을 갖고 있지 않습니다.</p>
+          <p>로그인하지 않았거나 오프라인이면 아무것도 전송되지 않습니다. 읽기는 기기에만 기록되고, 화면에 보이는 횟수는 이 기기의 기록이며, 미션은 평소대로 완료됩니다. 말씀 읽기를 마치는 일, 알람을 끄는 일, 보호막을 해제하는 일에는 계정이 필요하지 않습니다. 로그인 전에 쌓인 기록은 그 기기에서 처음 로그인한 계정의 기록이 되어 전송되며, 한 계정의 기록이 같은 기기의 다른 계정으로 넘어가거나 합산되는 일은 없습니다.</p>
+          <p>읽기 기록은 계정이 유지되는 동안 보관됩니다. 오랜 시간에 걸쳐 한 구절을 몇 번 읽었는지 알려 드리는 것이 그 목적이기 때문입니다. 계정을 삭제하면 모든 읽기 기록과 마음에 와닿은 정도에 대한 답변이 함께 즉시 영구 삭제됩니다.</p>
+        </section>
 
         <section lang="ko" aria-label="설교 노트 개인정보 안내">
           <h3>설교 노트 개인정보 안내</h3>
