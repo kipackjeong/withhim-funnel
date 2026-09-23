@@ -1,31 +1,21 @@
-# With Him — pre-launch site
+# With Him — App Store site
 
-Static site for **With Him**, an iOS Bible app in development. The alarm stops when you read a
-verse out loud; a focus shield interrupts a long scroll with the same thirty seconds. A complete
-offline Bible reader sits underneath, and Scripture is free permanently.
+Static site for **With Him**, a published iPhone Bible app. The alarm hands you a short verse to read aloud or type; a chosen Focus Shield pauses selected apps after scrolling. The Bible reader remains free and works offline.
 
-Live at <https://kipackjeong.github.io/withhim-funnel/>
+Live at <https://kipackjeong.github.io/withhim-funnel/>. The App Store listing is <https://apps.apple.com/us/app/with-him-wake-in-the-words/id6795353533>.
 
 ## Pages
 
-`index.html` is the landing page. `demo.html` is the interactive demo — it uses the browser's
-Web Speech API so a visitor reads Philippians 4:6-7 (Berean Standard Bible, public domain) into
-their own microphone and watches each word illuminate as it is recognised. `join.html` is the
-waitlist form and `thanks.html` is the confirmation and referral page.
+`index.html` is the main landing page. `join.html` keeps its existing URL but is now the download page; `thanks.html` is a welcome and sharing guide, not proof of installation. `support.html`, `privacy.html`, and `terms.html` retain their existing URLs and content.
 
-Note that the web demo uses the browser's speech recognition, which on Safari means audio is
-processed by Apple. The iOS app processes speech on-device and never transmits audio. That
-difference is disclosed on the demo page itself.
+The earlier pre-launch waitlist has ended. All download actions go directly to the App Store. The six real app captures used by the landing and download pages live in `assets/screenshots/`.
+
+The published product also offers optional sermon processing; consult the current privacy policy before making account, cloud, or audio-processing claims on these pages.
 
 ## Build
 
-There is no build step. Plain HTML, CSS and JavaScript with no dependencies and no framework —
-open any page directly in a browser. `assets/shared.css` holds the design tokens and shared
-components used by all four pages.
+There is no build step or framework. Serve this directory as a static site. `assets/shared.css` contains the shared design tokens and components.
 
-## Wiring the form
+## Updating the pages
 
-`join.html` currently stores submissions in `localStorage` and redirects. The block marked
-`FORM ENDPOINT` in its script is where a real provider (ConvertKit, Buttondown, Formspree) gets
-connected. Analytics calls are stubbed behind a `track()` function on every page and currently
-only log to the console.
+The funnel runs on static HTML, CSS, and JavaScript. Keep the App Store URL and the current plan terms aligned across the landing and download pages. The light `funnel-v2` styles in `assets/shared.css` are scoped to the redesigned pages; legal and support pages still use their original dark surface.
