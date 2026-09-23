@@ -6,7 +6,7 @@ Live at <https://kipackjeong.github.io/withhim-funnel/>. The App Store listing i
 
 ## Pages
 
-`index.html` is the main landing page. `join.html` keeps its existing URL but is now the download page; `thanks.html` is a welcome and sharing guide, not proof of installation. `support.html`, `privacy.html`, and `terms.html` retain their existing URLs and content.
+`index.html` is the main landing page. `join.html` keeps its existing URL but is now the download page; `thanks.html` is a welcome and sharing guide, not proof of installation. `support.html`, `privacy.html`, and `terms.html` retain their existing URLs, section anchors, and content while inheriting the landing page's light design system.
 
 The earlier pre-launch waitlist has ended. All download actions go directly to the App Store. The six real app captures used by the landing and download pages live in `assets/screenshots/`.
 
@@ -18,4 +18,4 @@ There is no build step or framework. Serve this directory as a static site. `ass
 
 ## Updating the pages
 
-The funnel runs on static HTML, CSS, and JavaScript. Keep the App Store URL and current plan terms aligned across the landing and download pages. The landing page's hero through Threads section follows the exported Claude artboard's Instrument Serif/Geist typography, #F5EFE4 cream ground, #0B0D12 night section, #EDE3D1 Threads panel, device frames, and 1440px desktop geometry. The download and welcome routes inherit those tokens, while legal and support pages retain their original dark surface. Bump the `shared.css?v=` value on the three redesigned pages when changing shared CSS, so GitHub Pages serves the new stylesheet instead of a cached older copy.
+The funnel runs on static HTML, CSS, and JavaScript. Keep the App Store URL and current plan terms aligned across the landing and download pages. The landing page's hero through Threads section follows the exported Claude artboard's Instrument Serif/Geist typography, #F5EFE4 cream ground, #0B0D12 night section, #EDE3D1 Threads panel, device frames, and 1440px desktop geometry. The legal and support pages use those same light tokens with a narrower reading measure and contents navigation in `assets/legal.css`. Bump the `shared.css?v=` and `legal.css?v=` values on the affected pages when changing CSS so GitHub Pages serves the new styles.
