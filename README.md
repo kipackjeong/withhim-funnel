@@ -18,4 +18,4 @@ There is no build step or framework. Serve this directory as a static site. `ass
 
 ## Updating the pages
 
-The funnel runs on static HTML, CSS, and JavaScript. Keep the App Store URL and the current plan terms aligned across the landing and download pages. The light `funnel-v2` styles in `assets/shared.css` are scoped to the redesigned pages; legal and support pages still use their original dark surface.
+The funnel runs on static HTML, CSS, and JavaScript. Keep the App Store URL and current plan terms aligned across the landing and download pages. The landing page's hero through Threads section follows the exported Claude artboard's Instrument Serif/Geist typography, #F5EFE4 cream ground, #0B0D12 night section, #EDE3D1 Threads panel, device frames, and 1440px desktop geometry. The download and welcome routes inherit those tokens, while legal and support pages retain their original dark surface.

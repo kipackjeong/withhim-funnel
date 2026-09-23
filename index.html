@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#faf8f1">
+<meta name="theme-color" content="#F5EFE4">
 <title>With Him — Wake up with Him</title>
 <meta name="description" content="Start the morning with a verse, pause a long scroll with Scripture, and read the whole Bible offline. With Him is available for iPhone on the App Store.">
 <link rel="canonical" href="https://kipackjeong.github.io/withhim-funnel/">
@@ -20,177 +20,237 @@
 <meta name="twitter:image" content="https://kipackjeong.github.io/withhim-funnel/assets/og.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600;700&amp;display=swap">
 <link rel="stylesheet" href="assets/shared.css">
 <style>
-  /* The page inherits the funnel-v2 palette, typography, and buttons from shared.css. */
-  html { scroll-padding-top: 86px; }
-  body.funnel-v2 { background: var(--ink); color: var(--parchment); }
-  .funnel-v2 section { padding: clamp(76px, 9vw, 128px) 0; }
-  .funnel-v2 h1, .funnel-v2 h2, .funnel-v2 h3 { color: var(--parchment); text-wrap: balance; }
-  .funnel-v2 h1 { font-size: clamp(4.1rem, 8.7vw, 7.7rem); line-height: .95; letter-spacing: -.035em; font-weight: 400; }
-  .funnel-v2 h2 { font-size: clamp(2.7rem, 5.2vw, 4.65rem); line-height: 1.05; letter-spacing: -.025em; font-weight: 400; }
-  .funnel-v2 h3 { font-size: clamp(1.8rem, 2.6vw, 2.5rem); line-height: 1.14; font-weight: 400; }
-  .funnel-v2 p { max-width: 62ch; }
-  .funnel-v2 a:not(.btn):hover { color: var(--dawn); }
-  .funnel-v2 .nav-inner { gap: 24px; min-height: 74px; height: auto; }
-  .funnel-v2 .wordmark { flex: none; color: var(--parchment); font-size: 1.5rem; white-space: nowrap; }
-  .funnel-v2 .wordmark .mark { filter: none; }
-  .site-links { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: clamp(12px, 1.9vw, 28px); margin-left: auto; }
-  .site-links a { color: var(--parchment-70); font-size: .78rem; font-weight: 600; letter-spacing: .025em; white-space: nowrap; }
-  .site-links a:hover { color: var(--parchment); }
-  .nav-download { flex: none; padding: 11px 18px; font-size: .83rem; }
-  .section-label, .hero-badge, .overline { color: var(--dawn); font-family: var(--sans); font-size: .72rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
-  .hero-badge { display: inline-flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 999px; padding: 9px 14px; margin: 0 0 34px; background: var(--ink-2); }
-  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--dawn); }
-  .funnel-v2 .hero { padding-top: clamp(66px, 8vw, 116px); padding-bottom: clamp(65px, 7vw, 110px); overflow: hidden; }
-  .hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 5vw, 80px); align-items: center; }
-  .hero-copy { position: relative; z-index: 1; }
-  .hero-copy h1 { max-width: 8ch; margin: 0 0 28px; }
-  .hero-lede { color: var(--parchment-70); font-size: clamp(1.08rem, 1.65vw, 1.28rem); line-height: 1.65; margin-bottom: 0; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 36px; }
-  .hero-actions .btn { padding: 16px 25px; }
-  .hero-visual { min-height: 510px; display: flex; align-items: center; justify-content: center; position: relative; }
-  .hero-visual::before { content: ''; position: absolute; width: 87%; aspect-ratio: 1; border-radius: 50%; background: #eae2d2; opacity: .7; }
-  .shot { display: block; width: 100%; height: auto; aspect-ratio: 1206 / 2622; object-fit: cover; border: 1px solid rgba(29,27,26,.12); border-radius: clamp(18px, 2vw, 27px); box-shadow: 0 24px 65px rgba(29,27,26,.14); background: #fff; }
-  .hero-visual .shot { position: relative; width: clamp(185px, 21vw, 282px); }
-  .hero-visual .shot:first-child { transform: rotate(-7deg) translate(14px, 12px); z-index: 2; }
-  .hero-visual .shot:last-child { transform: rotate(7deg) translate(-14px, -20px); z-index: 1; }
-  .proof-strip { border-block: 1px solid var(--line); }
-  .proof-strip .container { display: grid; grid-template-columns: repeat(3, 1fr); }
-  .proof-strip span { display: flex; align-items: center; justify-content: center; min-height: 90px; padding: 20px 12px; text-align: center; font-family: var(--serif); font-size: clamp(1rem, 1.6vw, 1.3rem); }
-  .proof-strip span + span { border-left: 1px solid var(--line); }
-  .intro { display: grid; grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); gap: clamp(32px, 8vw, 110px); align-items: start; }
+  html { scroll-padding-top: 88px; }
+  .funnel-v2 .container { max-width: 1440px; padding-inline: clamp(24px, 8.333vw, 120px); }
+  .funnel-v2 section { padding: 128px 0; }
+  .funnel-v2 h1, .funnel-v2 h2, .funnel-v2 h3 { font-weight: 400; letter-spacing: -.015em; }
+  .funnel-v2 h2 { font-size: clamp(2.8rem, 4.45vw, 4rem); line-height: 1.02; }
+  .funnel-v2 h3 { font-size: clamp(2rem, 2.8vw, 2.5rem); line-height: 1.08; }
+  .funnel-v2 .nav { position: relative; background: #F5EFE4; backdrop-filter: none; }
+  .funnel-v2 .nav-inner { height: 80px; gap: 36px; }
+  .funnel-v2 .wordmark { font-size: 27px; white-space: nowrap; }
+  .site-links { display: flex; align-items: center; gap: 36px; margin-left: auto; }
+  .site-links a { color: #45443F; font-size: 15px; font-weight: 500; white-space: nowrap; }
+  .nav-download { min-height: 44px !important; padding: 0 22px; font-size: 15px; }
+  .funnel-v2 .btn { border-radius: 999px; }
+  .funnel-v2 .btn-ghost { border-color: #CDBB9C; }
+  .section-kicker { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; color: #8A5A12; font-size: 12px; font-weight: 600; line-height: 1; letter-spacing: .2em; text-transform: uppercase; }
+  .section-kicker::before { content: ''; width: 28px; height: 1px; background: #C9A266; flex: none; }
+  .funnel-v2 em { color: #8A5A12; font-weight: 400; }
+  .funnel-v2 .hero { padding: 64px 0 104px; overflow: hidden; }
+  .hero-layout { display: grid; grid-template-columns: minmax(0, 1fr) 540px; gap: 72px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 10px; height: 34px; padding: 0 16px; border: 1px solid #DCCDB2; border-radius: 999px; background: #FBF7F0; color: #45443F; font-size: 13.5px; font-weight: 500; white-space: nowrap; }
+  .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #E8A94B; box-shadow: 0 0 0 4px rgba(232,169,75,.2); }
+  .hero-copy h1 { margin: 30px 0 0; font-size: clamp(5.6rem, 8.05vw, 116px); line-height: .94; letter-spacing: -.025em; }
+  .hero-lede { margin: 30px 0 0; max-width: 520px; color: #45443F; font-size: 21px; line-height: 1.55; }
+  .hero-actions { display: flex; align-items: center; gap: 14px; margin-top: 40px; }
+  .hero-actions .btn { min-height: 58px; padding: 0 30px; font-size: 16.5px; }
+  .hero-actions .btn-ghost { padding-inline: 26px; }
+  .hero-actions svg { width: 18px; height: 18px; }
+  .hero-note { margin: 16px 0 0; color: #625D53; font-size: 14px; }
+  .hero-trust { display: flex; align-items: center; gap: 32px; width: 620px; margin-top: 52px; padding-top: 28px; border-top: 1px solid #E2D6C1; color: #45443F; font-size: 14.5px; line-height: 1.4; }
+  .hero-trust span { display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+  .hero-trust svg { flex: none; width: 20px; height: 20px; fill: none; stroke: #8A5A12; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .hero-art { position: relative; width: 540px; height: 700px; }
+  .hero-stage { position: relative; width: 540px; height: 700px; }
+  .hero-arch { position: absolute; inset: 0 0 60px; overflow: hidden; border-radius: 270px 270px 28px 28px; background: #EBDDC3; }
+  .hero-arch::before { content: ''; position: absolute; inset: 0; background: radial-gradient(75% 55% at 50% 92%, rgba(240,176,80,.78), rgba(240,176,80,.3) 42%, transparent 72%); }
+  .hero-arch::after { content: ''; position: absolute; inset: 22px; border: 1px solid rgba(138,90,18,.24); border-radius: 248px 248px 12px 12px; }
+  .device { position: absolute; box-sizing: border-box; padding: 10px; background: linear-gradient(160deg,#2C303B,#0E1117 45%,#262A34); box-shadow: 0 50px 90px -40px rgba(70,45,10,.6), 0 0 0 1px rgba(23,24,29,.25); }
+  .device img { display: block; width: 100%; height: 100%; object-fit: cover; background: #F4F4F4; }
+  .hero-back { left: 262px; top: 34px; width: 250px; height: 522px; padding: 9px; border-radius: 41px; transform: rotate(5deg); }
+  .hero-back img { border-radius: 32px; }
+  .hero-front { left: 36px; top: 70px; width: 290px; height: 607px; border-radius: 48px; }
+  .hero-front img { border-radius: 38px; }
+  .hero-ring { position: absolute; left: 24px; top: 58px; width: 314px; height: 631px; border: 1.5px solid rgba(224,132,58,.5); border-radius: 58px; animation: ring 3.6s cubic-bezier(.22,1,.36,1) infinite; pointer-events: none; }
+  .hero-ring.second { animation-delay: 1.2s; }
+  .hero-ring.third { animation-delay: 2.4s; }
+  @keyframes ring { 0% { opacity: .5; transform: scale(1); } 75%,100% { opacity: 0; transform: scale(1.07); } }
+  .hero-chip { position: absolute; right: -28px; top: 598px; display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px 0 12px; border: 1px solid #E2D6C1; border-radius: 999px; background: #FBF7F0; box-shadow: 0 18px 36px -20px rgba(70,45,10,.45); font-size: 13px; font-weight: 500; white-space: nowrap; }
+  .hero-chip i { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: #E4EDE5; color: #3F6B4C; font-size: 15px; font-style: normal; }
+  .intro { display: grid; grid-template-columns: 560px minmax(0,1fr); gap: 80px; align-items: start; border-top: 1px solid #E2D6C1; }
   .intro h2 { margin: 0; }
-  .intro p { font-size: clamp(1.1rem, 1.8vw, 1.42rem); color: var(--parchment-70); line-height: 1.65; margin: 0; }
-  .funnel-v2 .moments-section { background: var(--ink-3); }
-  .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 28px; margin-bottom: 45px; }
-  .section-heading h2 { max-width: 12ch; margin: 0; }
-  .section-heading p { color: var(--parchment-70); max-width: 34ch; margin: 0; }
-  .moments { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-  .moment { display: grid; grid-template-rows: auto 1fr; background: var(--ink-2); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
-  .moment-copy { padding: clamp(28px, 3.4vw, 46px); }
-  .moment-copy h3 { margin: 0 0 16px; }
-  .moment-copy p { color: var(--parchment-70); margin: 0; }
-  .moment-media { display: flex; align-items: end; justify-content: center; gap: 12px; min-height: 352px; padding: 30px 26px 0; overflow: hidden; background: #eee9df; }
-  .moment:nth-child(2) .moment-media { background: #e9ebf2; }
-  .moment-media .shot { width: min(42%, 205px); flex: none; border-radius: 19px 19px 0 0; box-shadow: 0 15px 35px rgba(29,27,26,.13); margin-bottom: -90px; }
-  .moment-media .shot:only-child { width: min(56%, 248px); margin-bottom: -185px; }
-  .funnel-v2 .grace { padding-block: clamp(96px, 11vw, 160px); text-align: center; }
-  .grace h2 { max-width: 15ch; margin: 0 auto 22px; }
-  .grace p { max-width: 53ch; color: var(--parchment-70); margin-inline: auto; font-size: 1.08rem; }
-  .grace-rule { display: block; width: 38px; height: 1px; background: var(--dawn); margin: 0 auto 29px; }
-  .feature-layout { display: grid; grid-template-columns: minmax(0, .83fr) minmax(0, 1fr); gap: clamp(42px, 9vw, 120px); align-items: center; }
-  .feature-layout h2 { margin: 0 0 24px; }
-  .feature-layout p { color: var(--parchment-70); font-size: 1.08rem; }
-  .feature-layout .feature-aside { border-top: 1px solid var(--line); padding-top: 22px; font-size: .94rem; }
-  .thread-art { min-height: 440px; padding: clamp(30px, 5vw, 65px); background: var(--ink-3); border: 1px solid var(--line); border-radius: 18px; display: grid; align-content: center; gap: 13px; }
-  .thread-row { display: flex; align-items: baseline; justify-content: space-between; gap: 15px; border-bottom: 1px solid var(--line); padding: 13px 0; font-family: var(--serif); font-size: clamp(1.3rem, 2.3vw, 2rem); }
-  .thread-row span:last-child { color: var(--dawn); font-family: var(--sans); font-size: .7rem; white-space: nowrap; letter-spacing: .08em; }
-  .thread-row.active { color: var(--dawn); }
-  .thread-art small { color: var(--parchment-70); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 15px; }
-  .funnel-v2 .bible-section { background: var(--ink-3); overflow: hidden; }
-  .bible-gallery { display: flex; align-items: center; justify-content: center; gap: clamp(12px, 2vw, 28px); position: relative; min-height: 500px; }
-  .bible-gallery::before { content: ''; position: absolute; inset: 10% 0; border-radius: 50%; background: #e7dfd0; opacity: .55; }
-  .bible-gallery .shot { width: min(43%, 235px); z-index: 1; }
-  .bible-gallery .shot:last-child { transform: translateY(36px); }
-  .feature-list { display: grid; gap: 14px; padding: 0; margin: 27px 0 0; list-style: none; }
-  .feature-list li { border-top: 1px solid var(--line); padding-top: 14px; font-size: .96rem; }
-  .privacy-note { display: flex; gap: clamp(32px, 8vw, 120px); align-items: start; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 40px; }
-  .privacy-note h2 { max-width: 10ch; margin: 0; }
-  .privacy-note div { max-width: 54ch; }
-  .privacy-note p { color: var(--parchment-70); }
-  .text-link { display: inline-block; color: var(--parchment); font-size: .9rem; font-weight: 600; border-bottom: 1px solid var(--dawn); padding-bottom: 3px; }
-  .funnel-v2 .pricing-section { background: var(--ink-3); }
-  .pricing-heading { max-width: 730px; margin-bottom: 40px; }
-  .pricing-heading h2 { margin: 0 0 18px; }
-  .pricing-heading p { color: var(--parchment-70); margin-bottom: 0; }
-  .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-  .plan { display: flex; flex-direction: column; padding: clamp(28px, 3.5vw, 48px); border: 1px solid var(--line); border-radius: 18px; background: var(--ink-2); }
-  .plan h3 { margin: 0 0 12px; }
-  .plan-price { margin: 0 0 17px; font-family: var(--serif); font-size: clamp(2.4rem, 4vw, 3.8rem); line-height: 1; color: var(--parchment); }
-  .plan-price small { font-family: var(--sans); font-size: .85rem; color: var(--parchment-70); }
-  .plan > p:not(.plan-price) { color: var(--parchment-70); }
-  .plan ul { list-style: none; padding: 0; margin: 13px 0 32px; border-top: 1px solid var(--line); }
-  .plan li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .intro-copy { padding-top: 40px; }
+  .intro-copy p { margin: 0; color: #45443F; font-size: 20px; line-height: 1.6; }
+  .intro-copy p + p { margin-top: 28px; color: #17181D; font-family: var(--serif); font-size: 31px; line-height: 1.28; }
+  .funnel-v2 .moments-section { position: relative; overflow: hidden; padding: 128px 0 120px; background: #0B0D12; color: #F2EDE4; }
+  .moments-section::before { content: ''; position: absolute; left: 22%; top: -360px; width: 800px; height: 600px; border-radius: 50%; background: radial-gradient(closest-side,rgba(232,169,75,.16),transparent); pointer-events: none; }
+  .moments-section .container { position: relative; }
+  .night-heading { max-width: 900px; margin: 0 auto 64px; text-align: center; }
+  .night-heading .section-kicker { justify-content: center; color: #E8A94B; }
+  .night-heading .section-kicker::after { content: ''; width: 28px; height: 1px; background: rgba(232,169,75,.55); }
+  .night-heading .section-kicker::before { background: rgba(232,169,75,.55); }
+  .night-heading h2 { margin: 0; color: #F2EDE4; font-size: clamp(3.5rem,5.3vw,76px); line-height: 1; }
+  .night-heading em { color: #E8A94B; }
+  .night-heading p { max-width: 640px; margin: 22px auto 0; color: rgba(242,237,228,.72); font-size: 20px; line-height: 1.6; }
+  .moments { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+  .moment { position: relative; height: 680px; padding: 44px 44px 0; overflow: hidden; border: 1px solid rgba(242,237,228,.1); border-radius: 28px; background: #141821; }
+  .moment-heading { display: flex; align-items: center; gap: 14px; color: rgba(242,237,228,.62); font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+  .moment-number { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(232,169,75,.5); border-radius: 50%; color: #E8A94B; font-family: var(--serif); font-size: 22px; font-weight: 400; letter-spacing: 0; }
+  .moment h3 { margin: 26px 0 14px; color: #F2EDE4; font-size: 40px; }
+  .moment p { max-width: 480px; color: rgba(242,237,228,.72); font-size: 17px; line-height: 1.6; }
+  .moment-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .moment-tags span { display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border: 1px solid rgba(242,237,228,.16); border-radius: 999px; color: rgba(242,237,228,.8); font-size: 13px; }
+  .moment-phone { left: 50%; top: 372px; width: 280px; height: 585px; margin-left: -140px; border-radius: 46px; box-shadow: 0 -20px 60px -20px rgba(224,132,58,.25); }
+  .moment-phone img { border-radius: 36px; }
+  .moment:nth-child(2) .moment-phone { box-shadow: 0 -20px 60px -20px rgba(85,99,168,.3); }
+  .why-aloud { display: grid; grid-template-columns: 220px minmax(0,1fr); gap: 40px; align-items: baseline; margin-top: 32px; padding-top: 32px; border-top: 1px solid rgba(242,237,228,.12); }
+  .why-aloud strong { color: #E8A94B; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+  .why-aloud p { margin: 0; color: #F2EDE4; font-family: var(--serif); font-size: 30px; line-height: 1.3; }
+  .grace-layout { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 96px; align-items: start; }
+  .grace-layout h2 { margin: 0; }
+  .grace-layout > div > p { margin: 24px 0 0; color: #45443F; font-size: 20px; line-height: 1.6; }
+  .grace-list { list-style: none; margin: 0; padding: 0; }
+  .grace-list li { display: flex; gap: 20px; padding: 26px 0; border-bottom: 1px solid #E2D6C1; }
+  .grace-list li:first-child { padding-top: 0; }
+  .grace-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .grace-icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #EDE3D1; color: #8A5A12; font-size: 22px; }
+  .grace-list h3 { margin: 0; font-family: var(--sans); font-size: 19px; font-weight: 600; line-height: 1.35; }
+  .grace-list p { margin: 6px 0 0; color: #625D53; font-size: 16px; line-height: 1.55; }
+  .funnel-v2 .threads-section { padding: 128px 0; background: #EDE3D1; }
+  .threads-layout { display: grid; grid-template-columns: minmax(0,1fr) 600px; gap: 80px; align-items: center; min-height: 711px; }
+  .threads-layout h2 { margin: 0; }
+  .threads-copy p { margin: 24px 0 0; color: #45443F; font-size: 20px; line-height: 1.6; }
+  .threads-copy .thread-note { margin-top: 20px; color: #625D53; font-size: 15px; }
+  .thread-progress { padding: 28px 30px; border: 1px solid #DCCDB2; border-radius: 24px; background: #FBF7F0; box-shadow: 0 30px 60px -40px rgba(70,45,10,.4); }
+  .thread-progress-top { display: flex; align-items: end; justify-content: space-between; }
+  .thread-progress small { color: #8A5A12; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  .thread-progress strong { display: block; margin-top: 10px; font-family: var(--serif); font-size: 36px; font-weight: 400; line-height: 1; }
+  .thread-progress-top > span { color: #625D53; font-size: 15px; }
+  .thread-segments { display: flex; gap: 6px; margin-top: 20px; }
+  .thread-segments i { flex: 1; height: 6px; border-radius: 3px; background: #E2D6C1; }
+  .thread-segments i:nth-child(-n+4) { background: #D9993A; }
+  .thread-passage { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #E2D6C1; font-size: 15px; }
+  .thread-passage span { color: #625D53; }
+  .thread-passage strong { margin: 0; font-size: 21px; white-space: nowrap; }
+  .thread-topics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin-top: 20px; }
+  .thread-topics span { display: grid; place-items: center; min-height: 46px; border: 1px solid #CDBB9C; border-radius: 999px; color: #17181D; font-size: 14.5px; white-space: nowrap; }
+  .thread-topics span:first-child { border-color: #17181D; background: #17181D; color: #F5EFE4; }
+  .feature-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 80px; align-items: center; }
+  .funnel-v2 .bible-section { background: #F5EFE4; overflow: hidden; }
+  .bible-gallery { display: flex; align-items: center; justify-content: center; gap: 25px; min-height: 510px; }
+  .bible-gallery img { width: min(43%,235px); height: auto; border: 9px solid #17181D; border-radius: 36px; box-shadow: 0 28px 54px -22px rgba(23,24,29,.3); }
+  .bible-gallery img:last-child { transform: translateY(36px); }
+  .feature-layout p, .privacy-note p { color: #45443F; font-size: 18px; }
+  .feature-list { display: grid; gap: 13px; padding: 0; margin: 24px 0 0; list-style: none; }
+  .feature-list li { padding-top: 12px; border-top: 1px solid #E2D6C1; }
+  .funnel-v2 .privacy-section { background: #0B0D12; color: #F2EDE4; }
+  .privacy-note { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .privacy-note h2 { color: #F2EDE4; }
+  .privacy-note p { color: rgba(242,237,228,.75); }
+  .privacy-note .text-link { color: #E8A94B; }
+  .text-link { color: #17181D; font-size: 15px; font-weight: 600; border-bottom: 1px solid #8A5A12; padding-bottom: 3px; }
+  .funnel-v2 .pricing-section { background: #F5EFE4; }
+  .pricing-heading { max-width: 750px; margin-bottom: 40px; }
+  .pricing-heading p, .plan > p:not(.plan-price) { color: #45443F; }
+  .plans { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
+  .plan { display: flex; flex-direction: column; padding: 42px; border: 1px solid #DCCDB2; border-radius: 24px; background: #FBF7F0; }
+  .plan-price { margin: 12px 0; font-family: var(--serif); font-size: clamp(2.5rem,4vw,3.8rem); line-height: 1; }
+  .plan-price small { font-family: var(--sans); font-size: 15px; color: #625D53; }
+  .plan ul { list-style: none; padding: 0; margin: 20px 0 32px; border-top: 1px solid #E2D6C1; }
+  .plan li { padding: 12px 0; border-bottom: 1px solid #E2D6C1; }
   .plan .btn { align-self: flex-start; margin-top: auto; }
-  .founding { display: flex; justify-content: space-between; gap: 30px; align-items: center; margin-top: 20px; padding: 25px 30px; border: 1px solid var(--line); border-radius: 14px; background: var(--ink-2); }
-  .founding strong { font-family: var(--serif); font-size: 1.45rem; font-weight: 400; }
-  .founding p { color: var(--parchment-70); margin: 6px 0 0; font-size: .86rem; }
-  .founding .price { color: var(--dawn); white-space: nowrap; font-family: var(--serif); font-size: 2rem; }
-  .price-disclaimer { color: var(--parchment-70); font-size: .8rem; margin: 18px 0 0; }
-  .faq-wrap { max-width: 800px; }
-  .faq-wrap h2 { margin: 0 0 30px; }
-  .faq-wrap details { border-bottom: 1px solid var(--line); }
-  .faq-wrap details:first-of-type { border-top: 1px solid var(--line); }
-  .faq-wrap summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0; color: var(--parchment); font-weight: 600; }
+  .founding { display: flex; justify-content: space-between; align-items: center; gap: 30px; margin-top: 24px; padding: 28px 32px; border: 1px solid #DCCDB2; border-radius: 24px; background: #FBF7F0; }
+  .founding strong { font-family: var(--serif); font-size: 29px; font-weight: 400; }
+  .founding p, .price-disclaimer { color: #625D53; font-size: 14px; }
+  .founding .price { color: #8A5A12; font-family: var(--serif); font-size: 34px; white-space: nowrap; }
+  .price-disclaimer { margin: 18px 0 0; }
+  .funnel-v2 #faq { background: #EDE3D1; }
+  .faq-wrap { max-width: 820px; }
+  .faq-wrap details { border-bottom: 1px solid #CDBB9C; }
+  .faq-wrap details:first-of-type { border-top: 1px solid #CDBB9C; }
+  .faq-wrap summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0; cursor: pointer; list-style: none; font-weight: 600; }
   .faq-wrap summary::-webkit-details-marker { display: none; }
-  .faq-wrap summary::after { content: '+'; font-size: 1.5rem; color: var(--dawn); font-weight: 400; line-height: 1; }
+  .faq-wrap summary::after { content: '+'; color: #8A5A12; font-size: 26px; font-weight: 400; }
   .faq-wrap details[open] summary::after { content: '−'; }
-  .faq-wrap details p { color: var(--parchment-70); max-width: 65ch; margin: 0 0 24px; }
-  .funnel-v2 .closing-section { padding-bottom: clamp(76px, 8vw, 120px); }
-  .closing-panel { background: var(--parchment); color: #faf8f1; border-radius: 18px; text-align: center; padding: clamp(54px, 8vw, 106px) 24px; }
-  .closing-panel blockquote { max-width: 820px; margin: 0 auto 16px; font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.8rem); line-height: 1.12; letter-spacing: -.025em; }
-  .closing-panel cite { display: block; font-size: .75rem; font-style: normal; text-transform: uppercase; letter-spacing: .16em; color: #d5bc8e; }
-  .closing-panel p { color: #d6d0c4; margin: 30px auto 24px; }
-  .closing-panel .btn-primary { background: #faf8f1; color: #1d1b1a; border-color: #faf8f1; }
-  .closing-panel .btn-primary:hover { background: #eee5d6; border-color: #eee5d6; color: #1d1b1a; }
-  .funnel-v2 footer { padding: 38px 0; }
+  .faq-wrap details p { max-width: 65ch; margin: 0 0 24px; color: #45443F; }
+  .closing-panel { padding: clamp(54px,8vw,106px) 24px; border-radius: 24px; background: #0B0D12; color: #F2EDE4; text-align: center; }
+  .closing-panel blockquote { max-width: 820px; margin: 0 auto 16px; font-family: var(--serif); font-size: clamp(2.5rem,5vw,4.8rem); line-height: 1.12; }
+  .closing-panel cite { display: block; color: #E8A94B; font-size: 12px; font-style: normal; letter-spacing: .16em; text-transform: uppercase; }
+  .closing-panel p { margin: 30px auto 24px; color: rgba(242,237,228,.75); }
+  .closing-panel .btn-primary { border-color: #F5EFE4; background: #F5EFE4; color: #17181D; }
+  .closing-panel .btn-primary:hover { background: #EDE3D1; color: #17181D; }
   .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 22px; }
-  .footer-inner p { margin: 0; color: var(--parchment-70); font-size: .79rem; }
+  .footer-inner p { margin: 0; color: #625D53; font-size: 13px; }
   .footer-links { display: flex; flex-wrap: wrap; gap: 22px; }
-  .footer-links a { color: var(--parchment-70); font-size: .86rem; }
-  @media (max-width: 1050px) {
-    .site-links { gap: 13px; }
-    .site-links a { font-size: .72rem; }
-    .nav-download { padding-inline: 13px; }
+  @media (max-width: 1100px) {
+    .site-links { gap: 18px; }
+    .hero-layout { grid-template-columns: minmax(0,1fr) 430px; gap: 32px; }
+    .hero-art { width: 430px; height: 560px; }
+    .hero-stage { transform: scale(.8); transform-origin: top left; }
+    .intro { grid-template-columns: 1fr 1fr; gap: 48px; }
+    .threads-layout { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 40px; }
   }
   @media (max-width: 850px) {
     .site-links { display: none; }
-    .hero-layout, .feature-layout { grid-template-columns: 1fr; }
-    .hero-visual { min-height: auto; padding: 30px 0; }
-    .hero-visual .shot { width: min(33vw, 245px); }
-    .hero-copy h1 { max-width: none; }
-    .feature-layout .thread-art { order: 2; }
-    .bible-gallery { min-height: 450px; }
-    .intro { grid-template-columns: 1fr; gap: 20px; }
+    .hero-layout, .intro, .feature-layout, .grace-layout, .threads-layout, .privacy-note { grid-template-columns: 1fr; }
+    .hero-layout { gap: 48px; }
+    .hero-art { justify-self: center; width: 540px; height: 700px; }
+    .hero-stage { transform: none; }
+    .hero-trust { flex-wrap: wrap; width: auto; }
+    .intro-copy { padding-top: 0; }
+    .moments { grid-template-columns: 1fr; }
+    .moment { height: 620px; }
+    .threads-layout { min-height: auto; }
+    .bible-gallery { order: 2; }
   }
   @media (max-width: 620px) {
-    html { scroll-padding-top: 70px; }
-    .funnel-v2 .nav-inner { min-height: 66px; }
-    .funnel-v2 .wordmark { font-size: 1.3rem; }
-    .nav-download { font-size: .78rem; min-height: 44px !important; padding: 10px 14px; }
-    .funnel-v2 section { padding-block: 72px; }
-    .funnel-v2 .hero { padding-top: 62px; }
-    .funnel-v2 h1 { font-size: clamp(3.8rem, 14vw, 5.8rem); }
-    .hero-visual .shot { width: min(43vw, 220px); }
-    .hero-visual .shot:first-child { transform: rotate(-6deg) translate(9px, 9px); }
-    .hero-visual .shot:last-child { transform: rotate(6deg) translate(-9px, -12px); }
-    .hero-actions .btn { width: 100%; }
-    .proof-strip .container { display: block; }
-    .proof-strip span { min-height: 65px; }
-    .proof-strip span + span { border-left: 0; border-top: 1px solid var(--line); }
-    .section-heading { display: block; }
-    .section-heading p { margin-top: 17px; }
-    .moments, .plans { grid-template-columns: 1fr; }
-    .moment-media { min-height: 310px; }
-    .privacy-note { display: block; }
-    .privacy-note div { margin-top: 25px; }
-    .founding { display: block; }
+    html { scroll-padding-top: 72px; }
+    .funnel-v2 .container { padding-inline: 20px; }
+    .funnel-v2 section { padding: 76px 0; }
+    .funnel-v2 .nav-inner { height: 66px; }
+    .funnel-v2 .wordmark { font-size: 24px; }
+    .nav-download { padding-inline: 16px; font-size: 13px; }
+    .funnel-v2 .hero { padding: 54px 0 70px; }
+    .hero-copy h1 { font-size: clamp(72px,18vw,100px); }
+    .hero-lede { font-size: 18px; }
+    .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; }
+    .hero-actions .btn { width: 100%; min-height: 54px; font-size: 15px; }
+    .hero-trust { gap: 15px 24px; margin-top: 38px; font-size: 13px; }
+    .hero-art { width: 335px; height: 435px; }
+    .hero-stage { left: 50%; margin-left: -270px; transform: scale(.62); transform-origin: top center; }
+    .hero-chip { right: 0; }
+    .funnel-v2 h2 { font-size: clamp(44px,11vw,62px); }
+    .night-heading h2 { font-size: clamp(52px,12vw,70px); }
+    .night-heading p, .intro-copy p, .grace-layout > div > p, .threads-copy p { font-size: 17px; }
+    .intro-copy p + p { font-size: 27px; }
+    .moment { height: 620px; padding: 30px 26px 0; }
+    .moment h3 { font-size: 34px; }
+    .moment p { font-size: 16px; }
+    .moment-phone { top: 365px; }
+    .why-aloud { grid-template-columns: 1fr; gap: 15px; }
+    .why-aloud p { font-size: 27px; }
+    .grace-layout { gap: 40px; }
+    .threads-layout { gap: 38px; }
+    .thread-topics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .thread-passage { align-items: start; flex-direction: column; }
+    .bible-gallery { min-height: 360px; }
+    .plans { grid-template-columns: 1fr; }
+    .plan { padding: 28px; }
+    .founding, .footer-inner { display: block; }
     .founding .price { display: block; margin-top: 16px; }
-    .footer-inner { display: block; }
     .footer-links { margin-top: 22px; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (max-width: 360px) {
+    .hero-art { width: 280px; height: 365px; }
+    .hero-stage { transform: scale(.52); }
+    .hero-actions .btn { padding-inline: 14px; font-size: 14px; gap: 6px; white-space: nowrap; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-ring { animation: none; opacity: 0; } }
 </style>
 </head>
 <body class="funnel-v2">
 <a class="sr-only" href="#main">Skip to content</a>
 <header class="nav" id="nav">
   <div class="container nav-inner">
-    <a class="wordmark" href="index.html" aria-label="With Him home"><span class="mark" aria-hidden="true"></span>With Him</a>
-    <nav class="site-links" aria-label="Main navigation">
+    <a class="wordmark" href="#hero" aria-label="With Him home"><span class="mark" aria-hidden="true"></span>With Him</a>
+    <nav class="site-links" aria-label="Primary navigation">
       <a href="#mechanism">How it works</a>
-      <a href="#threads">Threads</a>
       <a href="#reader">The Bible</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
@@ -203,80 +263,80 @@
     <div class="container hero-layout">
       <div class="hero-copy">
         <p class="hero-badge">Now on the App Store</p>
-        <h1 id="hero-title">Wake up<br>with Him.</h1>
-        <p class="hero-lede">The Bible app with an alarm that goes quiet when you read a verse aloud. When a long scroll takes over, the same moment with Scripture steps in.</p>
+        <h1 id="hero-title">Wake up<br><em>with Him.</em></h1>
+        <p class="hero-lede">The Bible app with an alarm that stops only when you read a verse out loud. And when a late-night scroll runs long, the same thirty seconds gently steps in.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://apps.apple.com/us/app/with-him-wake-in-the-words/id6795353533" data-app-store="hero">Get With Him for iPhone</a>
+          <a class="btn btn-primary" href="https://apps.apple.com/us/app/with-him-wake-in-the-words/id6795353533" data-app-store="hero">Download on the App Store <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="#mechanism">See how it works</a>
         </div>
+        <p class="hero-note">Free to download · iOS only</p>
+        <div class="hero-trust" aria-label="What With Him includes">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10.5 5 8 4.5 4 4.5v13c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-13c-4 0-6.5.5-8 2zM12 6.5v13"/></svg>Whole Bible, free forever</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Bible works offline</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Verse audio stays on your phone</span>
+        </div>
       </div>
-      <div class="hero-visual" aria-label="With Him app screens">
-        <img class="shot" src="assets/screenshots/wake-gate.png" width="1206" height="2622" alt="Wake with a verse screen showing the morning passage and a choice to speak or type it" fetchpriority="high">
-        <img class="shot" src="assets/screenshots/today.png" width="1206" height="2622" alt="Today screen with a daily Bible passage and a weekly reading rhythm" fetchpriority="high">
+      <div class="hero-art" aria-label="With Him app screens">
+        <div class="hero-stage">
+          <div class="hero-arch" aria-hidden="true"></div>
+          <div class="device hero-back"><img src="assets/screenshots/today.png" width="1206" height="2622" alt="Today screen with Psalm 46 and the week's reading" fetchpriority="high"></div>
+          <span class="hero-ring" aria-hidden="true"></span><span class="hero-ring second" aria-hidden="true"></span><span class="hero-ring third" aria-hidden="true"></span>
+          <div class="device hero-front"><img src="assets/screenshots/wake-gate.png" width="1206" height="2622" alt="Morning verse screen with words lighting up as they are read aloud" fetchpriority="high"></div>
+          <span class="hero-chip"><i aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>Words light up as you read</span>
+        </div>
       </div>
     </div>
   </section>
-  <div class="proof-strip" aria-label="What With Him includes">
-    <div class="container">
-      <span>Whole Bible, free forever</span>
-      <span>Read offline</span>
-      <span>Voice processed on-device</span>
-    </div>
-  </div>
   <section id="problem" aria-labelledby="problem-title">
     <div class="container intro">
-      <h2 id="problem-title">Your phone gets there first.</h2>
-      <p>You reach for the alarm and end up in the feed. Later, one quick check becomes another long scroll. The Bible is on that same phone, but it waits for you to remember it. With Him makes room for Scripture right where those habits begin.</p>
+      <div><span class="section-kicker">The honest part</span><h2 id="problem-title">Your phone gets the first word of the day. <em>And the last.</em></h2></div>
+      <div class="intro-copy">
+        <p>The alarm lives on your phone, so the feed is one swipe away before your eyes are fully open. Your Bible app is on that same phone too, patiently waiting four taps deep.</p>
+        <p>It isn’t a motivation problem. You already know His Word matters. The feed just gets there first, so With Him gets there first instead.</p>
+      </div>
     </div>
   </section>
   <section class="moments-section" id="mechanism" aria-labelledby="moments-title">
     <div class="container">
-      <div class="section-heading">
-        <h2 id="moments-title">Two moments. A little more room for God.</h2>
-        <p>Not another task to remember. A verse in the moments you already meet your phone.</p>
-      </div>
+      <div class="night-heading"><span class="section-kicker">How it works</span><h2 id="moments-title">Two moments.<br><em>Thirty seconds each.</em></h2><p>Most Bible apps wait on your home screen to be opened. With Him meets you at the two moments your phone usually wins, and nowhere else.</p></div>
       <div class="moments">
         <article class="moment">
-          <div class="moment-copy">
-            <h3>Wake with a verse</h3>
-            <p>Set an alarm, then begin the day with Scripture before opening anything else. Read the verse aloud or type it instead.</p>
-          </div>
-          <div class="moment-media">
-            <img class="shot" src="assets/screenshots/wake-gate.png" width="1206" height="2622" alt="Morning verse screen with voice and typing options" loading="lazy">
-            <img class="shot" src="assets/screenshots/habits.png" width="1206" height="2622" alt="Habits screen showing a scheduled Wake with a verse alarm" loading="lazy">
-          </div>
+          <div class="moment-heading"><span class="moment-number">I</span>At dawn</div>
+          <h3>Wake with a verse.</h3>
+          <p>An alarm that hands you Scripture, not a snooze button. Read the verse out loud, watch each word light up, and the alarm goes quiet. No passage runs past sixty words.</p>
+          <div class="moment-tags"><span>About 30 seconds</span><span>Or type it instead</span></div>
+          <div class="device moment-phone"><img src="assets/screenshots/habits.png" width="1206" height="2622" alt="Habits screen with a scheduled morning verse alarm" loading="lazy"></div>
         </article>
         <article class="moment">
-          <div class="moment-copy">
-            <h3>Pause the scroll</h3>
-            <p>Choose the apps you want to pause. After a stretch of scrolling, a verse invites you to stop, read, and return with intention.</p>
-          </div>
-          <div class="moment-media">
-            <img class="shot" src="assets/screenshots/focus-gate.png" width="1206" height="2622" alt="Scroll pause screen presenting a Bible verse before returning to an app" loading="lazy">
-          </div>
+          <div class="moment-heading"><span class="moment-number">II</span>Mid-scroll</div>
+          <h3>Pause the scroll.</h3>
+          <p>A verse between you and the next hour. Pick the apps to pause. After about five minutes of steady scrolling, a verse appears. Read it aloud and you’re right back in.</p>
+          <div class="moment-tags"><span>You pick the apps</span><span>Off in three taps, anytime</span></div>
+          <div class="device moment-phone"><img src="assets/screenshots/focus-gate.png" width="1206" height="2622" alt="Pause the scroll screen with a verse and microphone" loading="lazy"></div>
         </article>
       </div>
+      <div class="why-aloud"><strong>Why out loud?</strong><p>You can swipe a notification away half asleep. You can’t say a sentence out loud without being present for it.</p></div>
     </div>
   </section>
-  <section class="grace" id="legalistic" aria-labelledby="grace-title">
-    <div class="container">
-      <span class="grace-rule" aria-hidden="true"></span>
-      <h2 id="grace-title">Grace, not guilt.</h2>
-      <p>Reading a verse is not something you owe God. This is simply a way to make space for words you already want close. Miss a day, start again. No score to settle.</p>
+  <section id="legalistic" aria-labelledby="grace-title">
+    <div class="container grace-layout">
+      <div><span class="section-kicker">Grace, not guilt</span><h2 id="grace-title">A doorbell, <em>not a toll gate.</em></h2><p>Reading a verse at 6:40 earns you nothing, from God or from the app. It simply puts His Word in front of you at the moment you’d have missed it, then gets out of the way.</p></div>
+      <ul class="grace-list">
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></span><div><h3>No streaks to break</h3><p>Miss a day or a month. Nothing scolds you, and nothing chases you.</p></div></li>
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 15.5l7-7"/></svg></span><div><h3>No failure screens</h3><p>No red X, no score, no guilt-trip notification about a day you missed.</p></div></li>
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/></svg></span><div><h3>Honest about its limits</h3><p>iOS lets you force-quit any app. With Him doesn’t make skipping impossible, just a little harder than thirty seconds of reading.</p></div></li>
+      </ul>
     </div>
   </section>
-  <section id="threads" aria-labelledby="threads-title">
-    <div class="container feature-layout">
-      <div>
-        <h2 id="threads-title">A thread to follow, not a verse to forget.</h2>
-        <p>Threads gather passages around a theme and let you read them in sequence. Each small encounter can belong to a larger story instead of disappearing at the next notification.</p>
-        <p class="feature-aside">Open the app for today's Scripture, then keep reading when you have more time.</p>
-      </div>
-      <div class="thread-art" aria-label="Examples of Scripture Threads">
-        <small>A journey through Scripture</small>
-        <div class="thread-row"><span>Anxiety</span><span>Philippians 4:6–7</span></div>
-        <div class="thread-row active"><span>Gratitude</span><span>Psalm 100:4</span></div>
-        <div class="thread-row"><span>Rest</span><span>Matthew 11:28</span></div>
+  <section class="threads-section" id="threads" aria-labelledby="threads-title">
+    <div class="container threads-layout">
+      <div class="threads-copy"><span class="section-kicker">Threads</span><h2 id="threads-title">Not a random verse. <em>A journey.</em></h2><p>Your daily verse comes from a Thread: a hand-written sequence of passages on one theme, read in order. Wake with a verse and Pause the scroll both draw from it, so every reading moves you forward.</p><p class="thread-note">Twelve Threads in all, written and added by hand over time.</p></div>
+      <div aria-label="Illustrative Thread progress and topics">
+        <div class="thread-progress"><div class="thread-progress-top"><div><small>Current Thread</small><strong>Anxiety</strong></div><span>4 of 14</span></div>
+          <div class="thread-segments" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="thread-passage"><span>Today’s passage</span><strong>Philippians 4:6–7</strong></div>
+        </div>
+        <div class="thread-topics" aria-label="Thread themes"><span>Anxiety</span><span>Identity</span><span>Grief</span><span>Purpose</span><span>Temptation</span><span>Gratitude</span><span>Forgiveness</span><span>Waiting</span><span>Courage</span><span>Provision</span><span>Rest</span><span>Life of Christ</span></div>
       </div>
     </div>
   </section>
@@ -297,7 +357,7 @@
       </div>
     </div>
   </section>
-  <section id="privacy" aria-labelledby="privacy-title">
+  <section class="privacy-section" id="privacy" aria-labelledby="privacy-title">
     <div class="container privacy-note">
       <h2 id="privacy-title">Your voice stays yours.</h2>
       <div>
