@@ -136,18 +136,13 @@
   .bible-gallery { display: flex; align-items: center; justify-content: center; gap: 25px; min-height: 510px; }
   .bible-gallery img { width: min(43%,235px); height: auto; border: 9px solid #17181D; border-radius: 36px; box-shadow: 0 28px 54px -22px rgba(23,24,29,.3); }
   .bible-gallery img:last-child { transform: translateY(36px); }
-  .feature-layout p, .privacy-note p { color: #45443F; font-size: 18px; }
+  .feature-layout p { color: #45443F; font-size: 18px; }
   .feature-list { display: grid; gap: 13px; padding: 0; margin: 24px 0 0; list-style: none; }
   .feature-list li { padding-top: 12px; border-top: 1px solid #E2D6C1; }
-  .funnel-v2 .privacy-section { background: #0B0D12; color: #F2EDE4; }
-  .privacy-note { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-  .privacy-note h2 { color: #F2EDE4; }
-  .privacy-note p { color: rgba(242,237,228,.75); }
-  .privacy-note .text-link { color: #E8A94B; }
-  .text-link { color: #17181D; font-size: 15px; font-weight: 600; border-bottom: 1px solid #8A5A12; padding-bottom: 3px; }
-  .funnel-v2 .pricing-section { background: #F5EFE4; }
+  .funnel-v2 .pricing-section { padding-top: 0; background: #F5EFE4; }
+  .pricing-section > .container { padding-top: 128px; border-top: 1px solid #E2D6C1; }
   .pricing-heading { max-width: 750px; margin-bottom: 40px; }
-  .pricing-heading p, .plan > p:not(.plan-price) { color: #45443F; }
+  .plan > p:not(.plan-price) { color: #45443F; }
   .plans { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; }
   .plan { display: flex; flex-direction: column; padding: 42px; border: 1px solid #DCCDB2; border-radius: 24px; background: #FBF7F0; }
   .plan-price { margin: 12px 0; font-family: var(--serif); font-size: clamp(2.5rem,4vw,3.8rem); line-height: 1; }
@@ -185,7 +180,7 @@
   }
   @media (max-width: 850px) {
     .site-links { display: none; }
-    .hero-layout, .intro, .feature-layout, .grace-layout, .threads-layout, .privacy-note { grid-template-columns: 1fr; }
+    .hero-layout, .intro, .feature-layout, .grace-layout, .threads-layout { grid-template-columns: 1fr; }
     .hero-layout { gap: 48px; }
     .hero-art { justify-self: center; width: 540px; height: 700px; }
     .hero-stage { transform: none; }
@@ -200,6 +195,7 @@
     html { scroll-padding-top: 72px; }
     .funnel-v2 .container { padding-inline: 20px; }
     .funnel-v2 section { padding: 76px 0; }
+    .pricing-section > .container { padding-top: 76px; }
     .funnel-v2 .nav-inner { height: 66px; }
     .funnel-v2 .wordmark { font-size: 24px; }
     .nav-download { padding-inline: 16px; font-size: 13px; }
@@ -260,12 +256,12 @@
       <div class="hero-copy">
         <p class="hero-badge">Now on the App Store</p>
         <h1 id="hero-title">Wake up<br><em>with Him.</em></h1>
-        <p class="hero-lede">The Bible app with an alarm that stops only when you read a verse out loud. And when a late-night scroll runs long, the same thirty seconds gently steps in.</p>
+        <p class="hero-lede">The Bible app with an alarm that stops only when you read a verse out loud. It can pause a late-night scroll the same way.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://apps.apple.com/us/app/with-him-wake-in-the-words/id6795353533" data-app-store="hero">Download on the App Store <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="#mechanism">See how it works</a>
         </div>
-        <p class="hero-note">Free to download · iOS only</p>
+        <p class="hero-note">Free to download · iPhone only</p>
         <div class="hero-trust" aria-label="What With Him includes">
           <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5C10.5 5 8 4.5 4 4.5v13c4 0 6.5.5 8 2 1.5-1.5 4-2 8-2v-13c-4 0-6.5.5-8 2zM12 6.5v13"/></svg>Whole Bible, free forever</span>
           <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>Bible works offline</span>
@@ -287,14 +283,14 @@
     <div class="container intro">
       <div><span class="section-kicker">The honest part</span><h2 id="problem-title">Your phone gets the first word of the day. <em>And the last.</em></h2></div>
       <div class="intro-copy">
-        <p>The alarm lives on your phone, so the feed is one swipe away before your eyes are fully open. Your Bible app is on that same phone too, patiently waiting four taps deep.</p>
-        <p>It isn’t a motivation problem. You already know His Word matters. The feed just gets there first, so With Him gets there first instead.</p>
+        <p>Before your eyes are fully open, the feed is one swipe away. Your Bible app is four taps deep.</p>
+        <p>You don’t need more willpower. With Him gets to you before the feed does.</p>
       </div>
     </div>
   </section>
   <section class="moments-section" id="mechanism" aria-labelledby="moments-title">
     <div class="container">
-      <div class="night-heading"><span class="section-kicker">How it works</span><h2 id="moments-title">Two moments.<br><em>Thirty seconds each.</em></h2><p>Most Bible apps wait on your home screen to be opened. With Him meets you at the two moments your phone usually wins, and nowhere else.</p></div>
+      <div class="night-heading"><span class="section-kicker">How it works</span><h2 id="moments-title">Two moments.<br><em>Thirty seconds each.</em></h2><p>Most Bible apps wait for you to open them. With Him comes to you at the two moments your phone usually wins.</p></div>
       <div class="moments">
         <article class="moment">
           <div class="moment-heading"><span class="moment-number">I</span>At dawn</div>
@@ -306,7 +302,7 @@
         <article class="moment">
           <div class="moment-heading"><span class="moment-number">II</span>Mid-scroll</div>
           <h3>Pause the scroll.</h3>
-          <p>A verse between you and the next hour. Pick the apps to pause. After about five minutes of steady scrolling, a verse appears. Read it aloud and you’re right back in.</p>
+          <p>Guard your time against social media with a verse. After about five minutes of scrolling, one appears. Read it aloud and you’re right back in.</p>
           <div class="moment-tags"><span>You pick the apps</span><span>Off in three taps, anytime</span></div>
           <div class="device moment-phone"><img src="assets/screenshots/focus-gate.png" width="1206" height="2622" alt="Pause the scroll screen with a verse and microphone" loading="lazy"></div>
         </article>
@@ -316,17 +312,16 @@
   </section>
   <section id="legalistic" aria-labelledby="grace-title">
     <div class="container grace-layout">
-      <div><span class="section-kicker">Grace, not guilt</span><h2 id="grace-title">A doorbell, <em>not a toll gate.</em></h2><p>Reading a verse at 6:40 earns you nothing, from God or from the app. It simply puts His Word in front of you at the moment you’d have missed it, then gets out of the way.</p></div>
+      <div><span class="section-kicker">Grace, not guilt</span><h2 id="grace-title">A doorbell, <em>not a toll gate.</em></h2><p>Reading a verse at 6:40 earns you nothing, from God or from the app. It puts His Word in front of you when you’d have missed it, then gets out of the way.</p></div>
       <ul class="grace-list">
-        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></span><div><h3>No streaks to break</h3><p>Miss a day or a month. Nothing scolds you, and nothing chases you.</p></div></li>
-        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 15.5l7-7"/></svg></span><div><h3>No failure screens</h3><p>No red X, no score, no guilt-trip notification about a day you missed.</p></div></li>
-        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/></svg></span><div><h3>Honest about its limits</h3><p>iOS lets you force-quit any app. With Him doesn’t make skipping impossible, just a little harder than thirty seconds of reading.</p></div></li>
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></span><div><h3>No streaks to break</h3><p>Miss a day or a month. You won’t get a red X, a score, or a guilt-trip notification.</p></div></li>
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/></svg></span><div><h3>Honest about its limits</h3><p>iOS lets you force-quit any app, this one included. With Him only makes skipping a little harder than thirty seconds of reading.</p></div></li>
       </ul>
     </div>
   </section>
   <section class="threads-section" id="threads" aria-labelledby="threads-title">
     <div class="container threads-layout">
-      <div class="threads-copy"><span class="section-kicker">Threads</span><h2 id="threads-title">Not a random verse. <em>A journey.</em></h2><p>Your daily verse comes from a Thread: a hand-written sequence of passages on one theme, read in order. Wake with a verse and Pause the scroll both draw from it, so every reading moves you forward.</p><p class="thread-note">Twelve Threads in all, written and added by hand over time.</p></div>
+      <div class="threads-copy"><span class="section-kicker">Threads</span><h2 id="threads-title">Not a random verse. <em>A journey.</em></h2><p>Your daily verse comes from a Thread, a set of hand-picked passages on one theme, read in order. Each reading picks up where the last one ended.</p><p class="thread-note">Twelve Threads in all, written and added by hand over time.</p></div>
       <div aria-label="Illustrative Thread progress and topics">
         <div class="thread-progress"><div class="thread-progress-top"><div><small>Current Thread</small><strong>Anxiety</strong></div><span>4 of 14</span></div>
           <div class="thread-segments" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
@@ -344,21 +339,12 @@
       </div>
       <div>
         <h2 id="bible-title">The Bible is the heart of it.</h2>
-        <p>Every book is available to read for free, without a subscription. Your reading doesn't have to end when the alarm does.</p>
+        <p>Your reading doesn’t have to end when the alarm does.</p>
         <ul class="feature-list">
-          <li>All 66 books, available offline</li>
-          <li>Search and return to passages that stay with you</li>
-          <li>Save a place for later in your library</li>
+          <li>All 66 books, free and offline</li>
+          <li>Search the whole Bible</li>
+          <li>Save verses to your library</li>
         </ul>
-      </div>
-    </div>
-  </section>
-  <section class="privacy-section" id="privacy" aria-labelledby="privacy-title">
-    <div class="container privacy-note">
-      <h2 id="privacy-title">Your voice stays yours.</h2>
-      <div>
-        <p>Reading aloud should feel personal. Speech recognition for the verse happens on your iPhone, not in a cloud recording. The Bible is available offline, too.</p>
-        <a class="text-link" href="privacy.html">Read the privacy policy</a>
       </div>
     </div>
   </section>
@@ -366,7 +352,6 @@
     <div class="container">
       <div class="pricing-heading">
         <h2 id="pricing-title">Scripture is free. Build the habit if you want to.</h2>
-        <p>Download With Him at no cost. The Bible stays free; the habit tools are offered through an optional in-app subscription.</p>
       </div>
       <div class="plans">
         <article class="plan">
@@ -383,7 +368,7 @@
         <article class="plan">
           <h3>Habits</h3>
           <p class="plan-price">$4.99 <small>/ month</small></p>
-          <p>Or $39.99 per year in the US. Eligible new subscribers can try either plan free for 7 days.</p>
+          <p>Or $39.99 a year. Eligible new subscribers get 7 days free.</p>
           <ul>
             <li>Everything in Free</li>
             <li>Wake with a verse</li>
@@ -392,31 +377,27 @@
           <a class="btn btn-primary" href="https://apps.apple.com/us/app/with-him-wake-in-the-words/id6795353533" data-app-store="pricing-habits">Explore in the app</a>
         </article>
       </div>
-      <p class="price-disclaimer">US prices shown. One introductory trial per subscription group; eligibility, billing, and renewal terms are shown by Apple before purchase.</p>
+      <p class="price-disclaimer">US prices. One free trial per Apple ID across both plans. Apple shows the full terms before you buy.</p>
     </div>
   </section>
   <section id="faq" aria-labelledby="faq-title">
     <div class="container faq-wrap">
       <h2 id="faq-title">A few good questions.</h2>
       <details>
-        <summary>Is the Bible really free?</summary>
-        <p>Yes. You can read the whole Bible without paying for Habits. The optional subscription is for the verse alarm and scroll pause.</p>
+        <summary>Do I have to read out loud?</summary>
+        <p>No. You can type the verse instead.</p>
       </details>
       <details>
-        <summary>Can I use it without internet?</summary>
-        <p>The Bible is available offline, and verse speech recognition runs on your device. Some account or purchase actions may still require a connection.</p>
+        <summary>Is my verse reading recorded?</summary>
+        <p>No. Your iPhone checks the reading on the device, and the audio isn’t saved or sent anywhere.</p>
       </details>
       <details>
-        <summary>Do I have to speak my verse aloud?</summary>
-        <p>No. The verse screens also offer a typing option for quiet mornings or places where speaking isn't practical.</p>
+        <summary>Does it work without internet?</summary>
+        <p>Reading the Bible and finishing a verse both work offline. Signing in and purchases need a connection.</p>
       </details>
       <details>
         <summary>Which devices can use With Him?</summary>
-        <p>With Him is available for iPhone on the App Store. Check the listing for the latest iOS compatibility details.</p>
-      </details>
-      <details>
-        <summary>Where do I see subscription terms?</summary>
-        <p>Open the app to review the current price, eligibility, renewal terms, and purchase options before subscribing.</p>
+        <p>iPhone. The App Store listing shows which iOS versions are supported.</p>
       </details>
     </div>
   </section>
