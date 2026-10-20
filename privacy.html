@@ -6,14 +6,14 @@
 <meta name="theme-color" content="#F5F5F5">
 
 <title>Privacy Policy — With Him</title>
-<meta name="description" content="What With Him collects and why: verse-reading speech is processed on the device and never transmitted, your progress and settings are kept in your account, and there is no tracking, no analytics SDK and no advertising.">
+<meta name="description" content="What With Him collects and why: verse-reading speech stays on the device, account data supports your features, and optional PostHog usage analytics are off by default. No advertising or cross-app tracking.">
 <link rel="canonical" href="https://kipackjeong.github.io/withhim-funnel/privacy.html">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kipackjeong.github.io/withhim-funnel/privacy.html">
 <meta property="og:site_name" content="With Him">
 <meta property="og:title" content="Privacy Policy — With Him">
-<meta property="og:description" content="Verse-reading speech is processed on the device and never transmitted. There is no tracking and no advertising.">
+<meta property="og:description" content="Verse-reading speech stays on the device. Optional PostHog usage analytics are off by default, with no advertising or cross-app tracking.">
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -47,7 +47,7 @@
         <h1>Almost nothing leaves your phone.</h1>
         <p class="legal-meta">
           <span>Applies to the With Him iPhone app</span>
-          <span>Last updated 3 October 2026</span>
+          <span>Last updated 20 October 2026</span>
         </p>
       </div>
     </div>
@@ -68,7 +68,7 @@
             <li><a href="#screentime">Screen Time data</a></li>
             <li><a href="#collect">What we do collect</a></li>
             <li><a href="#purchases">Purchases</a></li>
-            <li><a href="#tracking">Tracking and advertising</a></li>
+            <li><a href="#tracking">Optional analytics, tracking and advertising</a></li>
             <li><a href="#processors">Who else is involved</a></li>
             <li><a href="#retention">How long anything is kept</a></li>
             <li><a href="#rights">Your rights</a></li>
@@ -79,7 +79,7 @@
         </nav>
 
         <h2 id="short">1. The short version</h2>
-        <p>With Him has no advertising or tracking. Using the app requires Sign in with Apple; finishing a verse reading to stop an alarm or lift the Focus Shield never waits on it. Your reading progress, reading history, alarms and settings are kept in your With Him account so they come back after a reinstall or on a new device; with With Him Plus, your notes, highlights, bookmarks and saved sermon notes are kept there too. If you choose AI sermon processing, an authenticated service sends your selected sermon recording, written notes and metadata to Microsoft Azure to prepare a draft for your review. Feedback also reaches our services when you choose to send it.</p>
+        <p>With Him has no advertising or cross-app tracking. Optional usage analytics through PostHog are off by default for each account and require your explicit consent while signed in; you can turn them off in Settings at any time. Using the app requires Sign in with Apple; finishing a verse reading to stop an alarm or lift the Focus Shield never waits on it. Your reading progress, reading history, alarms and settings are kept in your With Him account so they come back after a reinstall or on a new device; with With Him Plus, your notes, highlights, bookmarks and saved sermon notes are kept there too. If you choose AI sermon processing, an authenticated service sends your selected sermon recording, written notes and metadata to Microsoft Azure to prepare a draft for your review. Feedback also reaches our services when you choose to send it.</p>
         <p>The rest of this page is the same statement said precisely enough to be relied on.</p>
 
         <h2 id="voice">2. Your voice</h2>
@@ -123,8 +123,11 @@
         <p>Payment is processed entirely by Apple. We never see, receive or store your card details, billing address, or any other payment instrument.</p>
         <p>To know whether a subscription is active, the app uses RevenueCat, a subscription-infrastructure provider. RevenueCat receives the App Store purchase record and an anonymous identifier it generates for the installation, and returns whether the subscription is entitled. That identifier is not linked to your name or email unless you have signed in and we associate it.</p>
 
-        <h2 id="tracking">7. Tracking and advertising</h2>
-        <p>There is none. No advertising identifier is read, no cross-app or cross-site tracking is performed, no data is sold or shared with data brokers, and no third-party analytics SDK is embedded in the app. The App Tracking Transparency prompt does not appear because there is nothing to ask for. The app's privacy manifest, which Apple publishes on the App Store listing, says the same thing in Apple's own format.</p>
+        <h2 id="tracking">7. Optional analytics, tracking and advertising</h2>
+        <p>Usage analytics are optional and <strong>off by default for each account</strong>. We send usage events to PostHog to improve the app only while you are signed in and after you explicitly opt in through a signed-in onboarding or consent prompt, or <strong>Settings → Privacy → Share usage analytics</strong>. You can withdraw consent at any time by turning that setting off. Declining or withdrawing consent does not limit the app's features. No analytics events are collected while signed out or before consent, and actions from before consent are not sent later.</p>
+        <p>Events cover app usage, onboarding progress after consent, reading completion, paywall interactions and purchase or restore outcomes. They include event timestamps and limited app and device metadata (such as app version, operating-system version, device model and app language). Your stable Supabase account ID (UUID) is used as a pseudonymous identifier. This identifier links events to your account; the data is not anonymous. Reading-completion events do not identify the book, chapter or verse you read. Like other network services, PostHog may receive your IP address when handling requests.</p>
+        <p>We do not send PostHog your name, email address, survey answers, denomination or tradition, Scripture references or text, recordings, transcripts, sermon content, notes or conversation text. Session replay and automatic interaction capture are disabled.</p>
+        <p>No advertising identifier is read, no cross-app or cross-site tracking is performed, and no data is sold or shared with data brokers. PostHog is not used for advertising. We do not request App Tracking Transparency permission because we do not perform the advertising tracking that requires it.</p>
 
         <h2 id="processors">8. Who else is involved</h2>
         <p>These service providers have specific roles:</p>
@@ -133,6 +136,7 @@
           <li><strong>RevenueCat</strong> — subscription status only, as described above.</li>
           <li><strong>Supabase</strong> — authentication, the progress, reading history and settings kept in your account, your library if you have With Him Plus, and temporary private sermon uploads and processing jobs.</li>
           <li><strong>Microsoft Azure</strong> — sermon transcription and AI note preparation, under Microsoft's applicable <a href="https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy">Azure AI data privacy terms</a>.</li>
+          <li><strong>PostHog</strong> — optional, consent-based usage analytics processed in the United States as described above. See <a href="https://posthog.com/privacy">PostHog's privacy policy</a> and <a href="https://posthog.com/docs/privacy">privacy control documentation</a>.</li>
         </ul>
         <p>Nothing is sold, rented or shared for anyone's marketing purposes.</p>
 
@@ -142,6 +146,7 @@
         <p>Your reading history, progress and settings are kept in your account for as long as the account exists, because their whole purpose is to follow you over the years and across devices. They are small and they do not contain Scripture text.</p>
         <p>Deleting your account permanently deletes everything kept in it — reading history and any answers about how a verse landed, progress, alarms, settings, notes, highlights, bookmarks and sermon notes — from our servers and from the device you delete it on. It also cancels the account's processing jobs and schedules removal of temporary sermon content. Earlier versions of the app also kept reading progress and library content in your private iCloud account; we cannot read that data or delete it from our servers, and you can remove it in your Apple Account's iCloud storage settings. Feedback is kept while the issue it created remains useful.</p>
         <p>After temporary content is erased, we retain minimal operation identifiers and a one-way input digest until account deletion to prevent an old request from triggering another paid processing job. Cleanup identifiers may remain longer during a service outage until erasure can be verified; they do not include the erased note or transcript.</p>
+        <p>Turning analytics off stops future analytics collection and discards unsent events; it does not by itself erase events already sent. You can request deletion of your PostHog profile and associated events by contacting us. Deleting your With Him account also starts an asynchronous request to erase that account's PostHog profile and associated events. Provider processing may take time; analytics erasure is not immediate.</p>
 
         <section lang="ko" aria-label="말씀 읽기 기록 개인정보 안내">
           <h3>말씀 읽기 기록 개인정보 안내</h3>
@@ -156,6 +161,15 @@
           <p>설교 노트 작성과 원본 저장에는 녹음이 필요하지 않습니다. 녹음을 시작하기 전에 필요한 허락을 받아 주세요. 앱을 벗어나거나 화면을 잠그면 녹음은 일시 정지됩니다. AI 정리를 선택하고 전송에 동의할 때만 작성한 메모, 선택한 설교 정보와 녹음이 인증된 Supabase 서버와 Microsoft Azure로 전송됩니다. AI는 직접 쓴 메모를 우선하며, 결과는 검토하고 확인 후 저장해야 완성된 노트가 됩니다.</p>
           <p>원본 메모와 저장한 노트는 직접 삭제할 때까지 기기에 남으며, With Him Plus를 이용하면 확인 저장한 노트는 계정에도 보관되어 새 기기나 재설치 후에도 돌아옵니다. 기기의 녹음은 노트 확인 저장 또는 삭제 시 지워집니다. 7일 동안 사용하지 않은 초안의 녹음도 다음 정리 시 삭제되지만, 작성한 메모는 유지됩니다. 앱이 갑자기 종료되면 진행 중이던 녹음 파일은 복구되지 않을 수 있습니다.</p>
           <p>서버의 녹음은 대화 내용이 안전하게 저장되면 삭제합니다. 완료되지 않은 업로드는 24시간 후, 실패한 처리 자료와 확인되지 않은 결과는 최초 처리 후 최대 7일 이내에 정리 대상으로 전환됩니다. Azure 음성 작업에는 완료 후 48시간 만료를 설정하고 결과를 가져온 뒤 삭제를 요청합니다. 서비스 장애 시 실제 삭제가 늦어질 수 있어 재시도하며, Microsoft 자체 보안 및 오용 감시는 해당 약관을 따릅니다. 계정을 삭제하면 계정에 보관된 노트와 처리 작업, 임시 서버 자료가 함께 삭제됩니다.</p>
+        </section>
+
+        <section lang="ko" aria-label="선택적 사용 분석 개인정보 안내">
+          <h3>선택적 사용 분석 개인정보 안내</h3>
+          <p>사용 분석은 선택 사항이며 <strong>계정마다 기본적으로 꺼져 있습니다</strong>. 로그인한 상태에서 온보딩이나 동의 안내 화면 또는 <strong>설정 → 개인정보 보호 → 사용 통계 공유</strong>를 통해 직접 동의한 뒤에만 앱 개선을 위한 사용 이벤트가 PostHog로 전송됩니다. 설정에서 언제든 사용 분석을 끄고 동의를 철회할 수 있으며, 동의하지 않거나 철회해도 앱 기능 이용에는 제한이 없습니다. 로그인하지 않았거나 동의하기 전에는 분석 이벤트를 수집하지 않으며, 동의 전에 한 동작을 나중에 소급하여 보내지도 않습니다.</p>
+          <p>분석 대상은 앱 사용, 동의 후의 온보딩 진행, 읽기 완료, 구독 안내 화면에서의 동작과 구매 또는 구매 복원 결과입니다. 이벤트 발생 시각과 앱 버전·운영체제 버전·기기 모델·앱 언어 등 제한된 앱 및 기기 정보가 포함됩니다. 변경되지 않는 Supabase 계정 ID(UUID)를 가명 식별자로 사용합니다. 이 식별자로 이벤트가 계정에 연결되므로 익명 정보는 아닙니다. 읽기 완료 이벤트에는 읽은 성경의 책·장·절이 포함되지 않습니다. 다른 네트워크 서비스와 마찬가지로 PostHog는 요청을 처리할 때 IP 주소를 수신할 수 있습니다.</p>
+          <p>이름, 이메일 주소, 설문 답변, 교단이나 신앙 전통, 성경 구절 참조나 본문, 녹음, 녹취록, 설교 내용, 노트 및 대화 내용은 PostHog로 보내지 않습니다. 세션 다시 보기와 사용자 동작 자동 수집 기능은 비활성화되어 있습니다. 광고 식별자를 읽거나 앱 또는 웹사이트 간 추적을 하지 않으며, 데이터를 판매하거나 데이터 중개업체에 제공하지 않습니다. PostHog를 광고 목적으로 사용하지 않고, 광고 추적을 위한 앱 추적 투명성 권한도 요청하지 않습니다.</p>
+          <p>사용 분석을 끄면 이후 수집이 중단되고 아직 전송되지 않은 이벤트는 폐기되지만, 이미 전송된 이벤트가 자동으로 삭제되지는 않습니다. 연락처로 요청하시면 PostHog의 계정 프로필과 연결된 이벤트의 삭제를 요청할 수 있습니다. With Him 계정을 삭제할 때에도 해당 계정의 PostHog 프로필과 연결된 이벤트를 삭제하는 비동기 요청이 시작됩니다. 제공자의 처리에는 시간이 걸릴 수 있으며, 분석 데이터가 즉시 삭제되는 것은 아닙니다.</p>
+          <p>PostHog는 동의한 사용자의 선택적 사용 분석을 담당하며, 이 데이터는 미국에서 처리됩니다. 자세한 내용은 <a href="https://posthog.com/privacy">PostHog 개인정보 처리방침</a>과 <a href="https://posthog.com/docs/privacy">개인정보 보호 제어 문서</a>를 참고해 주세요.</p>
         </section>
 
         <h2 id="rights">10. Your rights</h2>
