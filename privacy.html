@@ -6,14 +6,14 @@
 <meta name="theme-color" content="#F5F5F5">
 
 <title>Privacy Policy — With Him</title>
-<meta name="description" content="What With Him collects and why: verse-reading speech stays on the device, account data supports your features, and optional PostHog usage analytics are off by default. No advertising or cross-app tracking.">
+<meta name="description" content="What With Him collects and why: verse-reading speech stays on the device, account data supports your features, optional PostHog usage analytics are off by default, and Meta ad measurement runs only if you allow tracking.">
 <link rel="canonical" href="https://kipackjeong.github.io/withhim-funnel/privacy.html">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://kipackjeong.github.io/withhim-funnel/privacy.html">
 <meta property="og:site_name" content="With Him">
 <meta property="og:title" content="Privacy Policy — With Him">
-<meta property="og:description" content="Verse-reading speech stays on the device. Optional PostHog usage analytics are off by default, with no advertising or cross-app tracking.">
+<meta property="og:description" content="Verse-reading speech stays on the device. Optional PostHog usage analytics are off by default, and Meta ad measurement runs only if you allow tracking.">
 
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -47,7 +47,7 @@
         <h1>Almost nothing leaves your phone.</h1>
         <p class="legal-meta">
           <span>Applies to the With Him iPhone app</span>
-          <span>Last updated 20 October 2026</span>
+          <span>Last updated 21 October 2026</span>
         </p>
       </div>
     </div>
@@ -79,7 +79,7 @@
         </nav>
 
         <h2 id="short">1. The short version</h2>
-        <p>With Him has no advertising or cross-app tracking. Optional usage analytics through PostHog are off by default for each account and require your explicit consent while signed in; you can turn them off in Settings at any time. Using the app requires Sign in with Apple; finishing a verse reading to stop an alarm or lift the Focus Shield never waits on it. Your reading progress, reading history, alarms and settings are kept in your With Him account so they come back after a reinstall or on a new device; with With Him Plus, your notes, highlights, bookmarks and saved sermon notes are kept there too. If you choose AI sermon processing, an authenticated service sends your selected sermon recording, written notes and metadata to Microsoft Azure to prepare a draft for your review. Feedback also reaches our services when you choose to send it.</p>
+        <p>Tracking for ad measurement happens only if you allow it: on a fresh installation iOS shows Apple's tracking prompt once, and only if you tap Allow does With Him send Meta an advertising identifier and limited app and device information so we can measure which Meta ads led to installs. If you decline, nothing is sent to Meta and no feature is limited. Optional usage analytics through PostHog are off by default for each account and require your explicit consent while signed in; you can turn them off in Settings at any time. Using the app requires Sign in with Apple; finishing a verse reading to stop an alarm or lift the Focus Shield never waits on it. Your reading progress, reading history, alarms and settings are kept in your With Him account so they come back after a reinstall or on a new device; with With Him Plus, your notes, highlights, bookmarks and saved sermon notes are kept there too. If you choose AI sermon processing, an authenticated service sends your selected sermon recording, written notes and metadata to Microsoft Azure to prepare a draft for your review. Feedback also reaches our services when you choose to send it.</p>
         <p>The rest of this page is the same statement said precisely enough to be relied on.</p>
 
         <h2 id="voice">2. Your voice</h2>
@@ -127,7 +127,14 @@
         <p>Usage analytics are optional and <strong>off by default for each account</strong>. We send usage events to PostHog to improve the app only while you are signed in and after you explicitly opt in through a signed-in onboarding or consent prompt, or <strong>Settings → Privacy → Share usage analytics</strong>. You can withdraw consent at any time by turning that setting off. Declining or withdrawing consent does not limit the app's features. No analytics events are collected while signed out or before consent, and actions from before consent are not sent later.</p>
         <p>Events cover app usage, onboarding progress after consent, reading completion, paywall interactions and purchase or restore outcomes. They include event timestamps and limited app and device metadata (such as app version, operating-system version, device model and app language). Your stable Supabase account ID (UUID) is used as a pseudonymous identifier. This identifier links events to your account; the data is not anonymous. Reading-completion events do not identify the book, chapter or verse you read. Like other network services, PostHog may receive your IP address when handling requests.</p>
         <p>We do not send PostHog your name, email address, survey answers, denomination or tradition, Scripture references or text, recordings, transcripts, sermon content, notes or conversation text. Session replay and automatic interaction capture are disabled.</p>
-        <p>No advertising identifier is read, no cross-app or cross-site tracking is performed, and no data is sold or shared with data brokers. PostHog is not used for advertising. We do not request App Tracking Transparency permission because we do not perform the advertising tracking that requires it.</p>
+        <p>PostHog is not used for advertising. We do not sell personal information for money or share it with data brokers.</p>
+
+        <h3>Ad measurement through Meta, only if you allow tracking</h3>
+        <p>On a fresh installation only, shortly after you first open the app, iOS shows Apple's App Tracking Transparency prompt once. Existing users who only update the app are not asked. The app requests this permission and reads your device's advertising identifier (IDFA), but only after you tap Allow.</p>
+        <p>If you tap Allow, the Meta (Facebook) SDK for iOS starts and, each time the app opens, sends Meta an "app activated" event. Meta receives your device's advertising identifier (IDFA), Meta's own anonymous app-instance ID, and limited app and device information that the SDK attaches, such as app version, operating-system version, device model, language, time zone, screen size and similar details. Our purpose is to measure which Meta ads led to installs and app opens (ad attribution and measurement). Meta may also use the data as described in <a href="https://www.facebook.com/privacy/policy/">Meta's privacy policy</a>. Meta processes data in the United States and elsewhere.</p>
+        <p>If you tap Ask App Not to Track, or later turn tracking off for With Him in <strong>iOS Settings → Privacy &amp; Security → Tracking → With Him</strong>, the Meta SDK is not started and nothing is sent to Meta. Declining or withdrawing never limits any feature of the app. For data Meta already holds, use Meta's own controls; we cannot erase it from Meta.</p>
+        <p>Automatic event logging, automatic in-app-purchase logging and the SDK's metadata and screen-title collection are turned off. The app logs only the one "app activated" event.</p>
+        <p>We never send Meta Scripture references or text, readings or reading history, notes, highlights, recordings, transcripts, sermon content, Ask conversations, survey answers, denomination, name, email address, your Sign in with Apple identity, your Supabase account ID, or purchase or subscription data. We do not combine Meta data with PostHog analytics.</p>
 
         <h2 id="processors">8. Who else is involved</h2>
         <p>These service providers have specific roles:</p>
@@ -137,8 +144,9 @@
           <li><strong>Supabase</strong> — authentication, the progress, reading history and settings kept in your account, your library if you have With Him Plus, and temporary private sermon uploads and processing jobs.</li>
           <li><strong>Microsoft Azure</strong> — sermon transcription and AI note preparation, under Microsoft's applicable <a href="https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy">Azure AI data privacy terms</a>.</li>
           <li><strong>PostHog</strong> — optional, consent-based usage analytics processed in the United States as described above. See <a href="https://posthog.com/privacy">PostHog's privacy policy</a> and <a href="https://posthog.com/docs/privacy">privacy control documentation</a>.</li>
+          <li><strong>Meta Platforms, Inc. (Facebook SDK)</strong> — optional ad measurement, only if you allow tracking: the Meta SDK for iOS receives an "app activated" event, your advertising identifier and limited app and device information, processed in the United States and elsewhere as described above. See <a href="https://www.facebook.com/privacy/policy/">Meta's privacy policy</a>.</li>
         </ul>
-        <p>Nothing is sold, rented or shared for anyone's marketing purposes.</p>
+        <p>Apart from the Meta ad measurement described in <a href="#tracking">section 7</a>, which happens only after you allow tracking, nothing is rented or shared for anyone's marketing purposes, and we do not sell personal information for money.</p>
 
         <h2 id="retention">9. How long anything is kept</h2>
         <p>Your original writing and saved sermon note remain until you delete them. Local recordings are excluded from device backup and kept while a draft is active or needs retry; confirming or deleting the note removes its local audio. Draft audio unused for 7 days is removed on a subsequent library cleanup, while written notes remain. An abrupt app termination may leave the current recording incomplete, without removing your saved writing.</p>
@@ -167,14 +175,23 @@
           <h3>선택적 사용 분석 개인정보 안내</h3>
           <p>사용 분석은 선택 사항이며 <strong>계정마다 기본적으로 꺼져 있습니다</strong>. 로그인한 상태에서 온보딩이나 동의 안내 화면 또는 <strong>설정 → 개인정보 보호 → 사용 통계 공유</strong>를 통해 직접 동의한 뒤에만 앱 개선을 위한 사용 이벤트가 PostHog로 전송됩니다. 설정에서 언제든 사용 분석을 끄고 동의를 철회할 수 있으며, 동의하지 않거나 철회해도 앱 기능 이용에는 제한이 없습니다. 로그인하지 않았거나 동의하기 전에는 분석 이벤트를 수집하지 않으며, 동의 전에 한 동작을 나중에 소급하여 보내지도 않습니다.</p>
           <p>분석 대상은 앱 사용, 동의 후의 온보딩 진행, 읽기 완료, 구독 안내 화면에서의 동작과 구매 또는 구매 복원 결과입니다. 이벤트 발생 시각과 앱 버전·운영체제 버전·기기 모델·앱 언어 등 제한된 앱 및 기기 정보가 포함됩니다. 변경되지 않는 Supabase 계정 ID(UUID)를 가명 식별자로 사용합니다. 이 식별자로 이벤트가 계정에 연결되므로 익명 정보는 아닙니다. 읽기 완료 이벤트에는 읽은 성경의 책·장·절이 포함되지 않습니다. 다른 네트워크 서비스와 마찬가지로 PostHog는 요청을 처리할 때 IP 주소를 수신할 수 있습니다.</p>
-          <p>이름, 이메일 주소, 설문 답변, 교단이나 신앙 전통, 성경 구절 참조나 본문, 녹음, 녹취록, 설교 내용, 노트 및 대화 내용은 PostHog로 보내지 않습니다. 세션 다시 보기와 사용자 동작 자동 수집 기능은 비활성화되어 있습니다. 광고 식별자를 읽거나 앱 또는 웹사이트 간 추적을 하지 않으며, 데이터를 판매하거나 데이터 중개업체에 제공하지 않습니다. PostHog를 광고 목적으로 사용하지 않고, 광고 추적을 위한 앱 추적 투명성 권한도 요청하지 않습니다.</p>
+          <p>이름, 이메일 주소, 설문 답변, 교단이나 신앙 전통, 성경 구절 참조나 본문, 녹음, 녹취록, 설교 내용, 노트 및 대화 내용은 PostHog로 보내지 않습니다. 세션 다시 보기와 사용자 동작 자동 수집 기능은 비활성화되어 있습니다. PostHog를 광고 목적으로 사용하지 않습니다. 저희는 개인정보를 금전적 대가를 받고 판매하지 않으며 데이터 중개업체에도 제공하지 않습니다.</p>
           <p>사용 분석을 끄면 이후 수집이 중단되고 아직 전송되지 않은 이벤트는 폐기되지만, 이미 전송된 이벤트가 자동으로 삭제되지는 않습니다. 연락처로 요청하시면 PostHog의 계정 프로필과 연결된 이벤트의 삭제를 요청할 수 있습니다. With Him 계정을 삭제할 때에도 해당 계정의 PostHog 프로필과 연결된 이벤트를 삭제하는 비동기 요청이 시작됩니다. 제공자의 처리에는 시간이 걸릴 수 있으며, 분석 데이터가 즉시 삭제되는 것은 아닙니다.</p>
           <p>PostHog는 동의한 사용자의 선택적 사용 분석을 담당하며, 이 데이터는 미국에서 처리됩니다. 자세한 내용은 <a href="https://posthog.com/privacy">PostHog 개인정보 처리방침</a>과 <a href="https://posthog.com/docs/privacy">개인정보 보호 제어 문서</a>를 참고해 주세요.</p>
+        </section>
+        <section lang="ko" aria-label="광고 성과 측정 개인정보 안내">
+          <h3>광고 성과 측정 및 앱 추적 개인정보 안내</h3>
+          <p>앱을 새로 설치한 경우에만, 처음 실행한 직후 iOS가 Apple의 앱 추적 투명성(App Tracking Transparency) 안내를 한 번 표시합니다. 앱을 업데이트만 한 기존 사용자에게는 묻지 않습니다. 앱은 이 권한을 요청하며, 허용하신 뒤에만 기기의 광고 식별자(IDFA)를 읽습니다.</p>
+          <p>'허용'을 선택하면 Meta(Facebook) iOS SDK가 시작되며, 앱을 열 때마다 Meta로 "앱 활성화" 이벤트를 전송합니다. Meta는 기기의 광고 식별자(IDFA), Meta가 자체적으로 부여하는 익명의 앱 인스턴스 ID, 그리고 SDK가 덧붙이는 제한된 앱 및 기기 정보(앱 버전, 운영체제 버전, 기기 모델, 언어, 시간대, 화면 크기 등)를 받습니다. 목적은 어떤 Meta 광고를 통해 앱이 설치되고 실행되었는지 측정하는 것(광고 성과 귀속 및 측정)입니다. Meta는 이 데이터를 <a href="https://www.facebook.com/privacy/policy/">Meta 개인정보 처리방침</a>에 설명된 대로 사용할 수도 있습니다. Meta는 데이터를 미국 및 그 밖의 지역에서 처리합니다.</p>
+          <p>'앱이 추적하지 않도록 요청'을 선택하시거나 나중에 <strong>iOS 설정 → 개인정보 보호 및 보안 → 추적 → With Him</strong>에서 추적을 끄시면 Meta SDK는 시작되지 않으며 Meta로 아무것도 전송되지 않습니다. 허용하지 않거나 철회해도 앱 기능 이용에는 어떤 제한도 없습니다. 이미 Meta가 보유한 데이터는 Meta가 제공하는 자체 설정으로 관리해 주세요. 저희는 그 데이터를 Meta에서 삭제할 수 없습니다.</p>
+          <p>자동 이벤트 기록, 자동 인앱 구매 기록, SDK의 메타데이터 및 화면 제목 수집은 모두 꺼져 있습니다. 앱이 기록하는 이벤트는 "앱 활성화" 하나뿐입니다.</p>
+          <p>성경 구절 참조나 본문, 읽기 및 읽기 기록, 노트, 하이라이트, 녹음, 녹취록, 설교 내용, Ask 대화, 설문 답변, 교단, 이름, 이메일 주소, Sign in with Apple 신원 정보, Supabase 계정 ID, 구매 또는 구독 정보는 Meta로 보내지 않습니다. 저희는 Meta 데이터를 PostHog 사용 분석과 결합하지 않습니다.</p>
+          <p>Meta Platforms, Inc.(Facebook SDK)는 추적을 허용한 사용자의 선택적 광고 성과 측정을 담당하며, 이 데이터는 미국 및 그 밖의 지역에서 처리됩니다. 자세한 내용은 <a href="https://www.facebook.com/privacy/policy/">Meta 개인정보 처리방침</a>을 참고해 주세요.</p>
         </section>
 
         <h2 id="rights">10. Your rights</h2>
         <p>Depending on where you live, you may have rights to access, correct, export or erase personal data we hold, to object to or restrict processing, and to complain to a supervisory authority. <strong>Settings → Account → Delete account</strong> removes the account and everything kept in it, and starts cleanup of its temporary processing content. You can edit or delete sermon notes in the Notes library. For a copy of data or help with a request, contact us.</p>
-        <p>We do not sell personal information and do not share it for cross-context behavioural advertising, as those terms are defined under California law.</p>
+        <p>For California residents: we do not sell personal information for money. Ad-measurement data goes to Meta only after you allow tracking in the iOS prompt, and you can stop it at any time in iOS Settings → Privacy &amp; Security → Tracking → With Him; see <a href="#tracking">section 7</a>.</p>
 
         <h2 id="children">11. Children</h2>
         <p>The app is not directed at children under 13 and we do not knowingly collect personal information from them. If you believe a child has created an account, write to us and it will be deleted.</p>
