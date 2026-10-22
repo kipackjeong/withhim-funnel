@@ -113,25 +113,6 @@
   .grace-icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #ECECEC; color: #8A5A12; font-size: 22px; }
   .grace-list h3 { margin: 0; font-family: var(--sans); font-size: 19px; font-weight: 600; line-height: 1.35; }
   .grace-list p { margin: 6px 0 0; color: #5F6368; font-size: 16px; line-height: 1.55; }
-  .funnel-v2 .threads-section { padding: 128px 0; background: #ECECEC; }
-  .threads-layout { display: grid; grid-template-columns: minmax(0,1fr) 600px; gap: 80px; align-items: center; min-height: 711px; }
-  .threads-layout h2 { margin: 0; }
-  .threads-copy p { margin: 24px 0 0; color: #3C4043; font-size: 20px; line-height: 1.6; }
-  .threads-copy .thread-note { margin-top: 20px; color: #5F6368; font-size: 15px; }
-  .thread-progress { padding: 28px 30px; border: 1px solid #D6D6D6; border-radius: 24px; background: #FFFFFF; box-shadow: 0 30px 60px -40px rgba(23, 24, 29,.4); }
-  .thread-progress-top { display: flex; align-items: end; justify-content: space-between; }
-  .thread-progress small { color: #8A5A12; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-  .thread-progress strong { display: block; margin-top: 10px; font-family: var(--serif); font-size: 36px; font-weight: 400; line-height: 1; }
-  .thread-progress-top > span { color: #5F6368; font-size: 15px; }
-  .thread-segments { display: flex; gap: 6px; margin-top: 20px; }
-  .thread-segments i { flex: 1; height: 6px; border-radius: 3px; background: #E0E0E0; }
-  .thread-segments i:nth-child(-n+4) { background: #D9993A; }
-  .thread-passage { display: flex; justify-content: space-between; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #E0E0E0; font-size: 15px; }
-  .thread-passage span { color: #5F6368; }
-  .thread-passage strong { margin: 0; font-size: 21px; white-space: nowrap; }
-  .thread-topics { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin-top: 20px; }
-  .thread-topics span { display: grid; place-items: center; min-height: 46px; border: 1px solid #C4C4C4; border-radius: 999px; color: #17181D; font-size: 14.5px; white-space: nowrap; }
-  .thread-topics span:first-child { border-color: #17181D; background: #17181D; color: #F5F5F5; }
   .feature-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 80px; align-items: center; }
   .funnel-v2 .bible-section { background: #F5F5F5; overflow: hidden; }
   .bible-gallery { display: flex; align-items: center; justify-content: center; gap: 25px; min-height: 510px; }
@@ -181,11 +162,10 @@
     .hero-art { width: 430px; height: 560px; }
     .hero-stage { transform: scale(.8); transform-origin: top left; }
     .intro { grid-template-columns: 1fr 1fr; gap: 48px; }
-    .threads-layout { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 40px; }
   }
   @media (max-width: 850px) {
     .site-links { display: none; }
-    .hero-layout, .intro, .feature-layout, .grace-layout, .threads-layout { grid-template-columns: 1fr; }
+    .hero-layout, .intro, .feature-layout, .grace-layout { grid-template-columns: 1fr; }
     .hero-layout { gap: 48px; }
     .hero-art { justify-self: center; width: 540px; height: 700px; }
     .hero-stage { transform: none; }
@@ -193,7 +173,6 @@
     .intro-copy { padding-top: 0; }
     .moments { grid-template-columns: 1fr; }
     .moment { height: 620px; }
-    .threads-layout { min-height: auto; }
     .bible-gallery { order: 2; }
   }
   @media (max-width: 620px) {
@@ -215,7 +194,7 @@
     .hero-chip { right: 0; }
     .funnel-v2 h2 { font-size: clamp(44px,11vw,62px); }
     .night-heading h2 { font-size: clamp(52px,12vw,70px); }
-    .night-heading p, .intro-copy p, .grace-layout > div > p, .threads-copy p { font-size: 17px; }
+    .night-heading p, .intro-copy p, .grace-layout > div > p { font-size: 17px; }
     .intro-copy p + p { font-size: 27px; }
     .moment { height: 620px; padding: 30px 26px 0; }
     .moment h3 { font-size: 34px; }
@@ -224,9 +203,6 @@
     .why-aloud { grid-template-columns: 1fr; gap: 15px; }
     .why-aloud p { font-size: 27px; }
     .grace-layout { gap: 40px; }
-    .threads-layout { gap: 38px; }
-    .thread-topics { grid-template-columns: repeat(2,minmax(0,1fr)); }
-    .thread-passage { align-items: start; flex-direction: column; }
     .bible-gallery { min-height: 360px; }
     .plans { grid-template-columns: 1fr; }
     .plan { padding: 28px; }
@@ -322,18 +298,6 @@
         <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg></span><div><h3>No streaks to break</h3><p>Miss a day or a month. You won’t get a red X, a score, or a guilt-trip notification.</p></div></li>
         <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/></svg></span><div><h3>Honest about its limits</h3><p>iOS lets you force-quit any app, this one included. With Him only makes skipping a little harder than thirty seconds of reading.</p></div></li>
       </ul>
-    </div>
-  </section>
-  <section class="threads-section" id="threads" aria-labelledby="threads-title">
-    <div class="container threads-layout">
-      <div class="threads-copy"><span class="section-kicker">Threads</span><h2 id="threads-title">Not a random verse. <em>A journey.</em></h2><p>Your daily verse comes from a Thread, a set of hand-picked passages on one theme, read in order. Each reading picks up where the last one ended.</p><p class="thread-note">Twelve Threads in all, written and added by hand over time.</p></div>
-      <div aria-label="Illustrative Thread progress and topics">
-        <div class="thread-progress"><div class="thread-progress-top"><div><small>Current Thread</small><strong>Anxiety</strong></div><span>4 of 14</span></div>
-          <div class="thread-segments" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="thread-passage"><span>Today’s passage</span><strong>Philippians 4:6–7</strong></div>
-        </div>
-        <div class="thread-topics" aria-label="Thread themes"><span>Anxiety</span><span>Identity</span><span>Grief</span><span>Purpose</span><span>Temptation</span><span>Gratitude</span><span>Forgiveness</span><span>Waiting</span><span>Courage</span><span>Provision</span><span>Rest</span><span>Life of Christ</span></div>
-      </div>
     </div>
   </section>
   <section class="bible-section" id="reader" aria-labelledby="bible-title">

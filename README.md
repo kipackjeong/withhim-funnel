@@ -26,7 +26,7 @@ There is no build step or framework. Serve this directory as a static site. `ass
 
 ## Updating the pages
 
-The funnel runs on static HTML, CSS, and JavaScript. Keep the App Store URL and current plan terms aligned across the landing and download pages. The landing page's hero through Threads section follows the exported Claude artboard's Instrument Serif/Geist typography, device frames, and 1440px desktop geometry, on the iOS app's own neutral surfaces: #F5F5F5 page ground (the app's measured canvas), #FFFFFF cards, #ECECEC Threads and FAQ bands, and the #0B0D12 night section. Text uses #3C4043 / #5F6368; the amber `--dawn` accent is the only warm colour. The legal and support pages use those same light tokens with a narrower reading measure and contents navigation in `assets/legal.css`. Bump the `shared.css?v=` and `legal.css?v=` values on the affected pages when changing CSS so GitHub Pages serves the new styles.
+The funnel runs on static HTML, CSS, and JavaScript. Keep the App Store URL and current plan terms aligned across the landing and download pages. The landing page's hero through Widgets section follows the exported Claude artboard's Instrument Serif/Geist typography, device frames, and 1440px desktop geometry, on the iOS app's own neutral surfaces: #F5F5F5 page ground (the app's measured canvas), #FFFFFF cards, #ECECEC Widgets and FAQ bands, and the #0B0D12 night section. Text uses #3C4043 / #5F6368; the amber `--dawn` accent is the only warm colour. The legal and support pages use those same light tokens with a narrower reading measure and contents navigation in `assets/legal.css`. Bump the `shared.css?v=` and `legal.css?v=` values on the affected pages when changing CSS so GitHub Pages serves the new styles.
 
 ## Brand icon
 
