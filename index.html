@@ -123,6 +123,11 @@
   .readthrough-shot { display: flex; justify-content: center; }
   .readthrough-shot img { width: min(100%,290px); height: auto; border: 9px solid #17181D; border-radius: 36px; box-shadow: 0 28px 54px -22px rgba(23,24,29,.3); }
   .funnel-v2 .widgets-section { background: #ECECEC; }
+  .widget-gallery { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 48px 40px; margin-top: 72px; padding-top: 64px; border-top: 1px solid #D6D6D6; }
+  .widget-gallery figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .widget-gallery img { display: block; max-width: 100%; height: auto; filter: drop-shadow(0 22px 30px rgba(23,24,29,.22)); }
+  .widget-gallery figcaption { color: #5F6368; font-size: 14px; letter-spacing: .02em; }
+  .widget-stack { display: flex; flex: 1 0 100%; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 40px; }
   .feature-list { display: grid; gap: 13px; padding: 0; margin: 24px 0 0; list-style: none; }
   .feature-list li { padding-top: 12px; border-top: 1px solid #E0E0E0; }
   .funnel-v2 .pricing-section { padding-top: 0; background: #F5F5F5; }
@@ -343,6 +348,16 @@
         <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span><div><h3>On the Lock Screen</h3><p>Today’s verse under the clock, as a rectangular or one-line widget.</p></div></li>
         <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><div><h3>Record sermon, one press away</h3><p>A control for Control Center, the Lock Screen, or the Action button that opens a new sermon note, already recording. Recording is part of With Him Plus.</p></div></li>
       </ul>
+    </div>
+    <div class="container widget-gallery" aria-label="The widgets as they appear on iPhone">
+      <figure><img src="assets/widgets/today-small.png" width="380" height="380" style="width:170px" alt="Small Today’s Verse widget showing the date, the reference John 14:1, and the verses read today" loading="lazy"><figcaption>Home Screen · small</figcaption></figure>
+      <figure><img src="assets/widgets/today-medium.png" width="800" height="376" style="width:350px" alt="Medium Today’s Verse widget with the clock, John 14:1, and the first words of the verse" loading="lazy"><figcaption>Home Screen · medium</figcaption></figure>
+      <figure><img src="assets/widgets/today-large.png" width="800" height="835" style="width:350px" alt="Large Today’s Verse widget with the full text of John 14:1" loading="lazy"><figcaption>Home Screen · large</figcaption></figure>
+      <div class="widget-stack">
+        <figure><img src="assets/widgets/lock-inline.png" width="640" height="93" style="width:260px" alt="Inline Lock Screen widget beside the date reading Thu 22 John 14:1" loading="lazy"><figcaption>Lock Screen · inline</figcaption></figure>
+        <figure><img src="assets/widgets/lock-rect.png" width="640" height="242" style="width:220px" alt="Rectangular Lock Screen widget with John 14:1 and the start of the verse" loading="lazy"><figcaption>Lock Screen · rectangular</figcaption></figure>
+        <figure><img src="assets/widgets/control.png" width="560" height="250" style="width:200px" alt="Record sermon control in Control Center" loading="lazy"><figcaption>Control Center · Record sermon</figcaption></figure>
+      </div>
     </div>
   </section>
   <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">

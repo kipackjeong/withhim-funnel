@@ -18,6 +18,8 @@ When the app's screens change, re-export from a fresh capture bundle rather than
 
 The landing page's Widgets section describes only what the widget extension's bundle ships (`Extensions/WidgetExtension/WidgetExtension.swift` in the app repo): the Today's Verse widget, the Record sermon control, and the alarm Live Activity. The Read-Through and Pocket Reader widgets exist in the extension but are not in the bundle, so the page does not mention them. Re-check that file before changing the Widgets copy.
 
+`assets/widgets/*.png` are real iPhone 17 Pro simulator captures of those widgets on a 1.0.20 build, cropped from the Home Screen, Lock Screen, and Control Center and downscaled to twice their display size: `today-small|medium|large` (transparent rounded corners), `lock-inline`, `lock-rect`, and `control`. The widgets draw a live clock, so the clock in the cut-outs is simulator time, not 9:41. The sample shows a verse and 0 verses read, the real state of a fresh test login.
+
 The published product also offers optional sermon processing; consult the current privacy policy before making account, cloud, or audio-processing claims on these pages.
 
 ## Build
