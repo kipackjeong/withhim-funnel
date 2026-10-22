@@ -138,6 +138,10 @@
   .bible-gallery img { width: min(43%,235px); height: auto; border: 9px solid #17181D; border-radius: 36px; box-shadow: 0 28px 54px -22px rgba(23,24,29,.3); }
   .bible-gallery img:last-child { transform: translateY(36px); }
   .feature-layout p { color: #3C4043; font-size: 18px; }
+  .funnel-v2 .readthrough-section { background: #FFFFFF; overflow: hidden; }
+  .readthrough-shot { display: flex; justify-content: center; }
+  .readthrough-shot img { width: min(100%,290px); height: auto; border: 9px solid #17181D; border-radius: 36px; box-shadow: 0 28px 54px -22px rgba(23,24,29,.3); }
+  .funnel-v2 .widgets-section { background: #ECECEC; }
   .feature-list { display: grid; gap: 13px; padding: 0; margin: 24px 0 0; list-style: none; }
   .feature-list li { padding-top: 12px; border-top: 1px solid #E0E0E0; }
   .funnel-v2 .pricing-section { padding-top: 0; background: #F5F5F5; }
@@ -349,6 +353,34 @@
       </div>
     </div>
   </section>
+  <section class="readthrough-section" id="read-through" aria-labelledby="readthrough-title">
+    <div class="container feature-layout">
+      <div>
+        <span class="section-kicker">Read-through</span>
+        <h2 id="readthrough-title">Read the whole Bible, <em>out loud.</em></h2>
+        <p>Pick a journey or a single book and read it a chapter at a time. Say the verses aloud, or type them, and With Him keeps your place for next time.</p>
+        <ul class="feature-list">
+          <li>Journeys like Psalms in 30 days, the New Testament in 100 days, or Bible 365</li>
+          <li>Or go book by book, chapter by chapter</li>
+          <li>Pick up right where you stopped</li>
+          <li>No deadlines, no streaks to break</li>
+        </ul>
+      </div>
+      <div class="readthrough-shot">
+        <img src="assets/screenshots/read-through.png" width="1206" height="2622" alt="Read-Through screen listing journeys: Psalms in 30 days, Old Testament in 100 days, New Testament in 100 days, Bible 365, and The Torah in 90 days" loading="lazy">
+      </div>
+    </div>
+  </section>
+  <section class="widgets-section" id="widgets" aria-labelledby="widgets-title">
+    <div class="container grace-layout">
+      <div><span class="section-kicker">Widgets</span><h2 id="widgets-title">Scripture <em>before you open the app.</em></h2><p>Keep today’s verse on your Home Screen and Lock Screen, and start a sermon note from Control Center.</p></div>
+      <ul class="grace-list">
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="17" height="7" rx="2"/></svg></span><div><h3>Today’s Verse on the Home Screen</h3><p>The date and today’s verse at a glance, in small, medium, and large sizes.</p></div></li>
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></svg></span><div><h3>On the Lock Screen</h3><p>Today’s verse under the clock, as a rectangular or one-line widget.</p></div></li>
+        <li><span class="grace-icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span><div><h3>Record sermon, one press away</h3><p>A control for Control Center, the Lock Screen, or the Action button that opens a new sermon note, already recording. Recording is part of With Him Plus.</p></div></li>
+      </ul>
+    </div>
+  </section>
   <section class="pricing-section" id="pricing" aria-labelledby="pricing-title">
     <div class="container">
       <div class="pricing-heading">
@@ -363,6 +395,8 @@
             <li>The whole Bible, offline</li>
             <li>Today's verse and reading</li>
             <li>Wake with a verse</li>
+            <li>Read the Bible through, aloud</li>
+            <li>Today's Verse widgets</li>
             <li>Search, highlights, and notes</li>
           </ul>
           <a class="btn btn-ghost" href="https://apps.apple.com/us/app/with-him-wake-in-the-words/id6795353533" data-app-store="pricing-free">Get the app</a>
