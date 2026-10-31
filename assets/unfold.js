@@ -218,10 +218,6 @@
         '--lit': 1, duration: 1, stagger: 1, ease: 'none',
         scrollTrigger: { trigger: '.honest', start: 'top top', end: 'bottom bottom', scrub: true }
       });
-      gsap.to('.honest-stage > img', {
-        scale: 1, ease: 'none',
-        scrollTrigger: { trigger: '.honest', start: 'top top', end: 'bottom bottom', scrub: true }
-      });
       gsap.to('.scroll-progress', {
         scaleX: 1, ease: 'none',
         scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: true }

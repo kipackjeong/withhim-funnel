@@ -27,7 +27,7 @@
 <link rel="preload" as="image" href="assets/art/HomeVerseFriday.jpg" fetchpriority="high">
 <script defer src="assets/vendor/gsap-3.13.0/gsap.min.js"></script>
 <script defer src="assets/vendor/gsap-3.13.0/ScrollTrigger.min.js"></script>
-<script defer src="assets/unfold.js?v=20261030"></script>
+<script defer src="assets/unfold.js?v=20261031"></script>
 <style>
 :root {
   --ink: #251f38;
@@ -394,14 +394,11 @@ h1, h2, h3, .lede { text-wrap: balance; }
 .motion-ready .unfold-phone { transform: rotateX(25deg) scale(1.05) translateY(24px); will-change: transform; }
 .honest { position: relative; }
 .honest-stage { position: relative; min-height: 100svh; display: grid; align-items: center; overflow: hidden; isolation: isolate; }
-.honest-stage > img { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 46%; }
-.honest-stage::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(10, 12, 27, .92), rgba(10, 12, 27, .86) 65%, rgba(10, 12, 27, .83)); }
 .honest-statement { width: min(1120px, 100% - 2 * var(--gutter)); margin-inline: auto; padding-block: 64px 104px; font-size: clamp(2rem, 3.9vw, 3.5rem); line-height: 1.15; letter-spacing: -.012em; color: var(--pearl); }
 .reveal-word { position: relative; display: inline-block; color: #a6a4b7; }
 .reveal-word::after { content: attr(data-word); position: absolute; inset: 0; color: var(--pearl); opacity: var(--lit, 1); }
 .motion-ready .honest { height: 240svh; }
 .motion-ready .honest-stage { position: sticky; top: 0; height: 100svh; }
-.motion-ready .honest-stage > img { transform: scale(1.1); will-change: transform; }
 .day-stage .device { padding: 8px; }
 .day-stage .device > video { position: absolute; inset: 8px; width: calc(100% - 16px); height: calc(100% - 16px); opacity: 0; transition: opacity .65s ease; }
 .day-stage .device > video.on { opacity: 1; }
@@ -418,8 +415,6 @@ h1, h2, h3, .lede { text-wrap: balance; }
   .unfold-phone { width: min(220px, 57vw); }
   .motion-ready .unfold { height: 175svh; }
   .honest-statement { font-size: clamp(1.8rem, 7.8vw, 2.5rem); line-height: 1.16; padding-block: 40px 112px; }
-  .honest-stage > img { object-position: 53% 45%; }
-  .honest-stage::after { background: rgba(10, 12, 27, .83); }
   .motion-ready .honest { height: 220svh; }
   .day-grid { display: block; padding-bottom: 36px; }
   .day-stage { display: grid; position: sticky; top: 0; height: 53svh; z-index: 1; padding-top: 12px; pointer-events: none; }
@@ -442,7 +437,7 @@ h1, h2, h3, .lede { text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) {
   .unfold, .honest { height: auto !important; }
   .unfold-stage, .honest-stage { position: relative !important; height: auto !important; }
-  .unfold-phone, .honest-stage > img { transform: none !important; will-change: auto; }
+  .unfold-phone { transform: none !important; will-change: auto; }
   .reveal-word { color: var(--pearl); }
   .reveal-word::after { opacity: 0; }
   .day-stage { display: none; }
@@ -562,7 +557,6 @@ html:not(.day-ready) .day-sky.dawn { opacity: 1; }
   <!-- The honest part -->
   <section class="honest" id="problem" aria-labelledby="honest-title">
     <div class="honest-stage">
-      <img src="assets/photos/doom.jpg" width="1080" height="1920" alt="" loading="lazy">
       <h2 class="honest-statement" id="honest-title">Your phone gets the first word of the day. And the last. Before your eyes are fully open, the feed is one swipe away. You don’t need more willpower. With Him puts a verse in front of you before the feed gets there.</h2>
     </div>
   </section>
