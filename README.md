@@ -41,6 +41,14 @@ The pinned vendor files are copied from `https://cdn.jsdelivr.net/npm/gsap@3.13.
 
 The landing page retains its production canonical/SEO/social metadata and inert `window.dataLayer` contract: `index_view`, `index_scroll_depth`, `index_app_store_click`, and `index_exit_section`, with `page: 'index'`. Existing CTA locations remain `nav`, `hero`, `pricing-free`, `pricing-habits`, and `close`; the mobile bar adds `sticky`. No analytics provider, tag-manager script, cookie, or network event sink is introduced.
 
+## Android waitlist
+
+The hero and the closing section each have a **Get notified for Android** button directly under the App Store button. `assets/android-waitlist.js` reveals them only when JavaScript, `<dialog>` and `fetch` are available, so a visitor without them never sees a dead button. A button opens the `#android-waitlist` dialog. The form posts `{email, source, website}` as JSON to the Supabase Edge Function in the dialog's `data-endpoint` (`android-waitlist`, in the app repo's `supabase/functions`). The function and the table that stores the addresses are documented in that repo's `supabase/README.md`; the addresses are not stored in this site.
+
+Behavior to keep in step with the function and the privacy policy: a first signup and a repeat get the same success message, so the form never reveals who is already listed; `website` is a hidden honeypot field a person never fills; the function answers only the origins listed in its `ALLOWED_ORIGINS`, so a new domain for this site has to be added there. The page emits `index_android_waitlist` events (`step`: `open`, `joined` or `error`, with `location` and, on error, `reason`) to the inert `dataLayer`; they never contain the address. The privacy policy section 5 (**Android waitlist on this website**), section 8 and section 9 describe what is collected and kept, and the date of that wording is what the function stores as each row's `consent_version` (`ANDROID_WAITLIST_CONSENT_VERSION`): change both together.
+
+To try the form without writing a real address, serve the site locally (see Build), then point `data-endpoint` at a stub for the session; the function also allows `http://127.0.0.1:8766` and `http://localhost:8766`.
+
 ## Build
 
 There is no build step, package installation, or framework. Serve this directory as a static site, for example:

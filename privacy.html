@@ -46,8 +46,8 @@
         <p class="eyebrow">Privacy Policy</p>
         <h1>Almost nothing leaves your phone.</h1>
         <p class="legal-meta">
-          <span>Applies to the With Him iPhone app</span>
-          <span>Last updated 22 October 2026</span>
+          <span>Applies to the With Him iPhone app and the Android waitlist on this website</span>
+          <span>Last updated 13 November 2026</span>
         </p>
       </div>
     </div>
@@ -80,6 +80,7 @@
 
         <h2 id="short">1. The short version</h2>
         <p>Tracking for ad measurement happens only if you allow it: on a fresh installation iOS shows Apple's tracking prompt once, and only if you tap Allow does With Him send Meta an advertising identifier and limited app and device information so we can measure which Meta ads led to installs. If you decline, nothing is sent to Meta and no feature is limited. Optional usage analytics through PostHog are off by default for each account and require your explicit consent while signed in; you can turn them off in Settings at any time. Using the app requires Sign in with Apple; finishing a verse reading to stop an alarm or lift the Focus Shield never waits on it. Your reading progress, reading history, alarms and settings are kept in your With Him account so they come back after a reinstall or on a new device; with With Him Plus, your notes, highlights, bookmarks and saved sermon notes are kept there too. If you choose AI sermon processing, an authenticated service sends your selected sermon recording, written notes and metadata to Microsoft Azure to prepare a draft for your review. Feedback also reaches our services when you choose to send it.</p>
+        <p>This website collects one thing, and only if you choose to give it: the email address you type into the Android waitlist form, so we can write to you once when an Android version is available. It has nothing to do with the iPhone app and creates no account. See <a href="#android-waitlist">Android waitlist</a> in section 5.</p>
         <p>The rest of this page is the same statement said precisely enough to be relied on.</p>
 
         <h2 id="voice">2. Your voice</h2>
@@ -119,6 +120,9 @@
         <p>With With Him Plus, your notes, highlights, bookmarks and saved sermon notes are also kept in your account, so they come back on a new phone or after a reinstall. Without it they stay on the device. Notes you attach when you keep a passage as a highlight are part of that library, exactly as any other note is.</p>
         <h3>Sermon content you choose to process</h3>
         <p>We process the selected audio, your written note, optional title, church, speaker, service, date and Scripture references, the resulting transcript, and the generated draft solely to provide the sermon-note feature. This content can include personal reflections or religious information that you choose to write or record. Do not include material you do not want processed by these services.</p>
+        <h3 id="android-waitlist">Android waitlist on this website</h3>
+        <p>The landing page has an optional form for people who want to hear when an Android version of With Him is available. If you submit it, our Supabase database stores your email address, the date, which button you used (near the top of the page or near the bottom) and the date of this wording, which is what you agreed to. We use the address only to write to you once, when an Android version is available. We do not add it to any other list, and we do not share it or sell it.</p>
+        <p>To limit abuse, the form counts attempts from each connection using a one-way hash of the network address. The address itself is not stored. The form is on the website only, not in the iPhone app, and the website does not use it to track you. You can ask us to remove your address at any time: see <a href="#contact">section 13</a>.</p>
 
         <h2 id="purchases">6. Purchases</h2>
         <p>Payment is processed entirely by Apple. We never see, receive or store your card details, billing address, or any other payment instrument.</p>
@@ -142,7 +146,7 @@
         <ul>
           <li><strong>Apple</strong> — the App Store, payment, Sign in with Apple, on-device speech recognition, alarms and Screen Time, under <a href="https://www.apple.com/legal/privacy/">Apple's own privacy policy</a>.</li>
           <li><strong>RevenueCat</strong> — subscription status only, as described above.</li>
-          <li><strong>Supabase</strong> — authentication, the progress, reading history and settings kept in your account, your library if you have With Him Plus, and temporary private sermon uploads and processing jobs.</li>
+          <li><strong>Supabase</strong> — authentication, the progress, reading history and settings kept in your account, your library if you have With Him Plus, and temporary private sermon uploads and processing jobs, and the email addresses given to the Android waitlist form on this website.</li>
           <li><strong>Microsoft Azure</strong> — sermon transcription and AI note preparation, under Microsoft's applicable <a href="https://learn.microsoft.com/en-us/legal/cognitive-services/openai/data-privacy">Azure AI data privacy terms</a>.</li>
           <li><strong>PostHog</strong> — optional, consent-based usage analytics processed in the United States as described above. See <a href="https://posthog.com/privacy">PostHog's privacy policy</a> and <a href="https://posthog.com/docs/privacy">privacy control documentation</a>.</li>
           <li><strong>Meta Platforms, Inc. (Facebook SDK)</strong> — optional ad measurement, only if you allow tracking: the Meta SDK for iOS receives an "app activated" event, your advertising identifier and limited app and device information, processed in the United States and elsewhere as described above. See <a href="https://www.facebook.com/privacy/policy/">Meta's privacy policy</a>.</li>
@@ -156,6 +160,7 @@
         <p>Deleting your account permanently deletes everything kept in it — reading history and any answers about how a verse landed, progress, alarms, settings, notes, highlights, bookmarks and sermon notes — from our servers and from the device you delete it on. It also cancels the account's processing jobs and schedules removal of temporary sermon content. Earlier versions of the app also kept reading progress and library content in your private iCloud account; we cannot read that data or delete it from our servers, and you can remove it in your Apple Account's iCloud storage settings. Feedback is kept while the issue it created remains useful.</p>
         <p>After temporary content is erased, we retain minimal operation identifiers and a one-way input digest until account deletion to prevent an old request from triggering another paid processing job. Cleanup identifiers may remain longer during a service outage until erasure can be verified; they do not include the erased note or transcript.</p>
         <p>Turning analytics off stops future analytics collection and discards unsent events; it does not by itself erase events already sent. You can request deletion of your PostHog profile and associated events by contacting us. Deleting your With Him account also starts an asynchronous request to erase that account's PostHog profile and associated events. Provider processing may take time; analytics erasure is not immediate.</p>
+        <p>An Android waitlist address is kept until we have sent the one email saying an Android version is available, and is then deleted. If you ask us to remove it sooner, we delete it. If no Android version is released, we delete the list.</p>
 
         <section lang="ko" aria-label="말씀 읽기 기록 개인정보 안내">
           <h3>말씀 읽기 기록 개인정보 안내</h3>
