@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5F5F5">
+
+<title>Delete your With Him account</title>
+<meta name="description" content="Delete your With Him Android or iPhone account in the app or request deletion by email without reinstalling. What is deleted, retention, and cancelling a subscription. English and Korean instructions.">
+<link rel="canonical" href="https://kipackjeong.github.io/withhim-funnel/delete-account.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kipackjeong.github.io/withhim-funnel/delete-account.html">
+<meta property="og:site_name" content="With Him">
+<meta property="og:title" content="Delete your With Him account">
+<meta property="og:description" content="Account deletion for Android and iPhone, by email or in the app. English and Korean instructions.">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="assets/shared.css?v=20261006-neutral-icon">
+<link rel="stylesheet" href="assets/legal.css?v=20260922-legal">
+</head>
+<body class="funnel-v2 legal-page">
+
+<a class="sr-only" href="#doc">Skip to deletion instructions</a>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+    <div class="nav-cta">
+      <a class="btn btn-ghost" href="support.html">Support</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="legal-hero">
+    <div class="container">
+      <div class="reading">
+        <p class="eyebrow">Account deletion</p>
+        <h1>Delete your With Him account</h1>
+        <p class="legal-meta">
+          <span>For the With Him Android and iPhone apps, by DevitAll LLC</span>
+          <span>Last updated 16 November 2026</span>
+        </p>
+        <p><a href="#ko" lang="ko">한국어 안내</a></p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section class="legal" id="doc">
+    <div class="container">
+      <div class="reading">
+
+        <nav class="legal-toc" aria-label="Contents">
+          <h2>Contents</h2>
+          <ol>
+            <li><a href="#request">Request deletion by email</a></li>
+            <li><a href="#in-app">Delete inside the app</a></li>
+            <li><a href="#deleted">What gets deleted</a></li>
+            <li><a href="#retention">Retention and provider copies</a></li>
+            <li><a href="#subscriptions">Cancel your subscription separately</a></li>
+            <li><a href="#ko" lang="ko">한국어 계정 삭제 안내</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="request">1. Request deletion by email</h2>
+        <div class="legal-note">
+          <p>You do not need to reinstall the app or pay for With Him Plus to request deletion. Email <a href="mailto:kipackjeong@devitall.co?subject=Delete%20my%20With%20Him%20account">kipackjeong@devitall.co</a> from the email address used for your With Him account — your Google or Apple sign-in email — with the subject <strong>Delete my With Him account</strong>.</p>
+        </div>
+        <p>State that you want your With Him account and its associated data deleted. Do not send your password, sign-in token, payment-card details or recordings. We handle account-deletion requests within <strong>30 days</strong>. Provider cleanup can finish later as explained below; this is not a promise that every provider copy is erased immediately.</p>
+
+        <h2 id="in-app">2. Delete inside the app</h2>
+        <p>On Android and iPhone, open <strong>Profile → Settings → Account → Delete account</strong> and confirm the permanent deletion.</p>
+        <p><strong>On Android, you can also open Account from the required subscription screen without paying</strong>, then choose Delete account. You do not need an active Plus subscription to delete the account.</p>
+        <p>This deletes your With Him account, not your Google account or Apple Account. Signing out or uninstalling is not the same as requesting account deletion.</p>
+
+        <h2 id="deleted">3. What gets deleted</h2>
+        <p>Account deletion removes the With Him identity record and the data held in your account:</p>
+        <ul>
+          <li>Reading progress, reading history and any optional answers about how a verse affected you.</li>
+          <li>Alarms, schedules, reading preferences and account settings.</li>
+          <li>Notes, highlights, bookmarks and saved sermon notes, including saved writing and sermon information.</li>
+          <li>Sermon drafts and recordings associated with the account; processing jobs are cancelled and temporary server content is scheduled for cleanup.</li>
+          <li>Your optional PostHog analytics profile and associated events, through an asynchronous provider-erasure request.</li>
+        </ul>
+        <p>In-app deletion also removes the account's data from the device where you delete it, including Android's local Ask history and recordings. With Him does not store Ask conversation text or the selected tradition on its servers. An email request cannot remotely erase a device that is offline; remove any remaining local copies on devices you still control. Older iPhone versions also used private iCloud storage for some progress and library content; remove those copies in your Apple Account's iCloud storage settings.</p>
+
+        <h2 id="retention">4. Retention and provider copies</h2>
+        <p>Account progress, history, settings and saved library content are otherwise kept for the life of the account. The following processing records or independently held provider copies can have a different lifecycle:</p>
+        <ul>
+          <li><strong>Local sermon audio:</strong> removed when the note is confirmed or deleted; Android automatically confirms successful summaries and removes their local audio. Draft audio unused for seven days is removed on a subsequent library cleanup, while written notes remain until deleted.</li>
+          <li><strong>Temporary sermon processing:</strong> Supabase audio is deleted after a durable transcript is available. Abandoned uploads expire after 24 hours; failed processing content and unacknowledged transcripts or drafts are eligible for cleanup within a maximum seven-day window from job creation. Azure Speech jobs request a 48-hour expiry and deletion after results are copied. Cancellation or acknowledgment schedules earlier cleanup. Scheduled cleanup retries failures, so an outage can delay actual erasure.</li>
+          <li><strong>Content-free cleanup records:</strong> minimal operation identifiers and a one-way input digest are retained until account deletion to prevent duplicate paid processing. Cleanup identifiers can remain longer during an outage until erasure is verified; they do not contain the erased note or transcript.</li>
+          <li><strong>Analytics:</strong> previously sent PostHog profiles and events are requested for deletion, not erased synchronously by the app. Turning off usage sharing only stops future events and removes unsent events; it does not itself erase past events. A fixed provider-erasure completion period has not been established here.</li>
+          <li><strong>Ask operational data:</strong> the service keeps account-associated daily quota counters and content-free request metrics for limits, reliability and safety, not conversation text. A fixed retention period for operational request metrics has not been established here.</li>
+          <li><strong>Microsoft safety monitoring and provider backups:</strong> Microsoft may retain and review prompts or responses flagged for abuse monitoring under its applicable terms. The 48-hour Speech-job setting is not a limit for these safety copies. We have not established a fixed retention period for provider backups or abuse-monitoring copies and cannot promise immediate provider erasure. See <a href="https://learn.microsoft.com/en-us/azure/foundry/responsible-ai/openai/data-privacy">Microsoft's Azure AI data privacy information</a>.</li>
+          <li><strong>Subscription and billing records:</strong> Google Play, Apple and RevenueCat may retain purchase, transaction and subscription records as required for billing and their legal obligations, under their own retention policies. Deleting your With Him account does not guarantee deletion of their customer or purchase records; we do not specify a verified fixed period for these independently held records. See <a href="https://policies.google.com/privacy">Google</a>, <a href="https://www.apple.com/legal/privacy/">Apple</a> and <a href="https://www.revenuecat.com/privacy">RevenueCat</a>.</li>
+          <li><strong>Feedback sent separately:</strong> a development-tracker issue is kept while it remains useful and has no account identifier attached by the app. If you included personal information in feedback or a support message, identify that separate message in your deletion email so we can address it.</li>
+        </ul>
+        <p>For more detail, see <a href="privacy.html#retention">the privacy policy's retention section</a>. You can ask the same contact address about a specific retained record.</p>
+
+        <h2 id="subscriptions">5. Cancel your subscription separately</h2>
+        <div class="legal-note">
+          <p><strong>Deleting the app or your With Him account does not cancel a Google Play or App Store subscription.</strong> Cancel through the store separately to stop renewal.</p>
+        </div>
+        <ul>
+          <li><strong>Android / Google Play:</strong> use the Google account that bought the subscription, then open <strong>Play Store → Payments &amp; subscriptions → Subscriptions → With Him → Cancel subscription</strong>. You can also use <a href="https://play.google.com/store/account/subscriptions">Google Play subscriptions</a> in a browser.</li>
+          <li><strong>iPhone / App Store:</strong> use the purchasing Apple Account, then open <strong>iOS Settings → your name → Subscriptions → With Him → Cancel Subscription</strong>.</li>
+        </ul>
+        <p>Manage subscription inside With Him opens the relevant store's subscription-management route. Cancelling and deleting the With Him account are separate actions.</p>
+
+        <section lang="ko" id="ko" aria-label="한국어 계정 삭제 안내">
+          <h2>With Him 계정 삭제</h2>
+          <h3>이메일로 삭제 요청하기</h3>
+          <p>앱을 다시 설치하거나 Plus를 결제하지 않아도 요청할 수 있습니다. With Him 계정에 사용하는 <strong>Google 또는 Apple 로그인 이메일 주소</strong>에서 <a href="mailto:kipackjeong@devitall.co?subject=Delete%20my%20With%20Him%20account">kipackjeong@devitall.co</a>로, 제목을 <strong>Delete my With Him account</strong>로 하여 계정과 연결 데이터를 삭제해 달라고 보내 주세요.</p>
+          <p>비밀번호, 로그인 토큰, 카드 정보나 녹음은 보내지 마세요. 요청은 <strong>30일 이내</strong>에 처리합니다. 아래 제공자 정리 작업까지 모두 즉시 끝난다는 뜻은 아니며, 제공자의 삭제 완료는 더 늦어질 수 있습니다.</p>
+          <h3>앱에서 삭제하기</h3>
+          <p>Android와 iPhone 모두 <strong>프로필 → 설정 → 계정 → 계정 삭제</strong>에서 영구 삭제를 확인해 주세요. <strong>Android는 필수 구독 화면의 계정 메뉴에서도 결제 없이 계정 삭제로 갈 수 있습니다.</strong> With Him 계정 삭제는 Google 계정이나 Apple 계정 삭제가 아니며, 로그아웃이나 앱 삭제만으로는 계정 삭제가 요청되지 않습니다.</p>
+          <h3>삭제되는 데이터</h3>
+          <p>With Him 계정 식별 정보, 진행 상황, 읽기 기록과 선택적으로 남긴 말씀 응답, 알람·일정·설정, 노트·하이라이트·북마크, 설교 노트와 작성한 메모·설교 정보, 초안과 녹음이 삭제 대상입니다. 처리 작업은 취소되고 임시 서버 자료 정리가 예약되며, PostHog 프로필과 연결된 사용 분석 이벤트에는 비동기 삭제 요청이 전송됩니다.</p>
+          <p>앱에서 삭제하면 삭제한 기기의 계정 데이터도 지워지며, Android의 해당 계정 Ask 기록과 녹음도 포함됩니다. With Him 서버에는 Ask 대화 내용이나 선택한 신앙 전통을 저장하지 않습니다. 이메일 요청으로 오프라인 기기를 원격 삭제할 수는 없으므로 보유 중인 다른 기기의 사본도 지워 주세요. 이전 iPhone 버전의 개인 iCloud 사본은 Apple 계정의 iCloud 저장 공간 설정에서 직접 제거할 수 있습니다.</p>
+          <h3>보관 기간과 제공자 사본</h3>
+          <ul>
+            <li><strong>계정 기록:</strong> 진행 상황·읽기 기록·설정·보관함은 원칙적으로 계정이 유지되는 동안 보관되고 계정 삭제 시 삭제 대상이 됩니다.</li>
+            <li><strong>설교 녹음:</strong> 확인 저장 또는 노트 삭제 시 기기 녹음이 지워지며, Android는 요약 성공 시 자동 확정 후 녹음을 삭제합니다. 7일간 쓰지 않은 초안 녹음은 다음 보관함 정리 시 제거됩니다. 작성한 메모는 직접 삭제할 때까지 남습니다.</li>
+            <li><strong>임시 처리 자료:</strong> Supabase 녹음은 녹취가 안전하게 저장되면 삭제합니다. 미완료 업로드는 24시간 후 만료되고, 실패한 처리 자료와 미확인 결과는 작업 생성 후 최대 7일의 정리 기간이 적용됩니다. Azure Speech 작업에는 48시간 만료와 결과 복사 후 삭제를 요청합니다. 취소·확인은 더 이른 정리를 예약하지만, 장애 시 실제 삭제가 늦어져 재시도할 수 있습니다.</li>
+            <li><strong>내용 없는 정리 식별자:</strong> 중복 유료 처리를 막는 작업 ID와 단방향 입력 해시는 계정 삭제까지 보관됩니다. 삭제 확인용 식별자는 장애가 해결되어 삭제를 확인할 때까지 더 남을 수 있지만 지워진 노트나 녹취 내용은 포함하지 않습니다.</li>
+            <li><strong>사용 분석:</strong> PostHog에 이미 보낸 프로필과 이벤트는 비동기 삭제 요청 대상입니다. 분석을 끄는 것만으로 과거 이벤트가 삭제되지는 않습니다. 제공자의 정확한 삭제 완료 기간은 여기서 확정하지 않았습니다.</li>
+            <li><strong>Ask 운영 기록:</strong> 계정별 일일 한도와 내용 없는 요청 지표를 한도·안정성·안전 목적으로 보관합니다. 대화 내용은 아니며 요청 운영 지표의 고정 보관 기간은 여기서 확정하지 않았습니다.</li>
+            <li><strong>Microsoft 안전 감시와 제공자 백업:</strong> 오용 감시에서 표시된 프롬프트·답변은 Microsoft 약관에 따라 보관·검토될 수 있습니다. Speech 작업의 48시간 설정이 안전 감시 사본에도 적용되는 것은 아닙니다. 제공자 백업·안전 감시 사본의 고정 보관 기간은 확인되지 않았으며 즉시 삭제를 보장하지 않습니다. <a href="https://learn.microsoft.com/en-us/azure/foundry/responsible-ai/openai/data-privacy">Microsoft 안내</a>를 참고해 주세요.</li>
+            <li><strong>구독·결제 기록:</strong> Google Play·Apple·RevenueCat은 결제와 법적 의무에 필요한 구매·거래·구독 기록을 자체 정책에 따라 보관할 수 있습니다. With Him 계정 삭제가 이들의 고객·구매 기록 삭제를 보장하지 않으며, 확인된 고정 기간을 명시하지 않습니다.</li>
+            <li><strong>별도로 보낸 피드백:</strong> 개발 이슈는 유용한 동안 보관되며 앱이 계정 식별자를 붙이지 않습니다. 피드백이나 지원 메시지에 개인정보를 쓰셨다면 삭제 이메일에 그 메시지도 알려 주세요.</li>
+          </ul>
+          <p>자세한 내용은 <a href="privacy.html#retention">개인정보 처리방침의 보관 안내</a>를 참고하시고, 특정 기록에 대한 문의는 같은 이메일로 보내 주세요.</p>
+          <h3>정기 결제는 별도로 취소해 주세요</h3>
+          <p><strong>앱 또는 With Him 계정을 삭제해도 Google Play·App Store 구독은 취소되지 않습니다.</strong> 갱신을 중단하려면 구매한 스토어에서 따로 취소해야 합니다.</p>
+          <ul>
+            <li><strong>Android:</strong> 구매한 Google 계정으로 <strong>Play 스토어 → 결제 및 정기 결제 → 정기 결제 → With Him → 정기 결제 취소</strong>를 선택하세요. 브라우저의 <a href="https://play.google.com/store/account/subscriptions">Google Play 구독 관리</a>에서도 가능합니다.</li>
+            <li><strong>iPhone:</strong> 구매한 Apple 계정으로 <strong>iOS 설정 → 본인 이름 → 구독 → With Him → 구독 취소</strong>를 선택하세요.</li>
+          </ul>
+          <p>앱 안의 구독 관리도 해당 스토어 관리 경로로 연결됩니다. 정기 결제 취소와 With Him 계정 삭제는 별개입니다.</p>
+        </section>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-links">
+      <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
+      <span><a href="index.html">How it works</a> &nbsp;·&nbsp; <a href="support.html">Support</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a> &nbsp;·&nbsp; <a href="delete-account.html">Delete account</a></span>
+    </div>
+    <p class="foot-note">With Him for iPhone and Android, built by one person.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
+</body>
+</html>

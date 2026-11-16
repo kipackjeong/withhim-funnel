@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#F5F5F5">
 
 <title>Support — With Him</title>
-<meta name="description" content="Help for the With Him iPhone app: getting the alarm to fire, reading a verse aloud, the Focus Shield, subscriptions and cancelling, and how to reach a person.">
+<meta name="description" content="Help for the With Him iPhone and Android apps: access requirements, verse reading, screen-time features, subscriptions, cancellation and account deletion.">
 <link rel="canonical" href="https://kipackjeong.github.io/withhim-funnel/support.html">
 
 <meta property="og:type" content="website">
@@ -46,8 +46,8 @@
         <p class="eyebrow">Support</p>
         <h1>Something not working? Start here.</h1>
         <p class="legal-meta">
-          <span>For the With Him iPhone app</span>
-          <span>Last updated 26 August 2026</span>
+          <span>For the With Him iPhone and Android apps</span>
+          <span>Last updated 16 November 2026</span>
         </p>
       </div>
     </div>
@@ -82,15 +82,16 @@
         <div class="legal-note">
           <p><strong>Write to <a href="mailto:kipackjeong@devitall.co">kipackjeong@devitall.co</a></strong> and it is read by the person who built the app. There is no ticket queue and no bot. A reply usually takes a day or two.</p>
         </div>
-        <p>From inside the app, <strong>Settings → Send feedback</strong> is the faster route for a bug: it files the report directly with no identifier attached, so add an email address in the message itself if you want an answer back.</p>
-        <p>If you are writing about something going wrong, the three things that make it fixable are: what you expected to happen, what happened instead, and your iOS version (iOS Settings → General → About → Software Version).</p>
+        <p>From inside the app, <strong>Settings → Send feedback</strong> is the faster route for a bug: it files the report directly with no account identifier attached, so add an email address in the message itself if you want an answer back. Android includes app/OS version information, and our backend uses an IP-derived security identifier to limit abuse.</p>
+        <p>If you are writing about something going wrong, include what you expected, what happened instead, and your app and operating-system version. On iPhone, find the OS version in iOS Settings → General → About → Software Version; on Android, look in the device's Settings → About phone.</p>
 
         <h2 id="requirements">2. What you need</h2>
-        <p>With Him is an iPhone app and requires <strong>iOS 26 or later</strong>. There is no iPad layout, no Mac version and no Android version. It works entirely offline — the Bible ships inside the app — so a lost connection never stops you reading.</p>
+        <p>The iPhone app requires <strong>iOS 26 or later</strong>. There is no iPad layout or Mac version. Its Bible text ships inside the app for offline reading. Sign-in, sync, purchases and AI processing need an internet connection.</p>
+        <p><strong>The Android main app requires Google sign-in and a With Him Plus subscription.</strong> Google Play and RevenueCat handle billing and access. Bible text is bundled on Android too, but this does not provide a free or anonymous route into the main app. You can reach Account from the subscription screen to delete your account without purchasing.</p>
 
         <h2 id="alarm">3. The alarm</h2>
         <h3>The alarm did not go off</h3>
-        <p>Work through these in order; the first two account for almost every case.</p>
+        <p>The following system-settings steps are for iPhone. Work through these in order; the first two account for almost every case.</p>
         <ul>
           <li><strong>Permission.</strong> iOS Settings → With Him → make sure alarms and notifications are allowed. If the permission was denied once, the alarm is scheduled but has nothing to show.</li>
           <li><strong>The alarm is enabled.</strong> In the app, an alarm has a switch of its own as well as a time. Both matter.</li>
@@ -98,7 +99,7 @@
           <li><strong>The phone was off.</strong> A powered-down or drained phone cannot ring; iOS schedules nothing while it is off.</li>
         </ul>
         <div class="legal-note">
-          <p><strong>Do not use With Him as your only alarm for anything that matters.</strong> A flight, a shift, medication, an appointment — keep a second alarm. This is a habit, not a safety-critical system, and it depends on iOS behaving normally.</p>
+          <p><strong>Do not use With Him as your only alarm for anything that matters.</strong> A flight, a shift, medication, an appointment — keep a second alarm. This is a habit, not a safety-critical system, and it depends on your phone's operating system behaving normally.</p>
         </div>
 
         <h3>It rang, but I could not stop it</h3>
@@ -109,12 +110,14 @@
 
         <h2 id="voice">4. Reading aloud</h2>
         <h3>The words are not lighting up</h3>
-        <p>Recognition runs on Apple's on-device recogniser, and it needs three things: microphone permission and speech-recognition permission (both in iOS Settings → With Him), a language the recogniser supports downloaded on the device (iOS Settings → General → Keyboard → Dictation), and a room quiet enough to hear you over.</p>
+        <p>On iPhone, recognition runs on Apple's on-device recogniser, and it needs three things: microphone permission and speech-recognition permission (both in iOS Settings → With Him), a language the recogniser supports downloaded on the device (iOS Settings → General → Keyboard → Dictation), and a room quiet enough to hear you over.</p>
+        <p>On Android, English uses the on-device Vosk recognizer. Korean uses the system recognizer; English may also fall back to it. When network recognition is needed, the app asks for session-only consent because the system speech provider may stream microphone audio. Choose <strong>Keep typing</strong> if you do not want that transfer. See <a href="privacy.html#android">Android speech and recording privacy</a>.</p>
         <p>Read at a normal pace rather than slowly. The match is forgiving about small differences, and a word or two that will not land is not meant to trap you — the typing fallback is there for exactly that.</p>
         <h3>Is my voice recorded?</h3>
-        <p>Verse-reading audio is processed on your iPhone and is not recorded or uploaded. The app keeps the completion outcome; if you sign in, a summary of completed readings can also be stored with your account. Optional sermon recording and AI processing are separate features that handle audio differently. See the <a href="privacy.html#voice">privacy policy</a> for details.</p>
+        <p>Verse-reading audio is processed on your iPhone and is not recorded or uploaded. The app keeps the completion outcome and syncs signed-in reading records to your account. Android's system-speech exception is described above; do not assume every recognition mode is on-device. Optional sermon recording is separate: on Android it continues while the app is hidden or the screen is off, and saving an audio draft starts transcription/summary processing. See the <a href="privacy.html#voice">privacy policy</a> for details.</p>
 
         <h2 id="shield">5. The Focus Shield</h2>
+        <p>The Screen Time instructions below are for iPhone. On Android, the feature is called <strong>Manage Screen Time</strong> and uses Accessibility and Usage access after a separate consent notice. Real app package names, categories and foreground timing are read only on the device and are not sent to us; no screen content is read. You can revoke those permissions in Android Settings. See <a href="privacy.html#android">the Android details</a>.</p>
         <h3>Turning it on</h3>
         <p>The shield needs Screen Time authorisation, which iOS asks for once. You then choose the apps it applies to. It is set up for you, on your own phone — it is not a parental control and does not manage anyone else's device.</p>
         <h3>Turning it off</h3>
@@ -125,24 +128,25 @@
         <p>Apple hands the app opaque tokens instead of app identities, by design. We genuinely cannot see your selection, which is also why the app shows counts rather than names.</p>
 
         <h2 id="plus">6. What costs money, and what does not</h2>
-        <p><strong>The Bible reader is free and stays free.</strong> The complete offline text, search, cross-references, highlights, notes, bookmarks and the daily verse are not behind the subscription and are not scheduled to be. <strong>The verse alarm is free too.</strong></p>
-        <p>With Him Plus buys the Focus Shield, sermon recording and note preparation, and account sync for your notes, highlights and bookmarks. It is offered monthly or annually, and the price, the period and any trial are shown on the purchase screen in your own currency before you confirm.</p>
+        <p><strong>On iPhone, the Bible reader is free and stays free.</strong> The complete offline text, search, cross-references, highlights, notes, bookmarks and the daily verse are not behind the iPhone subscription and are not scheduled to be. <strong>The iPhone verse alarm is free too.</strong></p>
+        <p>On iPhone, With Him Plus buys the Focus Shield, sermon recording and note preparation, and account sync for your notes, highlights and bookmarks. <strong>On Android, Google sign-in and With Him Plus are required for the main app, including the Bible reader.</strong> Plans are offered monthly or annually; the store purchase screen shows the price, period and any trial before you confirm.</p>
         <h3>I paid, but Plus is not active</h3>
-        <p>Open the paywall and tap <strong>Restore purchases</strong>. If nothing is found, the usual cause is a different Apple Account — subscriptions belong to the Apple Account that bought them, not to the app. Sign in with that account and restore again.</p>
+        <p>Open the paywall and tap <strong>Restore purchases</strong>. On iPhone, use the Apple Account that purchased the subscription. On Android, use the purchasing Google Play account and sign in to the correct With Him Google account. If access still does not return, contact us; do not purchase a second subscription to troubleshoot.</p>
 
         <h2 id="cancel">7. Cancelling and refunds</h2>
-        <p>Cancel in <strong>iOS Settings → your name → Subscriptions → With Him</strong>, or through Manage subscription inside the app. Cancelling stops the next renewal; access continues to the end of the period you have already paid for.</p>
-        <p><strong>Deleting the app does not cancel a subscription.</strong> Only the step above does.</p>
-        <p>Refunds are handled by Apple at <a href="https://reportaproblem.apple.com/">reportaproblem.apple.com</a> — we cannot issue them ourselves. If something went wrong, write anyway; we would rather know than not.</p>
+        <p>On iPhone, cancel in <strong>iOS Settings → your name → Subscriptions → With Him</strong>, or through Manage subscription inside the app. Cancelling stops the next renewal; access continues to the end of the period you have already paid for.</p>
+        <p>On Android, use <strong>Play Store → Payments &amp; subscriptions → Subscriptions → With Him → Cancel subscription</strong> with the purchasing Google account, or open Manage subscription in With Him to reach Google Play.</p>
+        <p><strong>Deleting the app or your With Him account does not cancel a subscription.</strong> Cancel separately through Apple or Google Play. See <a href="delete-account.html#subscriptions">deletion and subscription instructions</a>.</p>
+        <p>Apple handles iPhone refunds at <a href="https://reportaproblem.apple.com/">reportaproblem.apple.com</a>. For Android purchases, use <a href="https://support.google.com/googleplay/answer/2479637">Google Play's refund help</a>. If something went wrong, write anyway; we would rather know than not.</p>
 
         <h2 id="account">8. Account and your data</h2>
-        <p>Reading, alarms, shielding and manual sermon notes work without an account. Sign in with Apple is optional for those local features and required for AI sermon processing. You can sign in during onboarding or later in Settings.</p>
-        <p>To delete an account: <strong>Settings → Account → Delete account</strong>, inside the app. That removes the identity record and revokes the token grant at Apple. It does not cancel a subscription, which is tied to your Apple Account.</p>
-        <p>Your highlights, notes, bookmarks and alarms are kept on your phone; supported library content may sync through your private iCloud account. If you sign in, a summary of completed verse readings is also stored with your account. Deleting the app does not cancel a subscription. See <a href="privacy.html#device">the privacy policy</a> for what stays local, what may sync, and how to delete account data.</p>
+        <p>On iPhone, account sign-in uses Sign in with Apple. On Android, Google sign-in is required and Plus is needed to enter the main app. Progress, reading history, alarms and settings are kept in your account; with Plus, eligible notes, highlights, bookmarks and confirmed sermon notes sync there too. Earlier iPhone versions used private iCloud storage for some content; see the <a href="privacy.html#retention">privacy policy</a>.</p>
+        <p>On Android and iPhone, use <strong>Profile → Settings → Account → Delete account</strong>. Android also provides Account on the required subscription screen, so you do not need to pay to delete your account. For an email request without reinstalling, the data deleted, retention and the 30-day handling period, use <strong><a href="delete-account.html#request">Delete your With Him account</a></strong> (<a href="delete-account.html#ko" lang="ko">한국어 안내</a>).</p>
+        <p>Deleting your With Him account removes account data and starts temporary-content and analytics cleanup; it does not delete your Google or Apple account or cancel a store subscription. See <a href="delete-account.html#subscriptions">how to cancel separately</a>.</p>
 
         <h2 id="bible">9. Bible translations and language</h2>
         <p>Three translations ship inside the app, all public domain, each carried with its own attribution: the <strong>Berean Standard Bible</strong>, the <strong>World English Bible</strong>, and <strong>성경전서 개역한글판</strong>. You can switch between them in Settings.</p>
-        <p>The app itself is fully translated into English and Korean and follows your iPhone's language. If you would like another language, or another translation, that is a useful thing to write in about — it is how the list gets longer.</p>
+        <p>The app itself is translated into English and Korean. If you would like another language, or another translation, that is a useful thing to write in about — it is how the list gets longer.</p>
 
       </div>
     </div>
@@ -154,9 +158,9 @@
   <div class="container">
     <div class="foot-links">
       <a class="wordmark" href="index.html"><span class="mark" aria-hidden="true"></span>With Him</a>
-      <span><a href="index.html">How it works</a> &nbsp;·&nbsp; <a href="support.html">Support</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a></span>
+      <span><a href="index.html">How it works</a> &nbsp;·&nbsp; <a href="support.html">Support</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a> &nbsp;·&nbsp; <a href="delete-account.html">Delete account</a></span>
     </div>
-    <p class="foot-note">An iPhone app, built by one person. Available on the App Store.</p>
+    <p class="foot-note">With Him for iPhone and Android, built by one person.</p>
   </div>
 </footer>
 
